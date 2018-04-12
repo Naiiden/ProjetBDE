@@ -1,0 +1,1632 @@
+/* CSS - 21/08/2017
+/* MAJ - 08/10/2017
+ *
+ * Theme AZAP for Drupal 8
+ * By www.ipika.fr 
+*/
+/* 30/09/2016
+ *
+ * VARS 
+ * By www.ipika.fr 
+*/
+/* ------ MIXINS ------ */
+.clearfix {
+  display: block;
+}
+.clearfix:after {
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  content: ".";
+  line-height: 0;
+}
+.image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ratio-box {
+  display: block;
+  content: "";
+  padding-top: 66.66%;
+}
+.ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+/* ------ VARIABLES ------ */
+/* ------ STRUCTURE ------ */
+.inner,
+.profile,
+.tabs {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+.inner .tabs,
+.inner .inner {
+  width: 100%;
+}
+section {
+  clear: both;
+  width: 100%;
+}
+section .inner {
+  overflow: hidden;
+}
+section#content .inner {
+  padding: 45px 0 30px 0;
+}
+/* ------ COMMON ------ */
+body {
+  overflow: hidden;
+  position: relative;
+  min-width: 1200px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #314d61;
+  font: 300 100%/1.4em 'Ubuntu', sans-serif;
+}
+p {
+  margin: 0 0 0.8em;
+}
+ul {
+  margin: 0;
+}
+h1 {
+  position: relative;
+  padding: 60px 0 0 0;
+  color: #1e324d;
+  font: 400 2em/1.4em 'Ubuntu', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  text-shadow: 0 0 0px #000;
+}
+h1:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: -10px;
+  width: 6%;
+  height: 1px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #1e324d;
+}
+h2 {
+  position: relative;
+  font: 500 1.2em/1.2em "Ubuntu", sans-serif;
+}
+h3 {
+  font: 500 1.1em/1.5em 'Ubuntu', sans-serif;
+}
+.subtitle {
+  position: relative;
+  margin-bottom: 30px;
+  color: #314d61;
+  font: 300 1.3em/1.2em 'Ubuntu', sans-serif;
+  text-transform: uppercase;
+}
+.subtitle:after {
+  position: absolute;
+  content: "";
+  left: calc(50% - 40px);
+  bottom: -15px;
+  width: 100px;
+  height: 2px;
+  background: #314d61;
+}
+a {
+  text-decoration: none;
+  color: #3897c1;
+}
+a:hover {
+  text-decoration: underline;
+}
+.bloc-link a {
+  z-index: 2;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.back-link {
+  display: inline-block;
+  padding: 5px;
+  width: 16%;
+  margin-bottom: 20px;
+  border: 1px solid #5f6b73;
+}
+.back-link a {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  padding: 0 20px;
+  font: 300 0.9em/30px "Ubuntu", sans-serif;
+  text-transform: uppercase;
+}
+.back-link a:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font: 0.8em/30px "Fontello";
+  content: "\E839";
+  color: #215871;
+}
+.all-link a {
+  position: relative;
+  display: inline-block;
+  margin: 15px 0 0;
+  padding: 0 20px 0 40px;
+  color: #314d61;
+  font: 300 0.9em/25px "Ubuntu", sans-serif;
+  text-transform: uppercase;
+}
+.all-link a:hover {
+  color: #215871;
+  text-decoration: none;
+}
+.all-link a:before {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  left: 0;
+  font: 0.8em/25px "Fontello";
+  content: "\E823";
+  color: #215871;
+  border: 1px solid;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+}
+.button a {
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  font: 400 0.9em/36px 'Ubuntu', sans-serif;
+  color: #FFF;
+  text-decoration: none;
+  background: #3897c1;
+  border: 1px solid #3897c1;
+  cursor: pointer;
+}
+.button a:hover {
+  color: #3897c1;
+  background: none;
+  border: 1px solid #3897c1;
+}
+.button.special a:before,
+.button.special a:after {
+  position: absolute;
+  content: "";
+  left: 10px;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: white;
+}
+.button.special a:after {
+  left: auto;
+  right: 10px;
+}
+.empty {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.table {
+  display: table;
+}
+.table .column {
+  display: table-cell;
+  vertical-align: top;
+}
+#map iframe {
+  display: block;
+  height: 310px;
+  width: 100%;
+}
+.topic {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  padding: 0 15px;
+  margin: 0 auto;
+  font: 700 1em/30px "Ubuntu", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  background: #FFF;
+}
+/* ------ FILED-NAME-BODY ------ */
+.field--name-body {
+  margin: 0;
+}
+.field--name-body h2 {
+  margin-top: 35px;
+}
+.field--name-body h2:first-child {
+  margin-top: 0;
+}
+.field--name-body ol,
+.field--name-body ul {
+  display: block;
+  padding: 0 0 0 20px;
+  margin: 1em 0;
+}
+.field--name-body ol li {
+  margin-left: 15px;
+  padding: 3px 0 3px 0;
+  list-style-type: decimal;
+}
+.field--name-body ul li {
+  position: relative;
+  padding: 3px 0 3px 0;
+  list-style: none;
+}
+.field--name-body ul li:before {
+  float: left;
+  position: relative;
+  content: "■";
+  top: -1px;
+  padding: 0 10px 0 0;
+  color: #215871;
+  font-size: 1.1em;
+}
+.field--name-body a {
+  text-decoration: underline;
+}
+.field--name-body a:hover {
+  text-decoration: none;
+}
+/* ------ HEADER ------ */
+header {
+  position: relative;
+  z-index: 1;
+}
+header #logo img {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  width: 180px;
+  height: auto;
+}
+header nav {
+  float: left;
+  width: 75%;
+  padding-left: 200px;
+  font: 700 1em/65px 'Ubuntu';
+}
+header nav ul {
+  display: table;
+  width: 100%;
+}
+header nav ul li {
+  display: table-cell;
+  text-align: center;
+  padding: 0 2px;
+}
+header nav ul li a {
+  position: relative;
+  display: block;
+  padding: 0;
+  color: #314d61;
+  text-align: center;
+  text-transform: uppercase;
+}
+header nav ul li a:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 0;
+  width: 0;
+  height: 5px;
+  background: #3897c1;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+}
+header nav ul li a:hover {
+  color: #3897c1;
+  text-decoration: none;
+}
+header nav ul li a:hover:after {
+  width: 100%;
+}
+header nav ul li.menu-item--active-trail a {
+  color: #3897c1;
+}
+header nav ul li.menu-item--active-trail a:after {
+  width: 100%;
+}
+header nav ul li.menu-item--active-trail a:before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 5px;
+  width: 0px;
+  height: 0px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  border: 5px solid transparent;
+  border-top: 5px solid ;
+}
+header #header-button {
+  float: left;
+  width: 25%;
+}
+header #header-button ul {
+  display: table;
+  width: 100%;
+}
+header #header-button ul li {
+  display: table-cell;
+  width: 50%;
+  padding: 0 1px;
+}
+header #header-button ul li a {
+  position: relative;
+  display: block;
+  color: #FFF;
+  font: 300 0.9em/65px "Ubuntu", sans-serif;
+  background: #314d61;
+  text-align: center;
+}
+header #header-button ul li a:before {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  font: 1.5em/0 'fontello';
+  content: "\E824";
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+}
+header #header-button ul li a span {
+  position: relative;
+  top: 12px;
+}
+header #header-button ul li:last-child a {
+  background: #3897c1;
+}
+header #header-button ul li:last-child a:before {
+  content: "\E83D";
+}
+/* ------ ACCUEIL ------ */
+.front #slide {
+  position: relative;
+  text-align: center;
+  height: 550px;
+  background-image: url("../../img/local/accueil/accueil-background.png");
+  background-size: cover;
+}
+.front #slide .inner {
+  position: relative;
+  height: 550px;
+}
+.front #slide h1 {
+  font: 700 65px/1em 'Ubuntu', sans-serif;
+  margin-top: 130px;
+  color: white;
+  margin-bottom: -5px;
+}
+.front #slide h1:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  width: 100px;
+  height: 2px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #FFF;
+}
+.front #slide h1 span {
+  display: block;
+  position: relative;
+  font-size: 25px;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #000;
+}
+.front #slide .button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.front #slide .button a {
+  background: #D30833;
+  color: white;
+  font: 400 1.1em/55px 'Ubuntu', sans-serif;
+  border: 1px solid #D30833;
+  text-transform: uppercase;
+  padding: 0 30px;
+}
+.front #slide .button a:before {
+  position: relative;
+  left: -10px;
+  font: 1.5em/55px 'fontello';
+  content: "\E83D";
+}
+.front #slide .button a:hover {
+  color: #D30833;
+  background: #FFFFFF;
+}
+.front #front-desc {
+  padding: 50px 0;
+}
+.front #front-desc h2 {
+  position: relative;
+  width: calc(30% - 3px);
+  font-size: 1.8em;
+  color: #314d61;
+  text-align: right;
+  vertical-align: top;
+  display: inline-block;
+}
+.front #front-desc h2:after {
+  position: absolute;
+  content: "";
+  right: -50px;
+  bottom: -20px;
+  width: 100px;
+  height: 5px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #3897c1;
+}
+.front #front-desc .front-desc-content {
+  display: inline-block;
+  width: calc(70% - 3px);
+  padding-left: 50px;
+  vertical-align: top;
+}
+.front #front-desc .front-desc-content p {
+  font-size: 1.1em;
+}
+.front #front-event-list {
+  position: relative;
+  background: #215871;
+}
+.front #front-event-list .inner {
+  padding: 45px 0 30px;
+}
+.front #front-event-list h2 {
+  position: relative;
+  margin-bottom: 35px;
+  font: 100 2em/1em 'Ubuntu';
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+}
+.front #front-event-list h2:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: -155%;
+  width: 0.1%;
+  height: 100%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: white;
+}
+.front #front-event-list #event-list-content {
+  margin-bottom: 35px;
+}
+.front #front-event-list .button {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  text-align: center;
+}
+.front #front-event-list .button a {
+  text-transform: uppercase;
+  background: #215871;
+}
+.front #front-event-list .button a:hover {
+  background: #FFF;
+  color: #215871;
+}
+.front #front-event-list .button a:hover:before {
+  background: #215871;
+}
+.front #front-event-list .button a:hover:after {
+  background: #215871;
+}
+.front .azap-members {
+  position: relative;
+}
+.front .azap-members h2 {
+  position: relative;
+  font: 100 2em/1em 'Ubuntu';
+  text-transform: uppercase;
+  color: #314d61;
+  text-align: center;
+  margin: 40px 0 30px 0;
+}
+.front .azap-members h2:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: -125%;
+  width: 0.1%;
+  height: 100%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #314d61;
+}
+.front .azap-members .member-links {
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 45px;
+}
+.front .azap-members .member-links .button {
+  display: inline-block;
+  margin: 0 10px;
+  text-align: center;
+}
+.front .azap-members .member-links .button.register a {
+  text-transform: uppercase;
+}
+.front .azap-members .member-links .button.register a:before {
+  position: relative;
+  left: -20px;
+  font: 1.5em/0 'fontello';
+  content: "\E83D";
+}
+.front .azap-members .member-links .button.special a {
+  background: white;
+  color: #5f6b73;
+  border: 1px solid;
+  text-transform: uppercase;
+}
+.front .azap-members .member-links .button.special a:before,
+.front .azap-members .member-links .button.special a:after {
+  background: #5f6b73;
+}
+.front .azap-members .member-links .button.special a:hover {
+  background: #5f6b73;
+  color: #FFF;
+}
+.front .azap-members .member-links .button.special a:hover:before,
+.front .azap-members .member-links .button.special a:hover:after {
+  background: #FFF;
+}
+/* ------ ASSOCIATION ------ */
+#azap {
+  background: #f3f4f4;
+  padding-bottom: 40px;
+}
+#azap #azap-view {
+  position: relative;
+  height: 410px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+#azap #azap-view .claim {
+  position: absolute;
+  bottom: 50px;
+  padding: 20px 25px 20px 90px;
+  font: 700 1.4em/1.6em 'Ubuntu';
+  background-color: rgba(56, 151, 193, 0.5);
+  width: 50%;
+  color: #FFF;
+  text-transform: uppercase;
+}
+#azap #azap-view .claim:before,
+#azap #azap-view .claim:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 90px;
+  width: 80px;
+  height: 5px;
+  background: #FFF;
+}
+#azap #azap-view .claim:after {
+  left: auto;
+  right: 25px;
+  top: auto;
+  bottom: 0;
+}
+#azap #azap-view .claim span {
+  display: block;
+  text-transform: none;
+  padding-left: 20px;
+  font: 300 0.8em/1.6em 'Ubuntu';
+}
+#azap #azap-content {
+  overflow: hidden;
+  padding: 0 50px;
+  background: #FFF;
+}
+#azap #azap-content .highlight {
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  padding-bottom: 40px;
+}
+#azap #azap-content .highlight:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  bottom: 20px;
+  width: 33.33%;
+  height: 1px;
+  background: #acbac4;
+}
+#azap #azap-content .highlight .highlight-bloc {
+  float: left;
+  width: 33.33%;
+  padding: 40px 50px;
+}
+#azap #azap-content .highlight .highlight-bloc h2 {
+  padding: 5%;
+  color: #3897c1;
+}
+#azap #azap-content .azap-content-inner {
+  position: relative;
+  padding-top: 40px;
+}
+#azap #azap-content .azap-content-inner:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  bottom: 20px;
+  width: 33.33%;
+  height: 1px;
+  background: #acbac4;
+}
+#azap #azap-content .azap-content-inner .content-bloc {
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 70px;
+}
+#azap #azap-content .azap-content-inner .content-bloc .content-view {
+  position: relative;
+  float: left;
+  width: 50%;
+  padding-right: 35px;
+}
+#azap #azap-content .azap-content-inner .content-bloc .content-view img {
+  width: 100%;
+}
+#azap #azap-content .azap-content-inner .content-bloc .content-desc {
+  position: relative;
+  float: left;
+  width: 50%;
+}
+#azap #azap-content .azap-content-inner .content-bloc .content-desc h2 {
+  position: relative;
+  left: -115px;
+  background: #FFF;
+  text-transform: uppercase;
+  font: 300 1.3em/1.4em 'Ubuntu', sans-serif;
+  color: #3897c1;
+  padding: 10px 25px;
+  margin: 50px 0 25px;
+}
+#azap #azap-content .azap-content-inner .content-bloc:nth-child(even) .content-view {
+  float: right;
+  padding-left: 35px;
+}
+#azap #azap-content .azap-content-inner .content-bloc:nth-child(even) .content-desc {
+  text-align: right;
+}
+#azap #azap-content .azap-content-inner .content-bloc:nth-child(even) .content-desc h2 {
+  left: 115px;
+}
+#azap #azap-content #azap-bureau {
+  padding-top: 30px;
+}
+#azap #azap-content #azap-bureau h2 {
+  color: #3897c1;
+  text-align: center;
+  text-transform: uppercase;
+}
+#azap #azap-content #azap-bureau .bureau-members {
+  text-align: center;
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc {
+  display: inline-block;
+  position: relative;
+  width: calc(25% - 103px);
+  margin: 0 50px 65px;
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc .bureau-view {
+  position: relative;
+  overflow: hidden;
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc .bureau-view:before {
+  display: block;
+  content: "";
+  padding-top: 66.66%;
+  padding-top: 100%;
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc .bureau-view span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc .bureau-view img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc .bureau-function {
+  position: relative;
+  text-transform: uppercase;
+  font: 500 0.9em/1.8em "ubuntu";
+  padding: 10px 0 5px;
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc .bureau-function:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: 0;
+  width: 13%;
+  height: 1px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #314d61;
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc .bureau-name {
+  text-transform: uppercase;
+  text-align: center;
+  color: #3897c1;
+  padding: 10px 0 0;
+}
+#azap #azap-content #azap-bureau .bureau-members .bureau-bloc .bureau-activity {
+  color: #5f6b73;
+  font: italic 0.9em/1.8em "ubuntu";
+}
+/* ------ ENTREPRISES ------ */
+/* ------ List ------ */
+#company-list {
+  background-color: #f3f4f4;
+}
+#company-list .inner {
+  padding: 0 0 50px 0;
+}
+.company-list-content {
+  overflow: hidden;
+  margin: 0 -10px;
+}
+.company-list-content .company-list-bloc {
+  float: left;
+  position: relative;
+  width: calc(20% - 20px);
+  margin: 0 10px 20px;
+  background: #FFF;
+}
+.company-list-content .company-list-view {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  height: 160px;
+  text-align: center;
+}
+.company-list-content .company-list-view img {
+  display: block;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+.company-list-content .company-list-desc {
+  margin: 0 15px 15px;
+  border-top: 1px solid #010005;
+  text-align: center;
+}
+.company-list-content .company-list-desc h3 {
+  font: 500 1em/1.8em "ubuntu";
+}
+.company-list-content .company-list-desc h3 a {
+  color: #010005;
+}
+.company-list-content .company-list-desc .company-list-activity {
+  font: 300 0.9em/1.4em 'Ubuntu', sans-serif;
+}
+.company-list-content .member:after {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  content: "\E83D";
+  font: 1.3em/40px 'fontello';
+}
+/* ------ Détail ------ */
+#company {
+  background: #f3f4f4;
+  padding: 0 0 60px 0px;
+}
+#company h1 {
+  position: relative;
+  color: #1e324d;
+  font: 400 2em/1.4em 'Ubuntu', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+  text-shadow: 0 0 0px #000;
+}
+#company h1:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: -10px;
+  width: 6%;
+  height: 1px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #1e324d;
+}
+#company h2 {
+  font: 500 1em/1.8em "ubuntu";
+  color: #3897c1;
+  text-transform: uppercase;
+}
+#company .company-top {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 450px;
+}
+#company .company-top .company-view {
+  width: 100%;
+  height: 100%;
+}
+#company .company-top .company-view img {
+  position: relative;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+#company .company-top .company-logo {
+  position: absolute;
+  display: table;
+  top: 0;
+  left: 85px;
+  width: 215px;
+  height: 215px;
+  padding: 15px;
+  text-align: center;
+  background: #FFF;
+}
+#company .company-top .company-logo span {
+  display: table-cell;
+  vertical-align: middle;
+}
+#company .company-top .company-logo img {
+  display: block;
+  max-width: 185px;
+  max-height: 185px;
+}
+#company .company-detail {
+  padding: 0px 85px 65px;
+  background: #FFF;
+}
+#company .company-detail .data-inner {
+  margin-bottom: 30px;
+}
+#company .company-detail .data-inner .data-bloc {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  padding: 25px 40px 0;
+  margin: -70px 0 0;
+  width: calc(33.33% - 3px);
+  vertical-align: top;
+  background: #FFF;
+}
+#company .company-detail .company-link {
+  position: relative;
+  border-bottom: 1px solid #3897c1;
+  margin-bottom: 65px;
+  text-align: center;
+}
+#company .company-detail .company-link .button {
+  margin-bottom: -1px;
+  display: inline-block;
+}
+#company .company-detail .company-link .follow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font: 1em/0 'Ubuntu';
+  color: #acbac4;
+}
+#company .company-detail .company-link .follow a {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+}
+#company .company-detail .company-link .follow a:after {
+  position: relative;
+  font: 1.3em/40px 'fontello';
+  color: #314d61;
+  text-align: center;
+}
+#company .company-detail .company-link .follow a:hover {
+  text-decoration: none;
+  color: #FFF;
+  background: #314d61;
+}
+#company .company-detail .company-link .follow a:hover:after {
+  color: #FFF;
+}
+#company .company-detail .company-link .follow .facebook:after {
+  content: "\F30C";
+}
+#company .company-detail .company-link .follow .twitter:after {
+  content: "\F309";
+}
+#company .company-detail .company-link .follow .linkedin:after {
+  content: "\F0E1";
+}
+#company .company-detail .company-content {
+  overflow: hidden;
+  position: relative;
+}
+#company .company-detail .company-content:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 66.66%;
+  width: 1px;
+  height: 100%;
+  background: #5f6b73;
+}
+#company .company-detail .company-content .company-desc {
+  float: left;
+  width: 66.66%;
+  padding-right: 40px;
+}
+#company .company-detail .company-content .company-leader {
+  float: left;
+  width: 33.33%;
+  padding-left: 40px;
+}
+#company .company-detail .company-content .company-leader .button {
+  margin-top: 20px;
+}
+#company .company-detail .company-content .company-leader .button a {
+  text-transform: uppercase;
+  border: 1px solid #215871;
+  background: #215871;
+}
+#company .company-detail .company-content .company-leader .button a:hover {
+  color: #215871;
+  background: #FFF;
+}
+#company .company-detail .company-content .company-leader img {
+  padding: 10px 0;
+  display: block;
+  max-width: 185px;
+  max-height: 185px;
+}
+#company .company-detail .company-content .company-leader h3 {
+  font-size: 1.1em;
+}
+#company .company-detail .company-content .company-leader .function {
+  color: #acbac4;
+}
+/* ------ CONTACTEZ NOUS ------ */
+#contact {
+  background-color: #f3f4f4;
+}
+#contact .contact-top {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 400px;
+}
+#contact .contact-top .contact-view {
+  width: 100%;
+  height: 100%;
+}
+#contact .contact-top .contact-view img {
+  position: relative;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+#contact .contact-info {
+  background-color: #215871;
+  position: relative;
+  padding: 50px;
+}
+#contact .contact-info .info-content {
+  display: inline-block;
+  color: white;
+  text-align: left;
+  width: calc(33.33% - 3px);
+  height: 100px;
+  vertical-align: top;
+  padding: 0 50px;
+}
+#contact .contact-info .info-content:nth-child(-n+2) {
+  border-right: 1px solid #5f6b73;
+}
+#contact .contact-info .info-content span {
+  position: relative;
+  display: inline-block;
+  font-size: 26px;
+  text-align: right;
+}
+#contact .contact-info .info-content span:after {
+  position: absolute;
+  content: "";
+  left: 81%;
+  bottom: -30%;
+  width: 37%;
+  height: 7%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #3897c1;
+}
+#contact .contact-info .info-content h3 {
+  display: inline-block;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #3897c1;
+}
+#contact .contact-info .info-content text:before {
+  position: absolute;
+  content: "";
+  left: 126%;
+  bottom: -5%;
+  width: 0.5%;
+  height: 113%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #5f6b73;
+}
+#contact form {
+  position: relative;
+  padding-bottom: 150px;
+  background-color: white;
+}
+#contact form:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 0%;
+  width: 0.1%;
+  height: 4%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #5f6b73;
+}
+/* ------ ACTUALITES ------ */
+/* ------ LISTE EVENEMENTS ------ */
+#event-list-content {
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  column-count: 4;
+  -webkit-column-gap: 20px;
+  -moz-column-gap: 20px;
+  column-gap: 20px;
+  -webkit-column-rule: 0;
+  -moz-column-rule: 0;
+  column-rule: 0;
+}
+#event-list-content .event-list-bloc {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 20px;
+  vertical-align: top;
+  background: #FFF;
+}
+#event-list-content .event-list-bloc .event-list-date {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  color: #FFF;
+  background: #1e324d;
+  padding: 7px;
+}
+#event-list-content .event-list-bloc .event-list-date span {
+  display: block;
+  font: 700 1.3em/20px "Ubuntu", sans-serif;
+  text-transform: uppercase;
+}
+#event-list-content .event-list-bloc .event-list-date .month {
+  font-size: 1em;
+}
+#event-list-content .event-list-bloc .event-list-date .year {
+  font: 300 0.85em/15px "Ubuntu", sans-serif;
+}
+#event-list-content .event-list-bloc .event-list-view {
+  position: relative;
+}
+#event-list-content .event-list-bloc .event-list-view img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#event-list-content .event-list-title {
+  color: #314d61;
+  padding: 50px;
+  font-size: 32px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Calibri;
+}
+#event-list-content .event-list-title:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: 25%;
+  width: 5%;
+  height: 1%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #314d61;
+}
+#event-list-content .event-list-desc {
+  padding: 10px;
+  text-align: center;
+}
+#event-list-content .event-list-desc h2 {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 15px;
+  color: #215871;
+  margin-bottom: 10px;
+}
+#event-list-content .event-list-desc h2:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 70px;
+  height: 2px;
+  margin: 0 auto;
+  background: #3897c1;
+}
+/* ------ List ------ */
+#actu-list {
+  background: #f3f4f4;
+}
+#actu-list .inner {
+  padding: 0 0 50px 0;
+}
+#actu-list h1 {
+  position: relative;
+  color: #1e324d;
+  font: 400 2em/1.4em 'Ubuntu', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+  text-shadow: 0 0 0px #000;
+}
+#actu-list h1:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: -10px;
+  width: 6%;
+  height: 1px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #1e324d;
+}
+/* ------ Detail ------ */
+#actu {
+  background: #f3f4f4;
+  padding-bottom: 60px;
+  position: relative;
+}
+#actu h1 {
+  padding: 30px 0 0 0;
+}
+#actu h1:after {
+  display: none;
+}
+#actu h2 {
+  position: relative;
+  padding: 60px 0 0 0;
+  color: #1e324d;
+  font: 400 2em/1.4em 'Ubuntu', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  text-shadow: 0 0 0px #000;
+}
+#actu h2:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: -10px;
+  width: 6%;
+  height: 1px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background: #1e324d;
+}
+#actu .actu-top {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 450px;
+}
+#actu .actu-top .actu-view {
+  width: 100%;
+  height: 100%;
+}
+#actu .actu-top .actu-view img {
+  position: relative;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+#actu .actu-top .actu-view .topic {
+  width: 10%;
+}
+#actu .actu-content {
+  position: relative;
+  padding: 0px 85px 65px;
+  background: #FFF;
+  padding-top: 20px;
+}
+#actu .actu-content .actu-published {
+  text-align: right;
+}
+#actu .actu-content .actu-date {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: #FFF;
+  background: #1e324d;
+  padding: 7px;
+}
+#actu .actu-content .actu-date span {
+  display: block;
+  font: 700 1.3em/20px "Ubuntu", sans-serif;
+  text-transform: uppercase;
+}
+#actu .actu-content .actu-date .month {
+  font-size: 1em;
+}
+#actu .actu-content .actu-date .year {
+  font: 300 0.85em/15px "Ubuntu", sans-serif;
+}
+#actu .actu-content .button {
+  text-align: center;
+  position: relative;
+  padding-bottom: 50px;
+}
+#actu .actu-content .button a {
+  position: relative;
+}
+#actu .actu-content .button a:before {
+  position: relative;
+  left: -10px;
+  font: 1em/40px 'fontello';
+  content: "\E80D";
+}
+#actu .actu-content .button:after {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  content: "";
+  background: #3897c1;
+  width: 50px;
+  height: 1px;
+}
+#actu .actu-content .field--name-body {
+  color: #215871;
+  padding-bottom: 30px;
+}
+#actu .actu-content .field--name-body p {
+  font: 300 1em/1.4em "Ubuntu", sans-serif;
+}
+#actu .actu-content .field--name-body h2 {
+  font: 400 1em/1.4em "Ubuntu", sans-serif;
+  color: #3897c1;
+  text-align: left;
+  padding: 0;
+  margin-bottom: 20px;
+}
+#actu .actu-content .field--name-body h2:after {
+  display: none;
+}
+#actu .actu-content .actu-tool {
+  position: relative;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  padding: 30px 10px;
+  color: #5f6b73;
+}
+#actu .actu-content .actu-tool h3 {
+  font: 300 1em/1.4em "Ubuntu", sans-serif;
+  position: absolute;
+  top: -20px;
+  left: 0;
+  background: #FFF;
+  text-transform: uppercase;
+}
+#actu .actu-content .actu-tool ul {
+  display: inline-block;
+  padding: 0 20px;
+}
+#actu .actu-content .actu-tool ul li {
+  display: block;
+}
+#actu .actu-content .actu-tool ul li a {
+  color: #314d61;
+}
+#actu .actu-content .actu-tool ul li a:before {
+  position: relative;
+  content: "\E803";
+  font: 1em/40px 'fontello';
+  left: -10px;
+}
+#actu .actu-content .actu-tool ul:last-child li a:before {
+  content: "\E83E";
+}
+/* ------ FILTER ------ */
+#filter {
+  border-top: 1px solid #5f6b73;
+  border-bottom: 1px solid #5f6b73;
+  margin: 0 5% 30px;
+  text-align: center;
+}
+#filter .filter-title {
+  position: relative;
+  display: inline-block;
+  width: calc(20% - 3px);
+  color: #215871;
+  font: 400 1.2em/45px 'Ubuntu', sans-serif;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+#filter .filter-title:after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  right: 0;
+  width: 2px;
+  height: 50%;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  background: #1e324d;
+}
+#filter .filter-form {
+  display: inline-block;
+  width: calc(80% - 3px);
+  vertical-align: top;
+}
+#filter .filter-form ul {
+  display: inline-block;
+}
+#filter .filter-form ul li {
+  display: inline-block;
+  font: 400 1em/45px 'Ubuntu', sans-serif;
+}
+#filter .filter-form ul li a {
+  display: block;
+  padding: 0 15px;
+}
+#filter .filter-form ul li a.active {
+  background: #3897c1;
+  color: white;
+}
+#filter .filter-form .form-type-select {
+  display: inline-block;
+  padding: 2px;
+}
+/* ------ PAGINATION ------ */
+.item-list .pager {
+  clear: both;
+  margin: 30px auto 0;
+  font: 400 1.4em/20px 'Ubuntu', sans-serif;
+  text-align: center;
+}
+.item-list .pager li {
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+}
+.item-list .pager li a {
+  display: block;
+  padding: 5px 15px;
+  color: #215871;
+  margin: 0;
+}
+.item-list .pager li a:hover {
+  color: #3897c1;
+  text-decoration: underline;
+}
+.item-list .pager li.pager-current {
+  color: #3897c1;
+  text-decoration: none;
+  padding: 5px 15px;
+}
+.item-list .pager li.pager-previous a,
+.item-list .pager li.pager-next a {
+  text-decoration: none;
+}
+.item-list .pager li.pager-previous a:after,
+.item-list .pager li.pager-next a:after {
+  position: relative;
+  font: 1em/0 'fontello';
+  content: "\E80F";
+}
+.item-list .pager li.pager-previous a:hover,
+.item-list .pager li.pager-next a:hover {
+  color: #3897c1;
+  background: none;
+}
+.item-list .pager li.pager-previous a:hover:after,
+.item-list .pager li.pager-next a:hover:after {
+  right: 3px;
+}
+.item-list .pager li.pager-next a:after {
+  content: "\E810";
+}
+.item-list .pager li.pager-next a:hover:after {
+  right: auto;
+  left: 3px;
+}
+.item-list .pager li.pager-first,
+.item-list .pager li.pager-last {
+  display: none;
+}
+/* ------ FOOTER ------ */
+footer {
+  background-color: #5f6b73;
+  padding: 20px;
+  color: #acbac4;
+  height: 110px;
+}
+footer .logo-footer {
+  float: left;
+  width: 40%;
+}
+footer .logo-footer img {
+  float: left;
+}
+footer .logo-footer .title {
+  float: left;
+  font: 700 0.95em/1em 'Ubuntu', sans-serif;
+  text-transform: uppercase;
+  padding: 10px 0 0 20px;
+}
+footer .logo-footer .title span {
+  display: block;
+}
+footer .nav-footer {
+  float: right;
+  width: 60%;
+  text-align: right;
+}
+footer .nav-footer .nav {
+  font: 0.9em/40px 'Ubuntu', sans-serif;
+  text-transform: uppercase;
+  position: relative;
+}
+footer .nav-footer .nav li {
+  display: inline-block;
+  position: relative;
+}
+footer .nav-footer .nav li a {
+  color: #acbac4;
+  padding: 0 10px;
+}
+footer .nav-footer .nav li:after {
+  position: absolute;
+  top: 13px;
+  right: 0;
+  content: "";
+  background: #acbac4;
+  width: 1px;
+  height: 15px;
+}
+footer .nav-footer .nav li:last-child:after {
+  display: none;
+}
+footer .nav-footer .corporate {
+  font: 0.85em/40px 'Ubuntu', sans-serif;
+}
+footer .nav-footer .corporate li {
+  display: inline-block;
+  padding: 0 10px;
+}
+footer .nav-footer .corporate li a {
+  color: #acbac4;
+}
+/*# sourceMappingURL=main.css.map */

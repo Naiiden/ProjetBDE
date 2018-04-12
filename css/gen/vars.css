@@ -1,0 +1,37 @@
+/* 30/09/2016
+ *
+ * VARS 
+ * By www.ipika.fr 
+*/
+/* ------ MIXINS ------ */
+.clearfix {
+  display: block;
+}
+.clearfix:after {
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  content: ".";
+  line-height: 0;
+}
+.image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ratio-box {
+  display: block;
+  content: "";
+  padding-top: 66.66%;
+}
+.ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+/* ------ VARIABLES ------ */
+/*# sourceMappingURL=vars.css.map */

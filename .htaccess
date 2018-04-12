@@ -1,0 +1,55 @@
+SetEnv PHP_VER 5
+SetEnv REGISTER_GLOBALS 0
+
+
+<FilesMatch "\.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)$|^(\..*|Entries.*|Repository|Root|Tag|Template)$">
+  Order allow,deny
+</FilesMatch>
+
+Options -Indexes
+Options +FollowSymLinks
+
+#ErrorDocument 404 /index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  # Block access to "hidden" directories whose names begin with a period. This
+  # includes directories used by version control systems such as Subversion or
+  # Git to store control files. Files whose names begin with a period, as well
+  # as the control files used by CVS, are protected by the FilesMatch directive
+  # above.
+  #
+  # NOTE: This only works when mod_rewrite is loaded. Without mod_rewrite, it is
+  # not possible to block access to entire directories from .htaccess, because
+  # <DirectoryMatch> is not allowed here.
+  #
+  # If you do not have mod_rewrite installed, you should remove these
+  # directories from your webroot or otherwise protect them from being
+  # downloaded.
+  RewriteRule "(^|/)\." - [F]
+
+
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Modify the RewriteBase if you are using Drupal in a subdirectory or in a
+  # VirtualDocumentRoot and the rewrite rules are not working properly.
+  # For example if your site is at http://example.com/drupal uncomment and
+  # modify the following line:
+  # RewriteBase /drupal
+  #
+  # If your site is running in a VirtualDocumentRoot at http://example.com/,
+  # uncomment the following line:
+  # RewriteBase /
+
+  # Pass all requests not referring directly to files in the filesystem to
+  # index.php. Clean URLs are handled in drupal_environment_initialize().
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !=/favicon.ico
+  RewriteRule ^ index.php [L]
+
+  # Rules to correctly serve gzip compressed CSS and JS files.
+  # Requires both mod_rewrite and mod_headers to be enabled.
+</IfModule>

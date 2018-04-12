@@ -1,0 +1,55 @@
+* { box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; -webkit-box-sizing: border-box; }
+*, *:before, *:after { box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; -webkit-box-sizing: border-box; }
+a:focus { outline: 0 } 
+/* ------ REINITIALISATION ------ */
+html { overflow-y: scroll; cursor: default }
+h1, h2, h3, h4, h5, h6, form, table, tr, td { margin: 0; padding: 0; font-size: 1em; font-weight: normal }
+p { margin: 0 }
+a img, :link img, :visited img { border: 0; text-decoration: none }
+/* ------ Table ------ */
+table { border-collapse: separate; border-spacing: 0 }
+tr, td, th { margin: 0; padding: 0; border: 0 }
+tr.even, tr.odd { background: none; border-bottom: none; padding: 0 }
+th { font-weight: normal }
+/* ------ List ------ */
+ul, li, .item-list ul li, .menu-item { margin: 0; padding: 0; list-style-type: none }
+ul, li, .item-list ul li, .item-list ul, ul.menu li, ul li.leaf, ul li.expanded, .menu-item--expanded { margin: 0; padding: 0; list-style-type: none; list-style-image: none }
+ul.inline li { display: inline; list-style-type: none; padding: 0 }
+/* ------ Formulaire ------ */
+fieldset { clear: both; margin: 0; padding: 0; border: 0; -webkit-margin-start: 0; -webkit-margin-end: 0; -webkit-padding-before: 0; -webkit-padding-start: 0; -webkit-padding-end: 0; -webkit-padding-after: 0 }
+.fieldset-wrapper  { margin: 0; -webkit-margin-top-collapse: separate }
+.webform-container-inline label { margin-right: 0 }
+label { font-weight: normal }
+.form-checkboxes .form-item, .form-radios .form-item { margin: 0 }
+.form-item, .form-actions { margin: 0  }
+textarea { resize: none; overflow: auto }
+textarea:focus, input:focus, select:focus { outline: none }
+input[type="radio"] { margin: 0 }
+.views-exposed-form .form-item, .views-exposed-form .form-submit, .views-exposed-widgets { margin: 0 }
+.views-exposed-form .views-exposed-widget { padding: 0 }
+input::-moz-placeholder, textarea::-moz-placeholder { opacity: 1 }
+
+/* ------ DRUPAL ------ */
+.breadcrumb { padding: 0 }
+
+
+/* ------ CKE EDITABLE ------ */
+body.cke_editable { max-width: 720px; min-width: 1px; margin: 15px; font: 400 95%/1.4em "Open Sans", sans-serif; color: #424242; background: #FFF }
+.cke_editable img { margin: 0 15px !important }
+.cke_editable p { margin: 0 0 .8em }
+.cke_editable h2  { margin: 20px 0; font: 600 1.3em/1.2em 'Open Sans', serif }
+.cke_editable h3 { margin: 0; font: 700 1.1em/1.4em 'Open Sans', sans-serif }
+.cke_editable .chapo { margin-bottom: 30px; font: 700 1.1em/1.4em 'Open Sans', sans-serif }
+.cke_editable ol, .cke_editable ul { display: block; padding: 0 0 0 20px; margin: 5px 0 25px }
+.cke_editable ol li { margin-left: 15px; padding: 3px 0 3px 0; list-style-type: decimal }
+.cke_editable ul li { position: relative; padding: 3px 0 3px 0; list-style: none }
+.cke_editable ul li:before { float: left; position: relative; content: "■"; top: -1px; padding: 0 10px 0 0; color: rgb(243, 160, 58); font-size: 1.1em }
+.cke_editable ul ul { margin-top: 0 }
+.cke_editable ul li li:before {content: "-"; font-size: 1em }
+.cke_editable a { text-decoration: underline }
+.cke_editable a:hover { text-decoration: none }
+.cke_editable table { border-collapse: collapse; border: 1px solid #cbcbcb; }
+.cke_editable th, .cke_editable td { padding: 0.5em 1em; border: 1px solid #cbcbcb; vertical-align: top; }    
+  
+
+

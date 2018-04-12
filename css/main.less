@@ -1,0 +1,736 @@
+
+
+@import "vars.less";
+
+
+/* ------ STRUCTURE ------ */
+.inner, .profile, .tabs { position: relative; width: @size-inner; margin: 0 auto }
+.inner .tabs, .inner .inner { width: 100% }
+section {
+    clear: both; width: 100%;
+    .inner { overflow: hidden }
+}
+section#content .inner { padding: 45px 0 30px 0 }
+
+
+/* ------ COMMON ------ */
+body { overflow: hidden; position: relative; min-width: @size-inner; width: 100%; margin: 0; padding: 0; color: @anthracite; font: 300 100%/1.4em 'Ubuntu', sans-serif; background: @pale }
+p { margin: 0 0 .8em }
+h1, .actu-title {
+    position: relative; padding: 60px 0 0 0; margin-bottom: 50px; color: #1e324d; font: 500 2em/1.4em 'Ubuntu', sans-serif; text-align: center; text-transform: uppercase;
+    &:after { position: absolute; content: ""; left: 50%; bottom: -10px; width: 6%; height: 1px; .translate (-50%, 0); background: @darkblue; }
+}
+h2 { position: relative; font: 500 1.2em/1.2em "Ubuntu",sans-serif }
+h3 { font: 500 1.1em/1.5em 'Ubuntu', sans-serif }
+.subtitle { 
+    position: relative; margin-bottom: 30px; color: @anthracite; font: 300 1.3em/1.2em 'Ubuntu', sans-serif; text-transform: uppercase;
+    &:after { position: absolute; content: ""; left: calc(~"50% - 40px"); bottom: -15px; width: 100px; height: 2px; background: @anthracite;}
+}
+a { 
+    text-decoration: none; color: @blue-light;
+    &:hover { text-decoration: underline }
+}
+.bloc-link a { z-index: 2; position: absolute; display: block; top: 0; left: 0; width: 100%; height: 100% }
+
+.back-link { 
+    display: inline-block; margin-bottom: 10px; border:1px solid @anthracite; padding: 5px;
+    a {
+        position: relative; display: inline-block; padding: 0 20px; color: @dark; font: 300 0.9em/30px "Ubuntu",sans-serif; text-transform: uppercase;
+        &:before { position: absolute; top: 0; left: 0; font: .9em/36px "Fontello"; content: "\E839";  }
+        &:hover { color: @blue-light; text-decoration: none }
+    }
+}
+.all-link a { 
+    position: relative; display: inline-block; margin: 15px 0 0; padding: 0 20px 0 40px; color: @anthracite; font: 300 0.9em/25px "Ubuntu",sans-serif; text-transform: uppercase;
+    &:hover { color: @blue; text-decoration: none }
+    &:before { position: absolute; width: 25px; height: 25px; top: 0; left: 0; font: .8em/25px "Fontello"; content: "\E823"; color: @blue; border: 1px solid; .radius (50%); text-align: center }
+}
+.button { 
+    a {
+        position: relative; display: inline-block; padding: 0 40px; font: 400 .9em/40px 'Ubuntu', sans-serif; color: #FFF; text-decoration: none; background: @blue-light; border: 1px solid @blue-light; cursor: pointer; text-transform: uppercase;
+        &:hover { color: @blue-light; background: none; border: 1px solid @blue-light }
+    }
+    &.special a {
+        &:before, &:after { position: absolute; content: ""; left: 10px; top: 50%; width: 20px; height: 1px; background: #FFF;}
+        &:after { left: auto; right: 10px }
+    }
+}
+.empty { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
+.table { 
+    display: table;
+    .column { display: table-cell; vertical-align: top }
+}
+#map iframe { display: block; height: 310px; width: 100% }
+
+.titleh2 {
+    position:relative;font: 100 2em/1em 'Ubuntu';text-transform:uppercase; color:@red;text-align:center;margin:40px 0 30px 0;
+    &:after { position: absolute; content: ""; left: 50%; top:-125%; width: 0.1%; height: 100%; .translate (-50%, 0); background: @anthracite;}
+}
+.topic { position: absolute; left: 0; right: 0; bottom: 0; width: 50%; padding: 0 15px; margin: 0 auto; font: 700 1em/40px "Ubuntu",sans-serif; text-align: center; text-transform: uppercase; background: #FFF; }
+
+
+
+/* ------ FILED-NAME-BODY ------ */
+.field--name-body { 
+    margin: 0;
+    h2 {
+        margin-top: 35px;
+        &:first-child { margin-top: 0 }
+    }
+    ol, ul { display: block; padding: 0 0 0 20px; margin: 1em 0 }
+    ol li { margin-left: 15px; padding: 3px 0 3px 0; list-style-type: decimal }
+    ul li { 
+        position: relative; padding: 3px 0 3px 0; list-style: none;
+        &:before { float: left; position: relative; content: "■"; top: -1px; padding: 0 10px 0 0; color: @blue; font-size: 1.1em }
+    }
+    a { text-decoration: underline }
+    a:hover { text-decoration: none }
+}
+
+
+
+
+
+/* ------ HEADER ------ */
+header { 
+    .clearfix; position: relative; z-index: 1; background: #FFF;
+    #logo {
+        img { z-index: 2; position: absolute; top: 5px; left: 0; width: 150px; height: auto; }
+    }
+    nav {
+        float: left; width: 75%; padding-left: 200px; font: 700 1em/65px 'Ubuntu';
+        ul {
+            display: table; width: 100%; 
+            li {
+                display: table-cell; text-align: center; padding: 0 2px;
+                a {
+                    position: relative; display: block; padding: 0; color: @anthracite; text-align:center; text-transform: uppercase; 
+                    &:after { position: absolute; content: "";left: 50%; top: 0; width: 0; height: 5px; background: @darkred; .transition; .translate (-50%, 0) }
+                    &:hover { color: @darkred; text-decoration: none }
+                    &:hover:after { width: 100% }
+                }
+                &.menu-item--active-trail a { 
+                    color: @darkred;
+                    &:after { width: 100% }
+                    &:before { position: absolute; content: ""; left: 50%; top: 5px; width: 0px; height: 0px; .translate (-50%, 0); border: 5px solid transparent; border-top:5px solid ;}
+                }
+            }
+        }
+    }
+    #header-button {
+        float: left; width: 25%;
+        ul { 
+            display: table; width: 100%;
+            li {
+                display: table-cell; width: 50%; padding: 0 1px; 
+                a { 
+                    position: relative; display: block; color: #FFF; font: 300 0.85em/65px "Ubuntu",sans-serif; text-transform: uppercase; text-align: center; text-decoration: none; background: @darkred; 
+                    &:before { position: absolute; left: 50%; top: 20px; font: 1.5em/0 'fontello'; content: "\E824"; .translate(-50%, 0); .opacity (0.5) }
+                    &:hover:before { .opacity (1) }
+                    span { position: relative; top: 12px }
+                }
+                &:last-child a {background: @red;}
+            }
+            .register:before {content: "\E83F";}
+            .logout:before{content: "\E805";}
+            .profil:before{content: "\E825";}
+        }
+    }
+}
+
+/* ______ MODAL _______ */
+
+.popup {
+    z-index: 4;
+    width:100%;
+    height:100%;
+    display:none;
+    position:fixed;
+    top:0px;
+    left:0px;
+    background:rgba(0,0,0,0.75);
+}
+/* Inner */
+.popup-inner {
+    max-width:700px;
+    width:90%;
+    padding:40px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%);
+    box-shadow:0px 2px 6px rgba(0,0,0,1);
+    border-radius:3px;
+    background:#fff;
+}
+/* Close Button */
+.popup-close {
+    width:30px;
+    height:30px;
+    padding-top:4px;
+    display:inline-block;
+    position:absolute;
+    top:0px;
+    right:0px;
+    transition:ease 0.25s all;
+    -webkit-transform:translate(50%, -50%);
+    transform:translate(50%, -50%);
+    border-radius:1000px;
+    background:rgba(0,0,0,0.8);
+    font-family:Arial, Sans-Serif;
+    font-size:20px;
+    text-align:center;
+    line-height:100%;
+    color:#fff;
+}
+.popup-close:hover {
+    -webkit-transform:translate(50%, -50%) rotate(180deg);
+    transform:translate(50%, -50%) rotate(180deg);
+    background:rgba(0,0,0,1);
+    text-decoration:none;
+}
+
+
+
+/* ------ ACCUEIL ------ */
+.front {
+    #slide {
+        position: relative; text-align:center; height: 550px; background-image: url("../../img/local/logobde.jpg"); background-size: cover;
+        .inner { position: relative; height: 550px; }
+        h1 {
+            font: 700 65px/1em 'Ubuntu', sans-serif;margin-top: 130px;color: #FFF; margin-bottom: -5px; text-shadow: 0 0 10px #000;
+            &:after { position: absolute; content: ""; left: 50%; width: 100px; height: 2px; .translate (-50%, 0); background: #FFF;}
+            span { display: block; position: relative; font-size: 25px; color: #FFF; text-transform: uppercase }
+        }
+    }
+
+    #bde-events{
+        position: relative; background: white;
+        .inner { padding: 0 0 30px }
+        #event-list-content { margin-bottom: 35px; }
+        span a { font: 400 1.2em/1em 'Ubuntu';color: @anthracite; text-align:center; width:100% }
+        .event-fonctions {
+            text-align:center;
+            a {
+                font: 400 1em/1em 'Ubuntu'; color: @red;
+                &:hover { font: 400 1.2em/1em 'Ubuntu'; color: @darkred;}
+                &:after{content: none;}
+            }
+        }
+        .bloc-list-inner {
+            .bloc-list-bloc { 
+                background: @pale; margin: 10px 2px 20px 3px;
+                .event-name { font: 400 1.2em/1em 'Ubuntu';margin:5px 15px 0px;
+                a { color: @red;}
+                }
+            }
+        }
+    }
+    .bde-photos {
+        position:relative;
+
+    }
+    #bde-boutique {
+        position: relative; background: white;
+        .bloc-list-bloc { margin:0;}
+        input {position: absolute; bottom:0;}
+    }
+} 
+
+/* ------ Affichage de la nouvelle page ------ */
+
+.all-page {
+    overflow: hidden; margin: 35px 0 50px; text-align: center; 
+    .button { display: inline-block; margin: 0 10px; text-align: center; }
+    .button.register a {
+        padding: 0 20px 0 55px;
+        &:before { position: absolute; left: 20px; font: 1.5em/40px 'fontello'; content: "\E83F" }
+        &:hover { background: #FFF }
+    }
+    .button.special a {
+        background: #FFF; color: @grey; border: 1px solid @grey; 
+        &:before, &:after { background: @grey;} 
+        &:hover {
+            &:before, &:after { background: #FFF}
+            background: @grey; color: #FFF;
+        }
+    }
+}
+
+
+
+/* ------ Liste de blocs en FLEX ------ */
+
+.bloc-list-inner {
+    overflow: hidden; width: 100%;  display: flex; flex-flow: row wrap; justify-content: center;
+    .bloc-list-bloc { 
+        position: relative;display: flex; width: calc(~"25% - 5px"); align-items: center; justify-content: center; flex-flow: row wrap; align-content: space-around; padding: 20px 0 0 0; margin: 10px 0 20px;
+        .bloc-list-view { 
+            position: relative; width: 100%;padding: 15px;height: 160px;text-align: center;
+            img { display: block; width: auto; height: 100%; margin: 0 auto; }
+        }
+        .bloc-list-desc { 
+            margin: 0 0 15px; text-align: center; 
+            .team-list-function { font: 300 0.9em/1.4em 'ubuntu',sans-serif; }
+        }
+        &:hover { background: @pale;}
+        span a { position: absolute; top: 0; left: 50%; .translate (-50%, 0); font: 400 1em/1.8em "Ubuntu"; color: @red;text-decoration: none; 
+                 &:hover{color: @darkred;}
+        }
+        .product-price { position: relative;display: block;margin:10px 0 60px 0px; color: @blue-light; text-align: center; }
+        input { margin: 0 5px 10px 0; text-align: center;}
+
+        .event-fonctions {
+            position: relative; width: 100%;
+            a {
+                z-index:4; text-decoration: none;
+                &:after {position: relative; font: 1.2em/40px 'fontello'; content: "\E842" }
+            }
+            a:first-child { &:after {left: 40px;}}
+            a:last-child { 
+                color: @anthracite;
+                &:after { position: absolute; right: 30px;content: "\E83A"}
+                &:hover {color: @darkred;}
+            }
+        }
+    }
+}
+
+
+/* ------ BOUTIQUE ------ */
+
+#boutique-list {
+    background: @pale; padding-bottom: 50px;
+    .bloc-list-bloc:hover {background: white; border: 1px solid @anthracite;}
+    input {position:absolute; bottom:0;}
+}
+
+
+
+
+/* ------ ASSOCIATION ------ */
+#bde {
+    padding: 0 0 50px;
+    #bde-view {
+        position: relative; height: 410px; background-repeat: no-repeat; background-position: center center; background-size: cover; 
+        .claim {
+            position: absolute; bottom: 50px; padding: 20px 25px 20px 90px; font: 700 1.4em/1.6em 'Ubuntu'; background: rgba(56, 151, 193,0.5); width: 50%; color: #FFF; text-transform: uppercase;
+            &:before, &:after { position: absolute; content: ""; top: 0; left: 90px; width: 80px; height: 5px; background: #FFF }
+            &:after { left: auto; right: 25px; top: auto; bottom: 0; }
+            span { display: block; text-transform: none; font: 300 1em/1.6em 'Ubuntu'; }
+        }
+    }
+    #bde-content {
+        overflow: hidden; padding: 0 50px; background: #FFF;
+        .highlight {
+            overflow: hidden; position: relative; text-align: center; padding-bottom: 40px;
+            &:after { position: absolute; content: ""; left: 50%; .translate (-50%, 0); bottom: 20px; width: 33.33%; height: 1px; background: @lightgrey;}
+            .highlight-bloc {
+                float: left; width: 33.33%; padding: 40px 50px;
+                h2 { padding: 5%; color: @blue-light; }
+            }
+        }
+        .bde-content-inner {
+            position: relative; margin: 40px 0;
+            &:after { position: absolute; content: ""; left: 50%; .translate (-50%, 0); bottom: 0; width: 33.33%; height: 1px; background: @lightgrey;}
+            .content-bloc {
+                overflow: hidden; position: relative; padding-bottom: 50px;
+                .content-view { 
+                    position: relative; float: left; width: 50%; padding-right: 35px; 
+                    img { display: block; width: 100% }
+                }
+                .content-desc { 
+                    position: relative; float: left; width: 50%;
+                    h2 { position: relative; left: -115px; background: #FFF; text-transform: uppercase; font: 300 1.3em/1.4em 'Ubuntu',sans-serif; color: @blue-light; padding: 10px 25px; margin: 50px 0 25px; }
+                }
+            }
+            .content-bloc:nth-child(even) { 
+                .content-view { float: right; padding-left: 35px; }
+                .content-desc {
+                    text-align: right;
+                    h2 { left: 115px;}
+                }
+
+            }
+        }
+    }
+    #bde-team{
+        .inner { overflow: visible}
+        h2 { font: 400 1.2em/1.4em 'Lato',sans-serif; color: @blue; padding: 40px 0 0 0; }
+        p { font: 300 1em/1.4em 'Lato',sans-serif; color: @dark; }
+        .team-list-inner {
+            overflow: hidden; width: 100%;display: flex; flex-flow: row wrap; justify-content: center; padding: 20px 0 0 0;
+            .team-list-bloc { 
+                display: flex; width: calc(~"25% - 5px"); align-items: center; justify-content: center; flex-flow: row wrap; align-content: space-around;
+                .team-list-view { 
+                    position: relative; border-radius: 50%; overflow: hidden; width: 180px; height: 180px;
+                    img { width: 180px; height: inherit; }
+                }
+                .team-list-desc { 
+                    margin: 0 0 15px; text-align: center; 
+                    h3 { font: 400 1.8em/1.8em "Allura"; color: @blue-light;text-decoration: none; }
+                    .team-list-function { font: 300 0.9em/1.4em 'Lato',sans-serif; }
+                }
+            }
+        }
+        .button {
+            text-align: center; margin: 20px 0;
+            a {
+                position: relative; background: @blue; border: 1px solid @blue;
+                .on-news {
+                    position: absolute; right: 5px; bottom: -5px; font: 300 2em/1.4em 'Lato',sans-serif; color: @blue-light;;
+                    &:after { position: relative; content: "\E810"; font: 0.6em/40px 'fontello';}
+                }
+                &:hover { background: #FFF; color: @blue;}
+            }
+        }
+    }
+}
+
+
+
+/* ------ PHOTOS ------ */
+.photos-list-inner {
+    overflow: hidden; margin: 0 -10px; display: flex; flex-flow:row wrap; justify-content: center; 
+    .photos-list-bloc { 
+        position: relative; width: calc(~"20% - 20px"); margin: 0 10px 20px; background: #FFF; display: flex; flex-flow: row wrap; align-items: center; justify-content: center;
+        .photos-list-view { 
+            position: relative; width: 100%; padding: 15px; height: 160px; text-align: center;
+            img { display: block; width: auto; height: 100%; margin: 0 auto; }
+        }
+        .photos-fonctions {
+            position: relative; width:100%;
+            a {
+                z-index:3; text-decoration: none;
+                &:after {position: relative; font: 1em/40px 'fontello'; content: "\E846" }
+            }
+            a:first-child { &:after {left: 10px;}}
+            a:last-child { 
+                color: @anthracite;
+                &:after { position: absolute; right: 10px;content: "\F2A7"}
+            }
+        }
+        .photos-list-desc { 
+            text-align: left;margin: 5px 15px 0px;
+            h3 { 
+                font: 500 1.0em/1.8em "ubuntu";
+                a { color: @red; }
+            }
+            .photos-list-activity { font: 300 0.9em/1.4em 'Ubuntu',sans-serif }
+        }
+        &:hover .photos-list-desc h3 a  { color: @darkred; }
+        &.honor:after { content: "\F219" }
+        &.partner:after { content: "\F2B5" }  
+    }
+}
+/* ------ List ------ */
+#photos-list { padding: 0 0 50px 0 }
+
+/* ------ Détail ------ */
+#photos {
+    padding: 0 0 50px;
+    h2 { margin-bottom: 2px; font: 500 1.1em/1.8em "ubuntu"; color:@blue-light; text-transform: uppercase; }
+    .photos-top {
+        position: relative; overflow: hidden; width: 100%; height: 450px; 
+        .photos-view { 
+            width: 100%; height: 100%;
+            img { position: relative; width: 100%; top: 50%; left: 50%; .translate (-50%, -50%) }
+        }
+        .photos-logo {
+            position: absolute; display: table; top: 0; left: 85px; width: 215px; height: 215px; padding: 15px; text-align: center; background: #FFF;
+            span { display: table-cell; vertical-align: middle }
+            img { display: block; max-width: 185px; max-height: 185px; }
+        }
+    }
+    .photos-detail {
+        padding: 0px 85px 65px; background: #FFF;
+        .data-inner {
+            overflow: hidden; margin: -70px 0 0; 
+            .data-bloc { position: relative; float: left; text-align: left; padding: 25px 40px 0; margin: 0 1.5px 0; width: calc(~"33.33% - 3px"); vertical-align: top; background: #FFF }
+        }
+        .photos-link {
+            position: relative; border-bottom: 1px solid @blue-light; margin: 25px 0 50px; text-align: center;
+            .button { margin-bottom: -1px; display: inline-block; text-transform: none }
+            .follow {
+                position: absolute; right: 0; bottom: 0; font: 1em/0 'Ubuntu' ;color: @lightgrey;
+                a {
+                    width: 35px; height: 35px; display: inline-block;
+                    &:after { position: relative; font: 1.3em/40px 'fontello'; color: @anthracite;text-align:center; }
+                    &:hover{
+                        text-decoration: none; color: #FFF; background: @anthracite;
+                        &:after{color:#FFF}
+                    }
+                }
+                .facebook:after { content: "\F30C"; }
+                .twitter:after { content: "\F309";} 
+                .linkedin:after { content: "\F0E1";}
+            }
+        }
+        .photos-content {
+            overflow: hidden; position: relative; 
+            &:after { position: absolute; content: ""; top: 0; left: 66.66%; width: 1px; height: 100%; background: @grey; }
+            .photos-desc { float: left; width: 66.66%; padding-right: 40px }
+            .photos-leader { 
+                float: left; width: 33.33%; padding-left: 40px;
+                .button {
+                    margin-top: 20px;
+                    a { 
+                        text-transform: uppercase; border: 1px solid @blue; background: @blue;
+                        &:hover { color: @blue; background: #FFF }
+                    }
+                }
+                img { padding: 10px 0; display: block; max-width: 185px; max-height: 185px; }
+                h3 { font-size: 1.1em }
+                .function { color: @lightgrey; }
+            }
+        }
+    }
+}
+
+
+
+/* ------ Évènements ------ */
+/* ------ List ------ */
+#event-list { 
+    padding: 0 0 50px 0;
+    .new-event { position: absolute; top: 40px; right:0;}
+    .bloc-list-inner {
+        background: @rosepale;
+        .bloc-list-bloc { 
+            width: calc(~"33% - 5px"); position: relative;
+            &:before { position: absolute; content: ""; left:0; width: 2px; height: 100%;}
+            span a { font: 400 1.2em/1em 'Ubuntu';color: @anthracite; text-align:center; width:100% }
+            .bloc-list-view {height: 190px;}
+            .event-fonctions {
+                text-align:center;
+                a {
+                    font: 400 1em/1em 'Ubuntu'; color: @red;
+                    &:hover { font: 400 1.2em/1em 'Ubuntu'; color: @darkred;}
+                    &:after{content: none;}
+                }
+            }
+        }
+    }
+    .contact-form { padding-top:50px;}
+    .item-list { padding: 0 0 40px 0;}
+}
+/* ------ Detail ------ */
+#event {
+    position: relative;
+    .event-top {
+        position: relative; overflow: hidden; width: 100%; height: 450px; 
+        .event-view {
+            width: 100%; height: 100%;
+            img { position: relative; width: 100%; top: 50%; left: 50%; .translate (-50%, -50%) }
+            .topic { width: 10% }
+        }
+    }
+    .event-content {
+        position:relative; padding: 20px 85px 0; background: #FFF;
+        .back-link{margin:0;}
+        .actu-title { padding:0;}
+        .event-published {text-align: right;}
+        .event-date {
+            z-index: 2; position: absolute; top: 0; left: 0; text-align:center; color: #FFF; background: @red; padding: 7px; 
+            span { display: block; font: 700 1.3em/20px "Ubuntu",sans-serif; text-transform: uppercase }
+            .month { font-size: 1em }
+            .year { font: 300 0.85em/15px "Ubuntu",sans-serif }
+        }
+        .button { 
+            text-align: center; position: relative; padding-bottom: 50px;
+            a { position: relative;}        
+        }
+        .field--name-body {
+            position: relative;
+            &:after {position: absolute; bottom: 0; left: 50%; .translate (-50%, 0); content: ""; background: @blue-light; width: 50px; height: 1px;}
+        }
+        .photos-events {background: #FFF; padding: 10px 0 10px 0; text-align: center;}
+    }
+
+    .photos-list-inner {
+        background: #FFF; overflow-y:auto; margin:0px; width:100%; height: 520px;
+        .photos-list-bloc { background: @pale; width:calc(~"25% - 20px");}
+    }
+    
+    .contact-form {
+        padding: 25px 0;
+        .form-actions {
+            padding: 25px 0;text-align: center;
+        }
+    }
+}
+
+
+
+
+/* ------ FILTER ------ */
+#filter { 
+    border-top:1px solid @grey; border-bottom:1px solid @grey; margin: 0 5% 30px; text-align: center;
+    .filter-title {
+        position: relative; display: inline-block; padding-right: 40px; color: @blue; font: 300 1.2em/45px 'Ubuntu', sans-serif; text-transform: uppercase; vertical-align: top;
+        &:after { position: absolute; content: ""; top: 50%; right: 20px; width: 1px; height: 50%; .translate (0, -50%); background: @darkblue; }
+    }
+    .filter-form { 
+        display: inline-block; vertical-align: top;
+        ul {
+            display: inline-block;
+            li { 
+                display: inline-block; font: 400 1em/45px 'Ubuntu', sans-serif; text-transform: uppercase;
+                a { 
+                    display: block; padding: 0 15px; color: @dark;
+                    &:hover { color: @red; text-decoration: none }
+                    &.active { 
+                        background: @red; color: #FFF;
+                        &:hover { background: @darkred; }
+                    }
+                }
+            }
+        }
+        .form-type-select { 
+            display: inline-block;
+            select { width: auto; margin: 0; border: 0; background: none; }
+        }
+    }
+}
+
+
+
+/* ------ PAGINATION ------ */
+.item-list .pager { 
+    clear: both; margin: 30px auto 0; font: 400 1.4em/20px 'Ubuntu', sans-serif; text-align: center;
+    li {
+        display: inline-block; padding: 0; text-align: center;
+        a { 
+            display: block; padding: 5px 15px; color: @red; margin: 0;
+            &:hover { color: @darkred; text-decoration: underline }
+        }
+        &.pager-current { color: @darkred; text-decoration: none; padding: 5px 15px }
+        &.pager-previous a, &.pager-next a { 
+            text-decoration: none;
+            &:after { position: relative; font: 1em/0 'fontello'; content: "\E80F" }
+            &:hover { 
+                color: @darkred; background: none;
+                &:after { right: 3px }
+            }
+        }
+        &.pager-next a {
+            &:after { content: "\E810" }
+            &:hover:after { right: auto; left: 3px }
+        }
+        &.pager-first, &.pager-last { display: none }
+    }
+}
+
+
+
+
+
+/* ------ CONTACT ------ */
+#box {
+    padding: 0 0 50px; 
+    h3 { border-top: 2px solid @darkred;}
+    .box-top {
+        position: relative; overflow: hidden; width: 100%; height: 400px; overflow-y:scroll;
+        .contact-view {
+            width: 100%; height: 100%;
+            img { position: relative; width: 100%; top: 50%; left: 50%; .translate (-50%, -50%) }
+        }
+        .box-bloc {
+            position: relative;background: @rosepale; border-left:2px solid @darkred; padding : 5px; overflow-y:auto; height: 100px;
+            .validate {
+                position: absolute; bottom:15px; right:15px;text-decoration: none;
+                &:before { position: relative; left:0px;font: 2em/0 'fontello'; content:"\E845"; color: green;}
+            }
+            span {
+                position: absolute; top:10px; right:30px;color: @dark; z-index:3;
+                a {
+                    &:after {position: relative; right:-10px;font: 1em/0 'fontello'; content:"\E821"; color: white;}
+                }
+            }
+            .idea-name { 
+                font: 400 1em/1em 'Ubuntu'; color: @pale; position: relative; background: @redpale; height: 35px;
+            }
+        }
+    }
+    .contact-detail {  padding: 0 85px; background: #FFF }
+    .contact-info {
+        overflow: hidden; position: relative; margin: -70px 0 0; border-bottom: 1px solid #5F6B73;
+        .data-bloc { position: relative; float: left; text-align: left; padding: 25px 40px 40px; margin: 0 1.5px 0; width: calc(~"33.33% - 3px"); vertical-align: top; background: #FFF }
+        h2 { font: 500 1.0em/1.8em "ubuntu"; color:@blue-light; text-transform: uppercase; }
+    }
+    .contact-form {
+        padding: 25px 0 50px 0; 
+        h2 { font: 500 1.2em/1.8em "ubuntu"; color:@blue }
+        form {
+            position: relative; margin: 30px -50px; 
+            .form-item { float: left; width: calc(~"50% - 100px"); margin: 0 50px }
+            .form-item.full { width: calc(~"100% - 100px") }
+            .form-item.alone { float: none }
+            .form-actions { text-align: center }
+        }
+    }
+}
+/* ------ FORM ------ */
+#user-login { position: relative; width: @size-inner; margin: 30px auto 75px }
+label { font: 300 1em/39px 'Ubuntu', sans-serif; color: @dark; text-transform: uppercase }
+input[type=text], input[type=email], input[type=number], input[type=password], input[type=date], input[type=tel], textarea, .form-textarea-wrapper textarea { margin: 0 0 25px; width: 100%; height: 40px; padding: 0; font: 300 1.1em/1.4em 'Ubuntu',sans-serif; color: @dark; background: none; border: 0; border-bottom: 1px solid @dark }
+textarea, .form-textarea-wrapper textarea { width: 100%; height: 150px; padding: 5px 0 }
+.grippie { clear: both; }
+select { width: 100%; height: 40px; padding: 0 10px; margin: 0 0 25px; color: @dark; border: none; border-radius: 3px; border: 1px solid @dark; cursor: pointer; font: 100 .95em/39px 'Ubuntu', sans-serif; text-transform: uppercase }
+input[type=submit] {
+    position: relative; display: inline-block; padding: 0 40px; font: 400 .9em/36px 'Ubuntu', sans-serif; color: #FFF; text-decoration: none; background: @darkred; border: 1px solid @darkred; cursor: pointer; text-transform: uppercase;
+    &:hover { color: @darkred; background: none; border: 1px solid @darkred; }
+}
+
+
+
+button.reset { position: relative; height: 40px; margin: 0; padding: 0 20px; font: 0/39px 'Ubuntu', sans-serif; color: #FFF; background: #828388; border: 0; border-radius: 3px; text-decoration: none; cursor: pointer; text-transform: uppercase }
+button.reset:after { position: absolute; content: "\E801"; color: #FFF; font: 18px/39px 'fontello'; top: 50%; left: 50%; -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transform: translate(-50%,-50%); transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s } 
+button.reset:hover { background: @dark }
+input[type="radio"] { margin-right: 3px }
+.description, .form-item .description { padding: 2px 5px 0; margin: 0; font: italic 100 .85em/1.4em 'Ubuntu', sans-serif; color: #999; text-align: left }
+
+::-webkit-input-placeholder { color: @dark; opacity: 1 !important; font: 300 1em/39px 'Ubuntu', sans-serif !important; text-transform: uppercase }
+::-moz-placeholder { color: @dark; opacity: 1 !important; font: 300 1em/39px 'Ubuntu', sans-serif !important; text-transform: uppercase }
+:-ms-input-placeholder { color: @dark; opacity: 1 !important; font: 300 1em/39px 'Ubuntu', sans-serif !important; text-transform: uppercase }
+
+
+
+
+
+
+/* ------ FOOTER ------ */
+footer {
+    background: @grey; padding: 20px; color: @lightgrey; height: 110px;
+
+    .logo-footer {
+        float: left; width: 30%;
+        img { float: left; }
+        .title {
+            float: left; font: 700 0.95em/1em 'Ubuntu',sans-serif; text-transform: uppercase; padding: 10px 0 0 20px;
+            span { display: block; }
+        }
+    }
+    .nav-footer {
+        float: right; width: 70%; text-align: right;
+        .nav {
+            font: 0.9em/40px 'Ubuntu',sans-serif; text-transform: uppercase; position: relative;
+            li {
+                display: inline-block; position: relative;
+                a { color: @lightgrey; padding: 0 10px; }
+                &:after { position: absolute; top: 13px; right: 0; content: ""; background: @lightgrey; width: 1px; height: 15px; }
+                &:last-child:after { display: none }
+
+            }
+
+        }
+        .corporate {
+            font: 0.85em/40px 'Ubuntu',sans-serif;
+            li {
+                display: inline-block; padding: 0 10px; 
+                a { color: @lightgrey ;}
+            }
+        }
+    }
+}
