@@ -6,5 +6,5 @@
  * and open the template in the editor.
  */
 
-je renseignehgjvgjgjgfyj
+SALUT VICTOR
 ?>

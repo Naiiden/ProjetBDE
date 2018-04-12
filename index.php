@@ -36,6 +36,8 @@ if(isset($_GET['id'])) {
         echo '<body>';
     }
     ?>
+    
+    <p> Donnez-nous un D au projet SVP </p>
 
     <?php require TEMPLATE_PATH . 'header.php'; ?>
 
