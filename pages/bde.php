@@ -1,5 +1,6 @@
 <?php
 session_start();
+$bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 ?>
 
 <section id="bde">
@@ -73,72 +74,76 @@ session_start();
                     </p>
 
                     <div class="team-list-inner">
-                        <div class="team-list-bloc">
-                            <div class="team-list-view">
-                                <span><img src="img/local/bde/kylian.jpg" alt="" /></span>
-                            </div>
-                            <div class="team-list-desc">
-                                <h3>Nom Prénom</h3>
-                                <div class="team-list-function">Fonction Poste</div>
-                            </div>
-                        </div>
+                        <?php
+                        $reponse = $bdd->query('SELECT * FROM membre_bde ORDER BY ID_membre ASC');
 
-                        <div class="team-list-bloc">
-                            <div class="team-list-view">
-                                <span><img src="img/local/bde/vincent.jpg" alt="" /></span>
-                            </div>
-                            <div class="team-list-desc">
-                                <h3>Nom Prénom</h3>
-                                <div class="team-list-function">Fonction Poste</div>
-                            </div>
-                        </div>
+                        while ($donnees = $reponse->fetch()) {
+                            ?>
+                            <div class="team-list-bloc">
+                                <div class="team-list-view">
+                                    <span><img src="img/local/bde/<?php echo $donnees['Image']; ?> " alt="" /></span>
+                                </div>
+                                <div class="team-list-desc">
+                                    <h3><?php echo $donnees['Nom'] . "   " . $donnees['Prenom']; ?></h3>
+                                    <div class="team-list-function"><?php echo $donnees['Role']; ?></div>
+                                </div>
+                            </div> <?php
+                        }
+                        ?>
 
-                        <div class="team-list-bloc">
-                            <div class="team-list-view">
-                                <span><img src="img/local/bde/nathan.jpg" alt="" /></span>
-                            </div>
-                            <div class="team-list-desc">
-                                <h3>Nom Prénom</h3>
-                                <div class="team-list-function">Fonction Poste</div>
-                            </div>
-                        </div>
-
-                        <div class="team-list-bloc">
-                            <div class="team-list-view">
-                                <span><img src="img/local/bde/loick.jpg" alt="" /></span>
-                            </div>
-                            <div class="team-list-desc">
-                                <h3>Nom Prénom</h3>
-                                <div class="team-list-function">Fonction Poste</div>
-                            </div>
-                        </div>
-                        
-                        <div class="team-list-bloc">
-                            <div class="team-list-view">
-                                <span><img src="img/local/bde/flavien.jpg" alt="" /></span>
-                            </div>
-                            <div class="team-list-desc">
-                                <h3>Nom Prénom</h3>
-                                <div class="team-list-function">Fonction Poste</div>
-                            </div>
-                        </div>
-                        
-                        <div class="team-list-bloc">
-                            <div class="team-list-view">
-                                <span><img src="img/local/bde/victor.jpg" alt="" /></span>
-                            </div>
-                            <div class="team-list-desc">
-                                <h3>Nom Prénom</h3>
-                                <div class="team-list-function">Fonction Poste</div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
 
             </section>
-        </div>
 
+            <?php
+            if (isset($_SESSION['type'])) {
+                if ($_SESSION['type'] == 3) {
+                    ?> 
+                    <div class='contact-form'>
+
+                        <form method='POST' action="addBdeMember.php" enctype="multipart/form-data">
+                            <h3 id='create-event'>Ajouter un membre du BDE</h3>
+
+                            <div class="form-item">
+                                <input placeholder="Nom" class="form-text member-name" name='nom' type="text">
+                            </div>
+
+                            <div class="form-item">
+                                <input placeholder="Prénom" class="form-text member-nickname" name='prenom' type="text">
+                            </div>
+
+                            <div class="form-item">
+                                <input placeholder="Rôle" class="form-text member-role" name='role' type="text">
+                            </div>
+                            <div class="form-item">
+                                <p>Image du nouveau membre</p>
+                                <input placeholder="Image" class="form-text idea-name" type="file" id="file" name="image">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="300000" >
+                            </div>
+
+                            <div class="form-actions">
+                                <input class="validate-form" value="Valider" type="submit">
+                            </div>
+                        </form>
+
+                        <form class="delete-member" method="POST" action="supprBdeMember.php" enctype="multipart/form-data">
+                            <h3 id='create-event'>Supprimer un membre du BDE</h3>
+
+                            <div class="form-item">
+                                <input placeholder="Nom" class="form-text member-name" name='nom' type="text">
+                            </div>
+                            <div class="form-actions">
+                                <input class="validate-form" type="submit" value="Valider" name="Supprrrrr"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <?php
+            }
+        }
+        ?>
     </div>
 </section>
 

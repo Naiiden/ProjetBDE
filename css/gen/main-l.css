@@ -983,6 +983,13 @@ header #header-button ul .profil:before {
   background: #FFF;
   color: #215871;
 }
+#bde .contact-form .form-actions {
+  padding: 20px 0;
+  text-align: center;
+}
+#bde .contact-form .delete-member {
+  margin: 50px 0;
+}
 .photos-list-inner {
   overflow: hidden;
   margin: 0 -10px;
