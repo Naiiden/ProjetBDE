@@ -10,16 +10,21 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
     <div class="inner">
 
         <h2 class="actu-title"> évènements</h2>
-<?php
-if (isset($_SESSION['type'])) {
-    if ($_SESSION['type'] == 2) {
-        ?>
-
-                <a href="#create-event"><input class="new-event" type="submit" value="Créer un nouvel évènement" name="new-event" /></a>
         <?php
-    }
-}
-?>
+        if (isset($_SESSION['type'])) {
+            if ($_SESSION['type'] == 2 || $_SESSION['type'] == 3) {
+                ?>
+                <form method="POST" action="pdf.php">
+                    <div class="form-item">
+                        <input placeholder="Le nom de l'évènement" class="form-text event-name" name='event' type="text">
+                    </div>
+                    <a href="#member-event"><input class="new-event" type="submit" value="Liste des participants à un évènement" name="new-event" /></a>
+                </form>
+                <a href="#create-event"><input class="new-event" type="submit" value="Créer un nouvel évènement" name="new-event" /></a>
+                <?php
+            }
+        }
+        ?>
         <div id="filter">
             <div class="filter-title">Filtrer par</div>
             <div class="filter-form">
@@ -34,34 +39,33 @@ if (isset($_SESSION['type'])) {
 
         <div class="bloc-list-inner">
 
-<?php
-$reponse = $bdd->query('SELECT * FROM evenements ORDER BY Id DESC');
+            <?php
+            $reponse = $bdd->query('SELECT * FROM evenements ORDER BY Id DESC');
 
-while ($donnees = $reponse->fetch()) {
-    ?> <div class="bloc-list-bloc <?php echo $donnees['Type']; ?>"> 
+            while ($donnees = $reponse->fetch()) {
+                ?> <div class="bloc-list-bloc <?php echo $donnees['Type']; ?>"> 
                     <span><a href="event.php"><?php
-                echo $donnees['Nom'];
-                
-                ?> </a></span>
+                            echo $donnees['Nom'];
+                            ?> </a></span>
                     <div class="bloc-list-view">
                         <img src="img/local/events/<?php echo $donnees['Image']; ?> " alt="" />
                     </div>
                     <div class="event-fonctions">
-                    <form method='post' action='event.php'>
-                        <input type="text" value='<?php echo $donnees['Id']; ?>' name='id' style='display:none;'>
-                        <input type='submit' value="En savoir plus">
-                    </form>
+                        <form method='post' action='event.php'>
+                            <input type="text" value='<?php echo $donnees['Id']; ?>' name='id' style='display:none;'>
+                            <input type='submit' value="En savoir plus">
+                        </form>
                     </div>
                 </div> <?php
-            }
-            ?>
+                    }
+                        ?>
 
         </div>
 
-<?php
-if (isset($_SESSION['type'])) {
-    if ($_SESSION['type'] == 2) {
-        ?> 
+        <?php
+        if (isset($_SESSION['type'])) {
+            if ($_SESSION['type'] == 2 || $_SESSION['type'] == 3) {
+                ?> 
 
 
 
@@ -102,10 +106,10 @@ if (isset($_SESSION['type'])) {
                         </div>  
                     </form>
                 </div>
-        <?php
-    }
-}
-?>
+                <?php
+            }
+        }
+        ?>
 
     </div>
 </section>

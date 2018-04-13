@@ -74,7 +74,7 @@ if (isset($_POST['id'])) {
 
             <?php
             if (isset($_SESSION['id'])) {
-                if ($_SESSION['type'] == 1) {
+                if ($_SESSION['type'] == 1 || $_SESSION['type'] == 2) {
                     ?>
 
                     <div class="button">
@@ -100,7 +100,7 @@ if (isset($_POST['id'])) {
                         ?>
                     </div>
                     <?php
-                } elseif ($_SESSION['type'] != 1) {
+                } elseif ($_SESSION['type'] != 1 || $_SESSION['type'] == 2) {
                     ?> <h3 style="font-size:1em;">Seul les étudiants peuvent participer à cet évènement.</h3> <?php
                 }
             } else {
@@ -148,7 +148,7 @@ if (isset($_POST['id'])) {
 
                     // Si l'ID de l'utilisateur connecté en ce moment est présent dans le tableau (et donc est inscrit) :
 
-                    if ($_SESSION['type'] == 1 && in_array($_SESSION['id'], $tabInscrits)) {
+                    if ($_SESSION['type'] == 1 && in_array($_SESSION['id'], $tabInscrits)|| $_SESSION['type'] == 2 && in_array($_SESSION['id'], $tabInscrits)) {
                         ?>
                     <div class='contact-form'>
 

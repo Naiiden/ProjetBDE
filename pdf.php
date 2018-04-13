@@ -3,17 +3,12 @@
 require("fpdf.php");
 $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 
-if (empty($_POST['evenement'])) //Oublie d'un champ
-    {
-        $message = '<p>une erreur s\'est produite pendant votre requête.
-		Vous devez remplir tous les champs</p>';
-	}
 class PDF extends FPDF {
 
     // Header
     function Header() {
         // Logo
-        $this->Image('', 70, 2, 80);
+        $this->Image('img/exia.png', 70, 2, 80);
         // Saut de ligne
         $this->Ln(20);
     }
@@ -36,13 +31,15 @@ $pdf->SetTextColor(0);
 
 
 //requete a la BDD
-$query = $bdd->prepare('SELECT * FROM evenements WHERE Id = :evenement');
+if(isset($_POST)) {
+$evenement = $_POST['event'];
+$query = $bdd->prepare('SELECT * FROM evenements WHERE Id=' .$evenement);
 $query->execute();
 $data = $query->fetch();
 $tab = explode('|', $data["Inscrits"]);
 $date = $data['Date'];
 $nomE = $data['Nom'];
-
+}
 $position_detail = 66; // Position à 8mm de l'entête
 foreach ($tab as $userInscrits) {
     
