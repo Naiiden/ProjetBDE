@@ -23,8 +23,7 @@ $(document).ready(function() {
         $('[data-popup-open]').on('click', function(e)  {
         var targeted_popup_class = jQuery(this).attr('data-popup-open');
         $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
-        $('body').addClass('popup-open');
-
+        $('html').addClass('popup-open');
         e.preventDefault();
 
         });
@@ -33,7 +32,7 @@ $(document).ready(function() {
         var targeted_popup_class = jQuery(this).attr('data-popup-close');
         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
         $(".comments-popup").children().remove();
-        $('body').removeClass('popup-open');
+        $('html').removeClass('popup-open');
         e.preventDefault();
         });
 
