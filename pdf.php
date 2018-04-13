@@ -3,12 +3,17 @@
 require("fpdf.php");
 $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 
+if (empty($_POST['evenement'])) //Oublie d'un champ
+    {
+        $message = '<p>une erreur s\'est produite pendant votre requête.
+		Vous devez remplir tous les champs</p>';
+	}
 class PDF extends FPDF {
 
     // Header
     function Header() {
         // Logo
-        $this->Image('WIN_20180409_14_57_18_Pro.jpg', 70, 2, 80);
+        $this->Image('', 70, 2, 80);
         // Saut de ligne
         $this->Ln(20);
     }
@@ -18,7 +23,7 @@ class PDF extends FPDF {
         // Positionnement à 1,5 cm du bas
         $this->SetY(-15);
         // Adresse
-        $this->Cell(196, 5, 'Mes coordonnées - Mon téléphone', 0, 0, 'C');
+        $this->Cell(196, 5, '', 0, 0, 'C');
     }
 
 }
@@ -29,17 +34,18 @@ $pdf->AddPage();
 $pdf->SetFont('Helvetica', '', 11);
 $pdf->SetTextColor(0);
 
+
 //requete a la BDD
-$query = $bdd->prepare('SELECT * FROM evenements WHERE Id = 7');
+$query = $bdd->prepare('SELECT * FROM evenements WHERE Id = :evenement');
 $query->execute();
 $data = $query->fetch();
 $tab = explode('|', $data["Inscrits"]);
-
-
 $date = $data['Date'];
+$nomE = $data['Nom'];
 
 $position_detail = 66; // Position à 8mm de l'entête
 foreach ($tab as $userInscrits) {
+    
     global $nbUser;
     $nbUser = $nbUser + 1;
     $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE Id =' . $userInscrits);
@@ -47,7 +53,8 @@ foreach ($tab as $userInscrits) {
     $data = $req->fetch();
     $nom = $data['Nom'];
     $prenom = $data['Prenom'];
-
+    $userInscrits = $nomE;
+    
     $pdf->SetY($position_detail);
     $pdf->SetX(8);
     $pdf->MultiCell(50, 8, $nom, 1, 'L');
@@ -56,7 +63,7 @@ foreach ($tab as $userInscrits) {
     $pdf->MultiCell(50, 8, $prenom, 1, 'L');
     $pdf->SetY($position_detail);
     $pdf->SetX(108);
-    $pdf->MultiCell(50, 8, '', 1, 'L');
+    $pdf->MultiCell(50, 8, $userInscrits, 1, 'L');
     $pdf->SetY($position_detail);
     $pdf->SetX(158);
     $pdf->MultiCell(50, 8, $date, 1, 'L');
@@ -68,12 +75,12 @@ $position_entete = 58;
 
 function entete_table($position_entete) {
     global $pdf;
-    $pdf->SetDrawColor(183); // Couleur du fond
-    $pdf->SetFillColor(221); // Couleur des filets
-    $pdf->SetTextColor(0); // Couleur du texte
+    $pdf->SetDrawColor(0); // Couleur du fond
+    $pdf->SetFillColor(255, 0, 0); // Couleur des filets
+    $pdf->SetTextColor(255); // Couleur du texte
     $pdf->SetY($position_entete);
     $pdf->SetX(8);
-    $pdf->Cell(50, 8, "Noms", 1, 0, 'C', 1);
+    $pdf->Cell(50, 8, 'Noms', 1, 0, 'C', 1);
     $pdf->SetX(58);
     $pdf->Cell(50, 8, 'Prenoms', 1, 0, 'C', 1);
     $pdf->SetX(108);
