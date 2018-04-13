@@ -1,3 +1,21 @@
+var photo = 0;
+
+
+function getDate() {
+    var d = new Date();
+
+var month = d.getMonth()+1;
+var day = d.getDate();
+var heure = d.getHours();
+var minute = d.getMinutes();
+var seconde = d.getSeconds();
+
+var output = d.getFullYear() + '-' +
+    (month<10 ? '0' : '') + month + '-' +
+    (day<10 ? '0' : '') + day + " " + heure+":"+minute+":"+seconde ;
+    return output;
+}
+
 $(document).ready(function() {
     //Le code ici
     $(function() {
@@ -5,12 +23,17 @@ $(document).ready(function() {
         $('[data-popup-open]').on('click', function(e)  {
         var targeted_popup_class = jQuery(this).attr('data-popup-open');
         $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+        $('body').addClass('popup-open');
+
         e.preventDefault();
+
         });
         //----- CLOSE
         $('[data-popup-close]').on('click', function(e)  {
         var targeted_popup_class = jQuery(this).attr('data-popup-close');
         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+        $(".comments-popup").children().remove();
+        $('body').removeClass('popup-open');
         e.preventDefault();
         });
 
@@ -41,17 +64,77 @@ $(document).ready(function() {
             },
 
             'text'
-        );
-$('#id_vote').html = "";
+            );
+            $('#id_vote').html = "";
+        });
+
+        $('.photo').on('click', function(e)  {
+
+            $.post('getCommentsLikes.php', 
+            {
+                photoId: $(this).attr('photo'),
+                userId: $(this).attr('user')
+            },
+            
+            function(data) {
+                if(data!='Echec') {
+                    var json = JSON.parse(data);
+                    $("#image-popup").attr("src","img/local/event_photo/"+json['photo']);
+
+                   var commentaires = json['commentaires'].split('|');
+                   var noms = json['noms'].split('|');
+                   var photoId = json['photoId'];
+                   
+                   var dates =json['dates'].split('|');
+                    
+                var i = 0;
+                if(noms[0]!="") {
+                 noms.forEach(function() {
+                    $("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;'> \
+                    <h2 style='float:left;'>Par " + noms[i] + "</h2> \
+                    <span style='float:right;' >Posté le <b>" +  dates[i]  + "</b></span> \
+                    <br/><br/><span >" + commentaires[i] + "</span> \
+                    </div> \
+                        \
+                    ").appendTo('.comments-popup');
+                    i = i + 1;
+                  });
+                }
+                else {
+                    $("<h2 style='color:rgb(99, 0, 0);'>Il n'y a encore aucun commentaire !</h2>").appendTo('.comments-popup');
+                }
+
+                  photo=photoId;
+
+                      
+
+                    
 
 
+                }
+                else if(data=='Echec') {
+                    //alert("Erreur ...");
+                }
+                
+            },
+
+            'text'
+            );
+            $('#id_vote').html = "";
 
         });
+
     });
 
+    // Ouverture de l'espace commentaire / like de chaque photo
+
+
+   
     $( ".popup #button" ).click(function() {
         alert( "Handler for .click() called." );
     });
+
+
 
     $( "#sort1" ).click(function() {
         $('div.bloc-list-inner>div').each(function(){ 
@@ -167,7 +250,9 @@ $('#id_vote').html = "";
     });
 })
 
-
+function openPhoto() {
+    alert("open");
+}
 function sendIdea() {
     if($(".idea-name").val() != "") {
         if($(".idea-message").val() != "") {
@@ -223,6 +308,42 @@ function sendVote(idIdeaForm,idUserForm) {
         $('#id_vote').html = "";
 }
 
+
+function send_comment(nomForm) {
+    $.post('sendComment.php', 
+                            {
+                                commentaire: $('.popup-comment').val(),
+                                photoId: photo
+                                
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                   /* $("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;'> \
+                                        <h2 style='float:left;'>Par " + nomForm  + "</h2> \
+                                        <span style='float:right;' >Posté le <b>"+ getDate() + "</b></span> \
+                                        <br/><br/><span >" + $('.popup-comment').val() +"</span> \
+                                        </div>").before('.comments-popup div');*/
+                                        $('.comments-popup').prepend("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;'> \
+                                        <h2 style='float:left;'>Par " + nomForm  + "</h2> \
+                                        <span style='float:right;' >Posté le <b>"+ getDate() + "</b></span> \
+                                        <br/><br/><span >" + $('.popup-comment').val() +"</span> \
+                                        </div>");
+            
+                                }
+                                else if(data=='Echec') {
+                                    alert("Erreur...");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+                        //alert("bonjour");
+
+        
+
+}
 function register() {
     if($(".register-email").val() != "") {
         if($(".register-password").val() != "" && $(".register-password-repeat").val() != "") {

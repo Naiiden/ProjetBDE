@@ -449,14 +449,42 @@ header #header-button ul .logout:before {
 header #header-button ul .profil:before {
   content: "\E825";
 }
-.popup {
+.popup-open {
+  overflow-y: hidden;
+}
+.popup-photo {
+  overflow-y: auto;
+  overflow-x: hidden;
   z-index: 4;
-  width: 100%;
-  height: 100%;
-  display: none;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  background: rgba(0,0,0,0.75);
+}
+.popup-inner-photo {
+  background: #fff;
+  width: 600px;
+  margin: 30px auto;
+  position: relative;
+  box-shadow: 0px 2px 6px #000000;
+  border-radius: 3px;
+  padding: 40px;
+}
+.popup {
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
   background: rgba(0,0,0,0.75);
 }
 .popup-inner {
@@ -464,7 +492,7 @@ header #header-button ul .profil:before {
   width: 90%;
   padding: 40px;
   position: absolute;
-  top: 50%;
+  top: 300px;
   left: 50%;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
@@ -1326,11 +1354,12 @@ header #header-button ul .profil:before {
   overflow-y: auto;
   margin: 0px;
   width: 100%;
-  height: 520px;
+  max-height: 520px;
 }
 #event .photos-list-inner .photos-list-bloc {
   background: #f3f4f4;
   width: calc(25% - 20px);
+  height: 300px;
 }
 #event .contact-form {
   padding: 25px 0;
@@ -1338,6 +1367,15 @@ header #header-button ul .profil:before {
 #event .contact-form .form-actions {
   padding: 25px 0;
   text-align: center;
+}
+.comments-popup {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #eff5f5;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-height: 270px;
+  overflow-y: auto;
 }
 #filter {
   border-top: 1px solid #5f6b73;

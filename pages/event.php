@@ -14,7 +14,29 @@ if (isset($_POST['id'])) {
 } else {
     header('Location: event-list');
 }
+
 ?>
+
+
+<!-- POPUP Photo -->
+<div class="popup-photo" data-popup="popup-photo" role="document">
+            <div class="popup-inner-photo">
+                <h2>Se connecter</h2><br/>
+                
+                <img id="image-popup" src="" alt="" /><br/>
+                <h2 style="border-bottom:1px solid black; padding-bottom:20px;">Espace commentaire</h2>
+                <div class="comments-popup" style="margin-top:20px; margin-bottom:20px; background-color:#eff5f5; padding-left:20px; padding-right:20px;">
+
+                </div>
+                <input type="text" placeholder="Laisser un commentaire" class="popup-comment">
+                <input type="text" class="popup-image" value="" style="display:none;">
+                <input class="button send-comment" style="float:right; margin-bottom:20px;" value="Poster" onclick="send_comment('<?php echo $_SESSION['prenom']; ?>');" type="submit">
+                <a class="popup-close" data-popup-close="popup-photo" href="#">x</a>
+            </div>
+</div>
+
+
+
 <section id="event">
     <div class="inner">
         <div class="event-top">
@@ -82,110 +104,104 @@ if (isset($_POST['id'])) {
 
             <div class="field--name-body">
                 <p><?php echo $reponse['Description']; ?></p>
-                <!--
-                            <h2>Lorem sip dilum sit met</h2>
-                            <img style="float: right" src="img/local/events/ <?php echo $reponse['Image']; ?>"/>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus.</p>
-                            <ul>
-                               <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </li>
-                               <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-                               <li>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</li>
-                               <li>Nulla consequat massa quis enim.</li>
-                            </ul>-->
+                
+               
             </div>
             <div class="photos-events"><h2>Photos de l'évènements</h2></div>
 
-        </div>
-        <div class="photos-list-inner">
+        </div> <?php 
+        
+        // Si l'évènement est marqué comme "passé" :
+        if(isset($_SESSION['id']) && isset($_SESSION['type'])) { 
+        if($reponse['Statut']==1) { ?> 
+        
+        
+            <div class="photos-list-inner"> <?php
+            
+            $requete2 = $bdd->query('SELECT * FROM photos WHERE Id_evenement='.$reponse['Id']);
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
+            // On affiche chaque entrée une à une
+            while ($donnees = $requete2->fetch())
+            {
+?>
+
+
+                <div class="photos-list-bloc">
+                    <div class="photos-list-desc">
+                        <h3><?php echo $donnees['Nom']; ?></h3>
+                    </div>
+                    <div class="photos-list-view">
+                        <span><img src="img/local/event_photo/<?php echo $donnees['Image']; ?>" alt="" /></span>
+                    </div>
+                    <h3><a class="photo" photo="<?php echo $donnees["Id"]; ?>" user="<?php echo $_SESSION['id'];?>" data-popup-open="popup-photo" href="#">Commentaires / likes</a></h3>
                 </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
+            
+            <?php 
+            }      ?>
             </div>
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
+            <?php 
+            
+            // Récupère la lsite des isncrits à l'évènement sous forme de tableau :
+            $tabInscrits = explode("|", $reponse['Inscrits']); 
 
+            // Si l'ID de l'utilisateur connecté en ce moment est présent dans le tableau (et donc est inscrit) :
+            
+            if($_SESSION['type']==1 && in_array($_SESSION['id'], $tabInscrits)) { 
+                
+                
+                ?>
+                <div class='contact-form'>
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
+                    <form method='POST' action="addPhoto.php" enctype="multipart/form-data">
+                        <h3 id='add-photo'>Une photo à ajouter ?</h3>
+                        <p>
+                            Vous avez participer à cet évènement et souhaitez ajouter une photo?<br />
+                            Elle sera visible sur le site automatiquement et par tout le monde !</p>
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
+                        <div class="form-item">
+                            <input placeholder="Le nom de votre photo" class="form-text event-name" name='name' type="text">
+                        </div>
+                        <div class="form-item">
+                            <input placeholder="Image" class="form-text idea-name" type="file" id="file" name="image">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="300000" >
+                        </div>
+                        <div class="form-actions">
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
+                            <input name='userId' value="<?php echo $_SESSION['id']; ?>" type="text" style="display:none;">
+                            <input name='eventId' value="<?php echo $reponse["Id"]; ?>"  type="text" style="display:none;">
 
-        </div>
-
-        <div class='contact-form'>
-
-            <form method='POST' action="createEvent.php" enctype="multipart/form-data">
-                <h3 id='add-photo'>Une photo à ajouter ?</h3>
-                <p>
-                    Vous avez participer à cet évènement et souhaiter ajouter une photo?<br />
-                    Elle sera visible sur le site automatiquement et par tout le monde !</p>
-
-
-                <div class="form-item">
-                    <input placeholder="Le nom de votre photo" class="form-text event-name" name='nom' type="text">
-                </div>
-                <div class="form-item">
-                    <input placeholder="Image" class="form-text idea-name" type="file" id="file" name="image">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="300000" >
-                </div>
-                <div class="form-actions">
-                    <input class="button" value="Envoyer !" type="submit">
+                            <input class="button" value="Envoyer !" type="submit">
+                        </div>  
+                    </form>
                 </div>  
-            </form>
-        </div>
+                
+                <?php 
+            
+            } 
+        
+
+        } 
+    
+        
+        // Sinon si l'évènement n'est pas encore passé :
+        else { 
+
+        ?> 
+        <h2 <h2 class="actu-title" style="font-size:1.3em;"> Vous pourrez poster des photos une fois l'évènement terminé !
+    </h2>
+        <?php echo $reponse['Nom']; ?>
+        </h2>
+        <?php } 
+        
+    }
+    else {
+        ?> 
+        <h2 <h2 class="actu-title" style="font-size:1.3em;"> Vous devez vous connecter pour voir les photos  !
+    </h2>
+<?php
+    }
+        ?>
+
     </div>
 </section>

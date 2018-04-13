@@ -19,7 +19,7 @@ else if  (!empty($_POST['email']) || !empty($_POST['password']) ) //On check le 
     $nb = $columns['nb'];
 
     if($nb > 0) {
-        $query=$bdd->prepare('SELECT Id, Email, Mdp, Type FROM utilisateurs WHERE Email = :email');
+        $query=$bdd->prepare('SELECT Id, Email, Mdp, Type, Prenom FROM utilisateurs WHERE Email = :email');
         $query->bindValue(':email',$_POST['email'], PDO::PARAM_STR);
         $query->execute();
         $data=$query->fetch();
@@ -27,6 +27,7 @@ else if  (!empty($_POST['email']) || !empty($_POST['password']) ) //On check le 
         if ($data['Mdp'] == $_POST['password']) // Acces OK !
         {
             $_SESSION['email'] = $_POST['email'];
+            $_SESSION['prenom'] = $data['Prenom'];
             $_SESSION['id'] = $data['Id'];
             $_SESSION['type'] = $data['Type'];
 
