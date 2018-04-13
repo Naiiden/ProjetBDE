@@ -319,11 +319,6 @@ function send_comment(nomForm) {
                             
                             function(data) {
                                 if(data=='Succes') {
-                                   /* $("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;'> \
-                                        <h2 style='float:left;'>Par " + nomForm  + "</h2> \
-                                        <span style='float:right;' >Posté le <b>"+ getDate() + "</b></span> \
-                                        <br/><br/><span >" + $('.popup-comment').val() +"</span> \
-                                        </div>").before('.comments-popup div');*/
                                         $('.comments-popup').prepend("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;'> \
                                         <h2 style='float:left;'>Par " + nomForm  + "</h2> \
                                         <span style='float:right;' >Posté le <b>"+ getDate() + "</b></span> \
@@ -339,7 +334,6 @@ function send_comment(nomForm) {
         
                             'text'
                         );
-                        //alert("bonjour");
 
         
 
