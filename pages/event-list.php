@@ -14,12 +14,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
         if (isset($_SESSION['type'])) {
             if ($_SESSION['type'] == 2 || $_SESSION['type'] == 3) {
                 ?>
-                <form method="POST" action="pdf.php">
-                    <div class="form-item">
-                        <input placeholder="Le nom de l'évènement" class="form-text event-name" name='event' type="text">
-                    </div>
-                    <a href="#member-event"><input class="new-event" type="submit" value="Liste des participants à un évènement" name="new-event" /></a>
-                </form>
                 <a href="#create-event"><input class="new-event" type="submit" value="Créer un nouvel évènement" name="new-event" /></a>
                 <?php
             }
@@ -41,31 +35,35 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             </div>
         </div>
 
-        <div class="bloc-list-inner">
+
+
+        <div id="event-list-inner">
 
             <?php
             $reponse = $bdd->query('SELECT * FROM evenements ORDER BY Id DESC');
 
             while ($donnees = $reponse->fetch()) {
-                ?> <div class="bloc-list-bloc <?php echo $donnees['Type']; ?>"> 
-                    <span><a href="event.php"><?php
-                            echo $donnees['Nom'];
-                            ?> </a></span>
-                    <div class="bloc-list-view">
+                ?> 
+                <div class="event-list-bloc <?php echo $donnees['Type']; ?>">
+                    <div class="event-list-view"> 
                         <img src="img/local/events/<?php echo $donnees['Image']; ?> " alt="" />
+                        <div class="topic">Entreprise</div> 
+                    </div>
+                    <div class="event-list-desc">
+                        <h3><?php echo $donnees['Nom']; ?></h3>
+                        <p><?php echo $donnees['Description']; ?></p>                
                     </div>
                     <div class="event-fonctions">
                         <form method='post' action='event.php'>
                             <input type="text" value='<?php echo $donnees['Id']; ?>' name='id' style='display:none;'>
-                            <input type='submit' value="En savoir plus">
+                            <input class="more-info" type='submit' value="En savoir plus">
                         </form>
                     </div>
-                </div> <?php
+                </div>
+                <?php
             }
             ?>
-
         </div>
-
         <?php
         if (isset($_SESSION['type'])) {
             if ($_SESSION['type'] == 2 || $_SESSION['type'] == 3) {

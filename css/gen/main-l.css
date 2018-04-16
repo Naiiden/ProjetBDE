@@ -605,7 +605,7 @@ header #header-button ul .profil:before {
 }
 .front #bde-events {
   position: relative;
-  background: white;
+  background: #215871;
 }
 .front #bde-events .inner {
   padding: 0 0 30px;
@@ -1069,6 +1069,94 @@ header #header-button ul .profil:before {
 #photos-list {
   padding: 0 0 50px 0;
 }
+#event-list-inner {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background: #215871;
+}
+#event-list-inner .event-list-bloc {
+  position: relative;
+  width: calc(25% - 5px);
+  overflow: hidden;
+  margin: 20px;
+  vertical-align: top;
+  background: #FFF;
+}
+#event-list-inner .event-list-bloc .event-list-date {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  color: #FFF;
+  background: #1e324d;
+  padding: 7px;
+}
+#event-list-inner .event-list-bloc .event-list-date span {
+  display: block;
+  font: 700 1.3em/20px "Ubuntu", sans-serif;
+  text-transform: uppercase;
+}
+#event-list-inner .event-list-bloc .event-list-date .month {
+  font-size: 1em;
+}
+#event-list-inner .event-list-bloc .event-list-date .year {
+  font: 300 0.85em/15px "Ubuntu", sans-serif;
+}
+#event-list-inner .event-list-bloc .event-list-view {
+  position: relative;
+}
+#event-list-inner .event-list-bloc .event-list-view img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#event-list-inner .event-list-title {
+  color: #314d61;
+  padding: 50px;
+  font-size: 32px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Calibri;
+}
+#event-list-inner .event-list-title:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: 25%;
+  width: 5%;
+  height: 1%;
+  -webkit-transform: translate(-50%,0);
+  -moz-transform: translate(-50%,0);
+  -ms-transform: translate(-50%,0);
+  -o-transform: translate(-50%,0);
+  background: #314d61;
+}
+#event-list-inner .event-list-desc {
+  padding: 10px;
+  text-align: center;
+}
+#event-list-inner .event-list-desc h2 {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 15px;
+  color: #215871;
+  margin-bottom: 10px;
+}
+#event-list-inner .event-list-desc h2:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 70px;
+  height: 2px;
+  margin: 0 auto;
+  background: #3897c1;
+}
 #photos {
   padding: 0 0 50px;
 }
@@ -1231,48 +1319,18 @@ header #header-button ul .profil:before {
 }
 #event-list {
   padding: 0 0 50px 0;
+  background: #f3f4f4;
 }
 #event-list .new-event {
   position: absolute;
   top: 40px;
   right: 0;
 }
-#event-list .bloc-list-inner {
-  background: #FFF9F9;
-}
-#event-list .bloc-list-inner .bloc-list-bloc {
-  width: calc(33% - 5px);
-  position: relative;
-}
-#event-list .bloc-list-inner .bloc-list-bloc:before {
-  position: absolute;
-  content: "";
-  left: 0;
-  width: 2px;
-  height: 100%;
-}
-#event-list .bloc-list-inner .bloc-list-bloc span a {
-  font: 400 1.2em/1em 'Ubuntu';
-  color: #314d61;
-  text-align: center;
-  width: 100%;
-}
-#event-list .bloc-list-inner .bloc-list-bloc .bloc-list-view {
-  height: 190px;
-}
-#event-list .bloc-list-inner .bloc-list-bloc .event-fonctions {
+#event-list .event-fonctions {
   text-align: center;
 }
-#event-list .bloc-list-inner .bloc-list-bloc .event-fonctions a {
-  font: 400 1em/1em 'Ubuntu';
-  color: #C2242A;
-}
-#event-list .bloc-list-inner .bloc-list-bloc .event-fonctions a:hover {
-  font: 400 1.2em/1em 'Ubuntu';
-  color: #8A1002;
-}
-#event-list .bloc-list-inner .bloc-list-bloc .event-fonctions a:after {
-  content: none;
+#event-list .event-fonctions input {
+  margin-bottom: 10px;
 }
 #event-list .contact-form {
   padding-top: 50px;

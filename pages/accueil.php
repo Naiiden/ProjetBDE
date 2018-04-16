@@ -13,39 +13,39 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 </section>
 
 
-
 <section id="bde-events">
     <div class="inner">
         <h2 class="titleh2"> Évènements récents</h2>
-        <div class="bloc-list-inner">
+        <div id="event-list-inner">
 
-        <?php 
+            <?php
+            $reponse = $bdd->query('SELECT * FROM evenements ORDER BY Id DESC');
+            $count = 0;
+            while ($donnees = $reponse->fetch()) {
+                if ($count < 3) {
+                    ?>
+                    <div class="event-list-bloc <?php echo $donnees['Type']; ?>">
+                        <div class="event-list-view"> 
+                            <img src="img/local/events/<?php echo $donnees['Image']; ?> " alt="" />
+                            <div class="topic">Entreprise</div> 
+                        </div>
+                        <div class="event-list-desc">
+                            <h3><?php echo $donnees['Nom']; ?></h3>
+                            <p><?php echo $donnees['Description']; ?></p>                
+                        </div>
+                        <div class="event-fonctions">
+                            <form method='post' action='event.php'>
+                                <input type="text" value='<?php echo $donnees['Id']; ?>' name='id' style='display:none;'>
+                                <input class="more-info" type='submit' value="En savoir plus">
+                            </form>
+                        </div>
+                    </div>
+                    <?php
+                    $count = $count + 1;
+                }
+            }
+            ?>
 
-$reponse = $bdd->query('SELECT * FROM evenements ORDER BY Id DESC');
-$count=0;
-while ($donnees = $reponse->fetch()) {
-        if($count<4){  ?>
-           <div class="bloc-list-bloc <?php echo $donnees['Type']; ?>"> 
-               <div class="event-name"><a href="event.php"><?php
-                echo $donnees['Nom'];
-                
-                ?> </a></div>
-                    <div class="bloc-list-view">
-                        <img src="img/local/events/<?php echo $donnees['Image']; ?> " alt="" />
-                    </div>
-                    <div class="event-fonctions">
-                    <form method='post' action='event.php'>
-                        <input type="text" value='<?php echo $donnees['Id']; ?>' name='id' style='display:none;'>
-                        <input type='submit' value="En savoir plus">
-                    </form>
-                    </div>
-                </div> 
-<?php 
-$count = $count + 1;
-        }
-}
-?>
-           
 
         </div>
 

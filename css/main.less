@@ -249,7 +249,7 @@ header {
     }
 
     #bde-events{
-        position: relative; background: white;
+        position: relative; background: @blue;
         .inner { padding: 0 0 30px }
         #event-list-content { margin-bottom: 35px; }
         span a { font: 400 1.2em/1em 'Ubuntu';color: @anthracite; text-align:center; width:100% }
@@ -462,6 +462,43 @@ header {
 /* ------ List ------ */
 #photos-list { padding: 0 0 50px 0 }
 
+
+
+
+/* ------ EVENT-LIST ------ */
+
+
+#event-list-inner {
+    display: flex; flex-flow: row wrap; justify-content: center; align-items: center;background: @blue;
+    .event-list-bloc { 
+        position: relative; width: calc(~"25% - 5px"); overflow: hidden;margin: 20px; vertical-align: top; background: #FFF;
+        .event-list-date {
+            z-index: 2; position: absolute; top: 0; right: 0; text-align:center; color: #FFF; background: @darkblue; padding: 7px; 
+            span { display: block; font: 700 1.3em/20px "Ubuntu",sans-serif; text-transform: uppercase }
+            .month { font-size: 1em }
+            .year { font: 300 0.85em/15px "Ubuntu",sans-serif }
+        }
+        .event-list-view { 
+            position: relative;
+            img { .image } 
+        }
+        &:hover .event-list-view img { }
+    }
+
+    .event-list-title { 
+        color: @anthracite; padding:50px; font-size: 32px; text-align: center; text-transform: uppercase; font-family: Calibri;
+        &:after { position: absolute;content: "";left: 50%; bottom: 25%; width: 5%; height: 1%;-webkit-transform: translate(-50%, 0);-moz-transform: translate(-50%, 0);-ms-transform: translate(-50%, 0);-o-transform: translate(-50%, 0);background: #314d61; }
+    }
+
+
+    .event-list-desc {
+        padding: 10px; text-align:center;
+        h2 { 
+            position: relative; overflow: hidden; padding-bottom: 15px; color:@blue; margin-bottom: 10px; 
+            &:before { position: absolute; content: ""; left: 0; right: 0; bottom: 0; width: 70px; height: 2px; margin: 0 auto; background: @blue-light; }
+        }
+    }
+}
 /* ------ Détail ------ */
 #photos {
     padding: 0 0 50px;
@@ -528,24 +565,11 @@ header {
 /* ------ Évènements ------ */
 /* ------ List ------ */
 #event-list { 
-    padding: 0 0 50px 0;
+    padding: 0 0 50px 0; background: @pale;
     .new-event { position: absolute; top: 40px; right:0;}
-    .bloc-list-inner {
-        background: @rosepale;
-        .bloc-list-bloc { 
-            width: calc(~"33% - 5px"); position: relative;
-            &:before { position: absolute; content: ""; left:0; width: 2px; height: 100%;}
-            span a { font: 400 1.2em/1em 'Ubuntu';color: @anthracite; text-align:center; width:100% }
-            .bloc-list-view {height: 190px;}
-            .event-fonctions {
-                text-align:center;
-                a {
-                    font: 400 1em/1em 'Ubuntu'; color: @red;
-                    &:hover { font: 400 1.2em/1em 'Ubuntu'; color: @darkred;}
-                    &:after{content: none;}
-                }
-            }
-        }
+    .event-fonctions {
+        text-align:center;
+        input{ margin-bottom: 10px}
     }
     .contact-form { padding-top:50px;}
     .item-list { padding: 0 0 40px 0;}
@@ -604,10 +628,10 @@ header {
 
 .comments-popup { 
     margin-top: 20px; margin-bottom: 20px; background-color: #eff5f5; padding-left: 20px; padding-right: 20px; max-height: 270px; overflow-y:auto;
-        a {
-            position: absolute; bottom:10px; right: 10px; text-decoration: none;
-            &:after { position: relative; font: 1em/0 'fontello'; content: "\E822"; color: @red; }
-        }
+    a {
+        position: absolute; bottom:10px; right: 10px; text-decoration: none;
+        &:after { position: relative; font: 1em/0 'fontello'; content: "\E822"; color: @red; }
+    }
 }
 
 
