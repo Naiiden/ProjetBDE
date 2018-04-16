@@ -44,10 +44,18 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 
             while ($donnees = $reponse->fetch()) {
                 ?> 
-                <div class="event-list-bloc <?php echo $donnees['Type']; ?>">
+                <div class="event-list-bloc <?php echo $donnees['Type']; ?>" statut="<?php echo $donnees['Statut']; ?>">
                     <div class="event-list-view"> 
                         <img src="img/local/events/<?php echo $donnees['Image']; ?> " alt="" />
-                        <div class="topic">Entreprise</div> 
+                        
+                        <?php 
+                        
+                        if($donnees['Statut']==1) {
+                            echo '<div class="topic" style="color:#C2242A;">Terminé</div>';
+                        }
+                        else {
+                            echo "<div class='topic' style='color:#215871;'>A venir</div>";
+                        } ?>
                     </div>
                     <div class="event-list-desc">
                         <h3><?php echo $donnees['Nom']; ?></h3>
