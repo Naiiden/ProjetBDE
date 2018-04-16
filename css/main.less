@@ -249,27 +249,46 @@ header {
     }
 
     #bde-events{
-        position: relative; background: @pale;
+        h2 {
+            color: white;
+            &:after {background: white;}
+        }
+        position: relative; background: @blue;
         .inner { padding: 0 0 30px }
         #event-list-content { margin-bottom: 35px; }
         span a { font: 400 1.2em/1em 'Ubuntu';color: @anthracite; text-align:center; width:100% }
         .event-fonctions {
-            text-align:center;
+            text-align:center; margin: 5px 0;
             a {
                 font: 400 1em/1em 'Ubuntu'; color: @red;
                 &:hover { font: 400 1.2em/1em 'Ubuntu'; color: @darkred;}
                 &:after{content: none;}
             }
         }
-        #event-list-inner { background: @pale;}
+        #event-list-inner {background: @blue;}
+        .all-page {
+            .special a {
+                background: @blue; color: #FFF; border: 1px solid @blue-light; 
+                &:before, &:after { background: #FFF;} 
+                &:hover {
+                    &:before, &:after { background: @blue;}
+                    background: #FFF; color: @blue;
+                }
+
+            }
+        }
     }
     .bde-photos {
+        background: white;
         position:relative;
-
+        .photos-list-bloc {background: @pale;}
     }
     #bde-boutique {
-        position: relative; background: white;
-        .bloc-list-bloc { margin:0;}
+        position: relative; background: @pale;
+        .bloc-list-bloc {
+            margin:0;
+            &:hover {background: white;}
+        }
         input {position: absolute; bottom:0;}
     }
 } 
@@ -463,7 +482,7 @@ header {
 
 
 #event-list-inner {
-    display: flex; flex-flow: row wrap; justify-content: center; align-items: center;background: @blue;
+    display: flex; flex-flow: row wrap; justify-content: center; align-items: center;background: @pale;
     .event-list-bloc { 
         position: relative; width: calc(~"25% - 5px"); overflow: hidden;margin: 20px; vertical-align: top; background: #FFF;
         .event-list-date {

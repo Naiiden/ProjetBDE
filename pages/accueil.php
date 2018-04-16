@@ -22,19 +22,18 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             $reponse = $bdd->query('SELECT * FROM evenements ORDER BY Id DESC');
             $count = 0;
             while ($donnees = $reponse->fetch()) {
-                if ($count < 3) {
+                if ($count < 6) {
                     ?>
                     <div class="event-list-bloc <?php echo $donnees['Type']; ?>" statut="<?php echo $donnees['Statut']; ?>">
                         <div class="event-list-view"> 
                             <img src="img/local/events/<?php echo $donnees['Image']; ?> " alt="" />
-                            <?php 
-                        
-                        if($donnees['Statut']==1) {
-                            echo '<div class="topic" style="color:#C2242A;">Terminé</div>';
-                        }
-                        else {
-                            echo "<div class='topic' style='color:#215871;'>A venir</div>";
-                        } ?>
+                            <?php
+                            if ($donnees['Statut'] == 1) {
+                                echo '<div class="topic" style="color:#C2242A;">Terminé</div>';
+                            } else {
+                                echo "<div class='topic' style='color:#215871;'>A venir</div>";
+                            }
+                            ?>
                         </div>
                         <div class="event-list-desc">
                             <h3><?php echo $donnees['Nom']; ?></h3>
@@ -68,73 +67,34 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 <section class="bde-photos">
     <div class="inner">
         <h2 class="titleh2">Dernières photos</h2>
+
         <div class="photos-list-inner">
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
+            <?php
+            $reponse = $bdd->query('SELECT * FROM photos');
+            $count = 0;
+            while ($donnees = $reponse->fetch()) {
+                if ($count < 4) {
+                    ?>
 
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
+                    <div class="photos-list-bloc ">
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3><a href="photos">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
+                        <div class="photos-list-desc">
+                            <h3> <a href="#"> <?php echo $donnees['Nom']; ?> </a></h3>
+                        </div>
+                        <div class="photos-list-view">
+                            <span><img src= "img/local/event_photo/<?php echo $donnees['Image']; ?>" alt="" /></span>
+                        </div>
+                        <div class="photos-fonctions">
+                            <a href="#"></a>
+                            <a href="#"></a>
+                        </div>
+                    </div>
+                    <?php
+                }
+                }
+                ?>
 
         </div>
 

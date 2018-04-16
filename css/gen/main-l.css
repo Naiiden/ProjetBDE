@@ -605,7 +605,13 @@ header #header-button ul .profil:before {
 }
 .front #bde-events {
   position: relative;
-  background: #f3f4f4;
+  background: #215871;
+}
+.front #bde-events h2 {
+  color: white;
+}
+.front #bde-events h2:after {
+  background: white;
 }
 .front #bde-events .inner {
   padding: 0 0 30px;
@@ -621,6 +627,7 @@ header #header-button ul .profil:before {
 }
 .front #bde-events .event-fonctions {
   text-align: center;
+  margin: 5px 0;
 }
 .front #bde-events .event-fonctions a {
   font: 400 1em/1em 'Ubuntu';
@@ -634,17 +641,41 @@ header #header-button ul .profil:before {
   content: none;
 }
 .front #bde-events #event-list-inner {
-  background: #f3f4f4;
+  background: #215871;
+}
+.front #bde-events .all-page .special a {
+  background: #215871;
+  color: #FFF;
+  border: 1px solid #3897c1;
+}
+.front #bde-events .all-page .special a:before,
+.front #bde-events .all-page .special a:after {
+  background: #FFF;
+}
+.front #bde-events .all-page .special a:hover {
+  background: #FFF;
+  color: #215871;
+}
+.front #bde-events .all-page .special a:hover:before,
+.front #bde-events .all-page .special a:hover:after {
+  background: #215871;
 }
 .front .bde-photos {
+  background: white;
   position: relative;
+}
+.front .bde-photos .photos-list-bloc {
+  background: #f3f4f4;
 }
 .front #bde-boutique {
   position: relative;
-  background: white;
+  background: #f3f4f4;
 }
 .front #bde-boutique .bloc-list-bloc {
   margin: 0;
+}
+.front #bde-boutique .bloc-list-bloc:hover {
+  background: white;
 }
 .front #bde-boutique input {
   position: absolute;
@@ -1069,7 +1100,7 @@ header #header-button ul .profil:before {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  background: #215871;
+  background: #f3f4f4;
 }
 #event-list-inner .event-list-bloc {
   position: relative;
