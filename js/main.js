@@ -1,6 +1,5 @@
 var photo = 0;
 
-
 function getDate() {
     var d = new Date();
 
@@ -68,7 +67,6 @@ $(document).ready(function() {
         });
 
         $('.photo').on('click', function(e)  {
-
             $.post('getCommentsLikes.php', 
             {
                 photoId: $(this).attr('photo'),
@@ -81,22 +79,18 @@ $(document).ready(function() {
                     $("#image-popup").attr("src","img/local/event_photo/"+json['photo']);
 
                    var commentaires = json['commentaires'].split('|');
+                   var commentairesId = json['commentairesId'].split('|');
                    var noms = json['noms'].split('|');
                    var photoId = json['photoId'];
                    
                    var dates =json['dates'].split('|');
                     
                 var i = 0;
+
                 if(noms[0]!="") {
+
                  noms.forEach(function() {
-                    $("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;position: relative;'> \
-                    <a href='#' title='Supprimer'></a>\
-                    <h2 style='float:left;'>Par " + noms[i] + "</h2> \
-                    <span style='float:right;' >Posté le <b>" +  dates[i]  + "</b></span> \
-                    <br/><br/><span >" + commentaires[i] + "</span> \
-                    </div> \
-                        \
-                    ").appendTo('.comments-popup');
+                    afficherCommentaires(noms[i],dates[i],commentaires[i], commentairesId[i]);
                     i = i + 1;
                   });
                 }
@@ -253,6 +247,7 @@ $(document).ready(function() {
 function openPhoto() {
     alert("open");
 }
+
 function sendIdea() {
     if($(".idea-name").val() != "") {
         if($(".idea-message").val() != "") {
@@ -428,4 +423,32 @@ function login() {
 
 function participeEvent() {
     alert("heello");
+}
+
+function deleteComment(commentIdForm) {
+    $.post('deleteComment.php', 
+                            {
+                                commentId: commentIdForm,
+                                action: "deleteComment"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    //alert("Vous avez bien supprimé le commentaire.");
+                                    
+                                    $("#"+commentIdForm).css("background-color","#ff8080");
+                                    $("#"+commentIdForm).fadeOut( "slow", function() {
+                                        // After animation completed:
+                                        $("#"+commentIdForm).remove();
+                                    });
+                                }
+                                else if(data=='Echec') {
+                                    //alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+    //$('div').remove("#"+commentIdForm);
 }
