@@ -991,7 +991,7 @@ header #header-button ul .profil:before {
 }
 .photos-list-inner .photos-list-bloc {
   position: relative;
-  width: calc(20% - 20px);
+  width: calc(25% - 20px);
   margin: 0 10px 20px;
   background: #FFF;
   display: flex;

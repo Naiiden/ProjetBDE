@@ -1,6 +1,8 @@
 <?php
 session_start(); 
+$bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 ?>
+
 <section id="photos-list">
     <div class="inner">
 
@@ -9,336 +11,28 @@ session_start();
 
         <div class="photos-list-inner">
 
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
+<?php
+$reponse = $bdd->query('SELECT * FROM photos');
+
+while ($donnees = $reponse->fetch()) {
+    ?>
+
+
+        <div class="photos-list-bloc ">
+
+            <div class="photos-list-desc">
+                <h3> <a href="#"> <?php echo $donnees['Nom']; ?> </a></h3>
             </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
+            <div class="photos-list-view">
+                <span><img src= "img/local/event_photo/<?php echo $donnees['Image']; ?>" alt="" /></span>
             </div>
-
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
+            <div class="photos-fonctions">
+                <a href="#"></a>
+                <a href="#"></a>
             </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
             </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view-h.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            <div class="photos-list-bloc ">
-                <div class="photos-list-desc">
-                    <h3> <a href="#">Nom photo</a></h3>
-                </div>
-                <div class="photos-list-view">
-                    <span><img src="img/local/view.jpg" alt="" /></span>
-                </div>
-                <div class="photos-fonctions">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-
-            </div>
+        <?php
+    }?>
 
         </div>
 
@@ -347,4 +41,3 @@ session_start();
 
     </div>
 </section>
-
