@@ -21,24 +21,22 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                     <div class="highlight-view">
                         <img src="img/icons/idee.png" alt=""/>
                     </div>
-                    <h2>Lorem Ipsum</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, corsuer adipiscing elit. Aenean commodo ligula eget dolo. Aenean massa. Cum sociis natoquenatibus et magnis dis parturient montes, nascetur ridiculus
-                    </p>
+                    <h3>Qu'est-ce que c'est ?</h3>
+                    <p>Nous sommes une petite dizaine d'étudiants réuni en une association, élus par les étudiants du cesi afin d'organiser des évènements tous au long de l'année.</p>
                 </div>
                 <div class="highlight-bloc">
                     <div class="highlight-view"> 
                         <img src="img/icons/geoloc.png" alt="" />
                     </div>
-                    <h2>Lorem Ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet, corsuer adipiscing elit. Aenean commodo ligula eget dolo. Aenean massa. Cum sociis natoquenatibus et magnis dis parturient montes, nascetur ridiculus</p>
+                    <h3>Où nous trouver ?</h3>
+                    <p>Nous sommes aux étages 4 et 5 au cesi. 1 Bd de l'Université Gavy Océanis 44600 Saint-Nazaire, France.</p>
                 </div>
                 <div class="highlight-bloc">
                     <div class="highlight-view">
                         <img src="img/icons/networks.png" alt=""/>
                     </div>
-                    <h2>Lorem Ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet, corsuer adipiscing elit. Aenean commodo ligula eget dolo. Aenean massa. Cum sociis natoquenatibus et magnis dis parturient montes, nascetur ridiculus</p>
+                    <h3>Vie associative</h3>
+                    <p>Tout au long de l'année, des sorties, évènements, soirée sont organisées pour rendre votre vie à l'école plus attrayante.</p>
                 </div>
             </div>
 

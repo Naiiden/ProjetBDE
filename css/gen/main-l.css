@@ -866,10 +866,10 @@ header #header-button ul .profil:before {
 }
 #bde #bde-content .highlight .highlight-bloc {
   float: left;
-  width: 33.33%;
+  width: calc(33% - 5px);
   padding: 40px 50px;
 }
-#bde #bde-content .highlight .highlight-bloc h2 {
+#bde #bde-content .highlight .highlight-bloc h3 {
   padding: 5%;
   color: #3897c1;
 }
