@@ -132,7 +132,7 @@ function afficherCommentaires(nom,date,commentaire, commentaireId) {
             
             <?php if(isset($_SESSION['id'])) {
                 if($reponse['Statut']==1) {
-                    ?> <div class="photos-events"><h2>Photos de l'évènements</h2></div> <?php
+                    ?> <div class="photos-events"><h2>Photos de l'évènement</h2></div> <?php
                 }
             }
             ?>
@@ -152,9 +152,10 @@ function afficherCommentaires(nom,date,commentaire, commentaireId) {
         while ($donnees = $requete2->fetch()) {
                         ?>
 
-
-                        <div class="photos-list-bloc">
-                            <a class="delete-photo" href="#" title="supprimer"></a>
+                        <div class="photos-list-bloc" id="photo<?php echo $donnees['Id']; ?>">
+                        <?php if($_SESSION['type']==2) { ?>
+                            <a class="delete-photo" href="#" onclick="deletePhoto(<?php echo $donnees['Id']; ?>);" title="Supprimer cette photo"></a>
+                        <?php } ?>
                             <div class="photos-list-desc">
                                 <h3><?php echo $donnees['Nom']; ?></h3>
                             </div>
