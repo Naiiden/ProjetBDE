@@ -605,7 +605,7 @@ header #header-button ul .profil:before {
 }
 .front #bde-events {
   position: relative;
-  background: #215871;
+  background: #f3f4f4;
 }
 .front #bde-events .inner {
   padding: 0 0 30px;
@@ -633,16 +633,8 @@ header #header-button ul .profil:before {
 .front #bde-events .event-fonctions a:after {
   content: none;
 }
-.front #bde-events .bloc-list-inner .bloc-list-bloc {
+.front #bde-events #event-list-inner {
   background: #f3f4f4;
-  margin: 10px 2px 20px 3px;
-}
-.front #bde-events .bloc-list-inner .bloc-list-bloc .event-name {
-  font: 400 1.2em/1em 'Ubuntu';
-  margin: 5px 15px 0px;
-}
-.front #bde-events .bloc-list-inner .bloc-list-bloc .event-name a {
-  color: #C2242A;
 }
 .front .bde-photos {
   position: relative;
