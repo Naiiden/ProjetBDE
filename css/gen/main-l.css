@@ -975,6 +975,9 @@ header #header-button ul .profil:before {
   background: #FFF;
   color: #215871;
 }
+#bde .contact-form {
+  margin: 50px 0;
+}
 #bde .contact-form .form-actions {
   padding: 20px 0;
   text-align: center;

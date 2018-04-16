@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 16 Avril 2018 à 13:39
+-- Généré le :  Lun 16 Avril 2018 à 14:17
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -44,6 +44,28 @@ DELETE FROM `membre_bde`
         WHERE `membre_bde`.`nom` = `nommembre`$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `article_bde`
+--
+
+CREATE TABLE `article_bde` (
+  `ID` int(11) NOT NULL,
+  `Nom` varchar(100) NOT NULL,
+  `Description` text NOT NULL,
+  `Image` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `article_bde`
+--
+
+INSERT INTO `article_bde` (`ID`, `Nom`, `Description`, `Image`) VALUES
+(5, 'NOTRE TROISIEME ARTICLE', 'PAR C\'EST NOTRE HISTORISME ARTICLE', '5ad4b0538f354.jpg'),
+(4, 'Notre deuxième article', 'Et oui, c\'est déjà notre deuxième article, on est grave rapide, non ?', '5ad4af536b05c.jpg'),
+(3, 'Création du site internet', 'Après tant d\'attentes, notre site internet est enfin en ligne!\r\nN\'hésitez plus à le parcourir de fond en comble, et à regarder les différents événements.\r\nNous passerons dorénavant par ce site afin de vous prévenir de ces derniers.\r\nUne boutique est aussi disponible pour ceux qui n\'ont pas encore tous leurs goodies à l\'effigie du CESI.', '5ad4af06b3028.jpg');
 
 -- --------------------------------------------------------
 
@@ -97,9 +119,7 @@ INSERT INTO `commentaires` (`Id`, `Id_photo`, `Id_utilisateur`, `Date`, `Comment
 (31, 4, 19, '2018-04-13 08:29:06', ''),
 (32, 4, 19, '2018-04-13 08:29:11', ''),
 (33, 4, 19, '2018-04-13 08:29:12', ''),
-(34, 5, 20, '2018-04-16 06:51:08', 'éventuellement je peux faire ça'),
-(35, 5, 20, '2018-04-16 07:47:30', '09:47'),
-(36, 5, 20, '2018-04-16 07:50:23', 'test');
+(34, 5, 20, '2018-04-16 06:51:08', 'éventuellement je peux faire ça');
 
 -- --------------------------------------------------------
 
@@ -130,7 +150,8 @@ INSERT INTO `evenements` (`Id`, `Nom`, `Description`, `Image`, `Type`, `Date`, `
 (10, 'Orange', 'Cette fleur est orange, comme la couleur.\r\nLes fleurs sont belles. Comme les roses.\r\nRose est une rosa esa una rosa is a rose.\r\nJe ne sais pas ce que ça veux dire mais ça à l\'air sympa.\r\nÇa me rappelle quand je mangeais des skittles oranges. C\'était top.', '5acdefb123231.jpg', 2, '2018-04-06', 0, 1, '18'),
 (11, 'Découvrir les méduses', '', '5acdf08e3260a.jpg', 1, '2018-04-06', 0, 1, ''),
 (21, 'Faire un tour de voiture', 'Mon idée serait de créer un circuit tout terrain de voiture, afin de faire des courses et le gagnant volerait les voitures de tous les participants.', '5ace2b9a43603.jpg', 2, '2018-04-13', 0, 1, ''),
-(22, 'Sortie en moto !', 'Une sortie en moto, ça vous tente?\r\nSi oui, inscrivez-vous à cet évènement... c\'est gratuit !', '5acf842159ae8.jpg', 1, '2018-04-12', 1, 1, '19|17');
+(22, 'Sortie en moto !', 'Une sortie en moto, ça vous tente?\r\nSi oui, inscrivez-vous à cet évènement... c\'est gratuit !', '5acf842159ae8.jpg', 1, '2018-04-12', 1, 1, '19|17'),
+(23, 'Grosse soirée disco', 'C\'est l\'histoire d\'un chat sur une licorne, ainsi est né le ChatCorne, la plus grosse soirée inexistante du monde.', '5ad4aac0c7cbc.png', 3, '2018-04-20', 0, 1, '');
 
 -- --------------------------------------------------------
 
@@ -275,6 +296,12 @@ CREATE TABLE `vote_idees` (
 --
 
 --
+-- Index pour la table `article_bde`
+--
+ALTER TABLE `article_bde`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Index pour la table `commentaires`
 --
 ALTER TABLE `commentaires`
@@ -333,6 +360,11 @@ ALTER TABLE `vote_idees`
 --
 
 --
+-- AUTO_INCREMENT pour la table `article_bde`
+--
+ALTER TABLE `article_bde`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT pour la table `commentaires`
 --
 ALTER TABLE `commentaires`
@@ -341,7 +373,7 @@ ALTER TABLE `commentaires`
 -- AUTO_INCREMENT pour la table `evenements`
 --
 ALTER TABLE `evenements`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT pour la table `goodies`
 --

@@ -43,28 +43,24 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             </div>
 
             <div class="bde-content-inner">
-                <div class="content-bloc">
-                    <div class="content-view">
-                        <img src="img/local/view.jpg" alt=""/>
+
+                <?php
+                $reponse = $bdd->query('SELECT * FROM article_bde ORDER BY ID ASC');
+
+                while ($donnees = $reponse->fetch()) {
+                    ?>
+                    <div class="content-bloc">
+                        <div class="content-view">
+                            <span><img src="img/local/article/<?php echo $donnees['Image']; ?> " alt="" /></span>
+                        </div>
+                        <div class="content-desc">
+                            <h2><?php echo $donnees['Nom']; ?></h2>
+                            <p><?php echo $donnees ['Description']; ?></p>
+                        </div>
                     </div>
-                    <div class="content-desc">
-                        <h2>Nos missions dolor sit amet, consectetuer</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. 
-                        </p>
-                    </div>
-                </div>
-                <div class="content-bloc">
-                    <div class="content-view">
-                        <img src="img/local/view.jpg" alt=""/>
-                    </div>
-                    <div class="content-desc">
-                        <h2>Nos missions dolor sit amet, consectetuer tetuer adipiscing elit.</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. 
-                        </p>
-                    </div>
-                </div>
+                    <?php
+                }
+                ?>
             </div>
 
             <section id="bde-team">
@@ -99,7 +95,40 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 
             <?php
             if (isset($_SESSION['type'])) {
-                if ($_SESSION['type'] == 3) {
+                if ($_SESSION['type'] == 2) {
+                    ?> 
+                    <div class='contact-form'>
+
+                        <form method='POST' action="addArticle.php" enctype="multipart/form-data">
+                            <h3 id='create-event'>Ajouter un article</h3>
+
+                            <div class="form-item">
+                                <input placeholder="Nom" class="form-text article-title" name='nom' type="text">
+                            </div>
+
+                            <div class="form-item">
+                                <textarea placeholder="Description de l'article" class="form-text article-desc" name='description'></textarea>
+                            </div>
+                            <div class="form-item">
+                                <p>Image de l'article</p>
+                                <input placeholder="Image" class="form-text idea-name" type="file" id="file" name="image">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="300000" >
+                            </div>
+
+                            <div class="form-actions">
+                                <input class="validate-form" value="Valider" type="submit">
+                            </div>
+                        </form>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+
+
+            <?php
+            if (isset($_SESSION['type'])) {
+                if ($_SESSION['type'] == 2) {
                     ?> 
                     <div class='contact-form'>
 
