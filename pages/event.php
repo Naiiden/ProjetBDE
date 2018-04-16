@@ -16,7 +16,20 @@ if (isset($_POST['id'])) {
 }
 ?>
 
-
+<script>
+function afficherCommentaires(nom,date,commentaire, commentaireId) {
+   $("<div id='"+commentaireId+"' style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;position: relative;'> \
+    <?php if($_SESSION['type']==2) { 
+        echo "<a href='#' commentId='"; 
+        ?>" + commentaireId + "<?php 
+        echo "' atitle='Supprimer ce commentaire' onclick='deleteComment("; ?>"+commentaireId+"<?php echo ")'></a>"; } ?>  \
+                    <h2 style='float:left;'>Par " + nom + "</h2> \
+                    <span style='float:right;' >Posté le <b>" +  date  + "</b></span> \
+                    <br/><br/><span >" + commentaire + "</span> \
+                    </div> ").appendTo('.comments-popup');
+                    
+}
+</script>
 <!-- POPUP Photo -->
 <div class="popup-photo" data-popup="popup-photo" role="document">
     <div class="popup-inner-photo">
@@ -30,9 +43,11 @@ if (isset($_POST['id'])) {
         <h3 style="border-bottom:1px solid black; padding-bottom:20px;">Espace commentaire</h3>
         <a href="#"></a></div>
         <div class="comments-popup" style="margin-top:20px; margin-bottom:20px; background-color:#eff5f5; padding-left:20px; padding-right:20px;">
-            <div class="comment-on-photo">
-                <a href="#" title="Supprimer"></a>
-            </div>
+            <!--<div class="comment-on-photo">-->
+            
+            
+                
+            <!--</div>-->
         </div>
         <input type="text" placeholder="Laisser un commentaire" class="popup-comment">
         <input type="text" class="popup-image" value="" style="display:none;">
@@ -76,7 +91,8 @@ if (isset($_POST['id'])) {
 
             <?php
             if (isset($_SESSION['id'])) {
-                if ($_SESSION['type'] == 1 || $_SESSION['type'] == 2) {
+                if (($_SESSION['type'] == 1 || $_SESSION['type'] == 2)) {
+                    if($reponse['Statut'] != 1) {
                     ?>
 
                     <div class="button">
@@ -102,6 +118,7 @@ if (isset($_POST['id'])) {
                         ?>
                     </div>
                     <?php
+                    } elseif ($reponse['Statut']==1) { ?> <h3 style="font-size:1.5em; color: #8A1002; text-align:center;">Cet évènement est terminé !</h3><br/> <?php }
                 } elseif ($_SESSION['type'] != 1 || $_SESSION['type'] == 2) {
                     ?> <h3 style="font-size:1em;">Seul les étudiants peuvent participer à cet évènement.</h3> <?php
                 }
@@ -110,10 +127,16 @@ if (isset($_POST['id'])) {
 
             <div class="field--name-body">
                 <p><?php echo $reponse['Description']; ?></p>
-
-
+                
             </div>
-            <div class="photos-events"><h2>Photos de l'évènements</h2></div>
+            
+            <?php if(isset($_SESSION['id'])) {
+                if($reponse['Statut']==1) {
+                    ?> <div class="photos-events"><h2>Photos de l'évènements</h2></div> <?php
+                }
+            }
+            ?>
+            
 
         </div> <?php
             // Si l'évènement est marqué comme "passé" :
@@ -184,17 +207,17 @@ if (isset($_POST['id'])) {
 
 
     // Sinon si l'évènement n'est pas encore passé :
-    else {
+    /*else {
         ?> 
                 <h2 style="font-size:1.3em;"> Vous pourrez poster des photos une fois l'évènement terminé !</h2>
                 <?php echo $reponse['Nom']; ?>
             <?php
-            }
-        } else {
+            }*/
+            } /*else {
             ?> 
             <h2 style="font-size:1.3em;"> Vous devez vous connecter pour voir les photos  !</h2>
             <?php
-        }
+        }*/
         ?>
 
     </div>
