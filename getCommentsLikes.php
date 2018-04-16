@@ -12,6 +12,7 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
             $tab = array(
             "noms" => "",
             "commentaires" => "",
+            "commentairesId" => "",
             "dates" => "",
             "photo" => "",
             "photoId" => 0,
@@ -30,6 +31,7 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
                 $nom = $requete2->fetch();
                
                 $commentaire = $donnees['Commentaire'];
+                $commentaireId = $donnees['Id'];
                 $date = $donnees['Date'];
                 //echo $commentaire;
                 
@@ -49,6 +51,11 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
                     $tab["commentaires"]=$commentaire;
                 }
                 else { $tab["commentaires"] =  $commentaire . "|" .  $tab["commentaires"]; }
+
+                if($tab["commentairesId"]=="") {
+                    $tab["commentairesId"]=$commentaireId;
+                }
+                else { $tab["commentairesId"] =  $commentaireId . "|" .  $tab["commentairesId"]; }
 
                 
                 
