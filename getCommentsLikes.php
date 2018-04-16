@@ -13,6 +13,7 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
             "noms" => "",
             "commentaires" => "",
             "commentairesId" => "",
+            "reports" => "",
             "dates" => "",
             "photo" => "",
             "photoId" => 0,
@@ -26,20 +27,21 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
             while($donnees = $requete->fetch()) {
 
                 
-                $requete2 = $bdd->query("SELECT Nom FROM utilisateurs WHERE Id=".$donnees['Id_utilisateur']."");
+                $requete2 = $bdd->query("SELECT Prenom FROM utilisateurs WHERE Id=".$donnees['Id_utilisateur']."");
                 
                 $nom = $requete2->fetch();
                
                 $commentaire = $donnees['Commentaire'];
                 $commentaireId = $donnees['Id'];
+                $reports = $donnees['Report'];
                 $date = $donnees['Date'];
                 //echo $commentaire;
                 
                 if($tab["noms"]=="") {
-                    $tab["noms"]=$nom['Nom'];
+                    $tab["noms"]=$nom['Prenom'];
                 }
 
-                else { $tab["noms"] = $nom['Nom']  . "|" . $tab["noms"]; }
+                else { $tab["noms"] = $nom['Prenom']  . "|" . $tab["noms"]; }
 
                 if($tab["dates"]=="") {
                     $tab["dates"]=$date;
@@ -56,6 +58,11 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
                     $tab["commentairesId"]=$commentaireId;
                 }
                 else { $tab["commentairesId"] =  $commentaireId . "|" .  $tab["commentairesId"]; }
+
+                if($tab["reports"]=="") {
+                    $tab["reports"]=$reports;
+                }
+                else { $tab["reports"] =  $reports . "|" .  $tab["reports"]; }
 
                 
                 

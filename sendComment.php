@@ -8,11 +8,14 @@ if  (isset($_POST['commentaire']) && isset($_POST['photoId']) ) //On check le mo
 {
     
 
-    if(!$query=$bdd->exec("INSERT INTO commentaires (Id_photo, Id_utilisateur, Date, Commentaire) VALUES (" . $_POST['photoId'] . "," . $_SESSION['id'] . ",'" . date("Y-m-d H:i:s") . "','" . $_POST['commentaire'] . "')"))
-        {
-            print_r ($query->errorInfo());
-        }
-
+    $query=$bdd->prepare("INSERT INTO commentaires (Id_photo, Id_utilisateur, Date, Commentaire) 
+                            VALUES (:photoid, :userid, :date, :comment )");
+    
+    $query->bindValue(':photoid', $_POST['photoId'], PDO::PARAM_INT);
+    $query->bindValue(':userid', $_SESSION['id'], PDO::PARAM_INT);
+    $query->bindValue(':date',  date("Y-m-d H:i:s"), PDO::PARAM_STR);
+    $query->bindValue(':comment', $_POST['commentaire'], PDO::PARAM_STR);
+    $query->execute();
         echo 'Succes';
        
 
