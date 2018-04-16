@@ -413,6 +413,32 @@ function sendVote(idIdeaForm,idUserForm) {
         $('#id_vote').html = "";
 }
 
+function deletePhoto(photoIdForm) {
+    $.post('deletePhoto.php', 
+                            {
+                                photoId: photoIdForm,
+                                action: "deletePhoto"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    //alert("Vous avez bien supprimé le commentaire.");
+                                    
+                                    $("#photo"+photoIdForm).css("background-color","#ff8080");
+                                    $("#photo"+photoIdForm).fadeOut( "slow", function() {
+                                        // After animation completed:
+                                        $("#photo"+photoIdForm).remove();
+                                    });
+                                }
+                                else if(data=='Echec') {
+                                    //alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
 
 function send_comment(nomForm) {
     $.post('sendComment.php', 
