@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 14 Avril 2018 à 09:59
+-- Généré le :  Lun 16 Avril 2018 à 13:39
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -96,7 +96,10 @@ INSERT INTO `commentaires` (`Id`, `Id_photo`, `Id_utilisateur`, `Date`, `Comment
 (30, 4, 19, '2018-04-13 08:28:18', 'Je veux commenter'),
 (31, 4, 19, '2018-04-13 08:29:06', ''),
 (32, 4, 19, '2018-04-13 08:29:11', ''),
-(33, 4, 19, '2018-04-13 08:29:12', '');
+(33, 4, 19, '2018-04-13 08:29:12', ''),
+(34, 5, 20, '2018-04-16 06:51:08', 'éventuellement je peux faire ça'),
+(35, 5, 20, '2018-04-16 07:47:30', '09:47'),
+(36, 5, 20, '2018-04-16 07:50:23', 'test');
 
 -- --------------------------------------------------------
 
@@ -121,13 +124,13 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`Id`, `Nom`, `Description`, `Image`, `Type`, `Date`, `Statut`, `Visibilite`, `Inscrits`) VALUES
-(8, 'erz', '', '5acdebb599ad2.jpg', 0, '2018-04-19', 0, 1, '18'),
-(7, 'Test image', 'Ces belles tulipes', '5acdeba6b9f1f.jpg', 0, '2018-05-04', 0, 1, '18'),
-(9, 'Koala', 'Ceci est un Koala', '5acdef4b155d1.jpg', 0, '2018-04-12', 0, 1, '18|17'),
-(10, 'Orange', 'Orange', '5acdefb123231.jpg', 2, '2018-04-06', 0, 1, '18'),
+(8, 'erz', 'Comme son nom l\'indique, erz est une représentation de notre monde selon le point de vue d\'un enfant malade.', '5acdebb599ad2.jpg', 0, '2018-04-19', 0, 1, '18'),
+(7, 'Test image', 'Ces belles tulipes sont des tulipes, et donc ce ne sont pas des roses.\r\nCar les roses sont roses, les violettes sont bleues, les tulipes sont des tulipes.', '5acdeba6b9f1f.jpg', 0, '2018-05-04', 0, 1, '18'),
+(9, 'Koala', 'Ceci est un Koala, les koala sont mignons et mangent des feuilles d\'eucalyptus.\r\nC\'est très bon.', '5acdef4b155d1.jpg', 0, '2018-04-12', 0, 1, '18|17'),
+(10, 'Orange', 'Cette fleur est orange, comme la couleur.\r\nLes fleurs sont belles. Comme les roses.\r\nRose est une rosa esa una rosa is a rose.\r\nJe ne sais pas ce que ça veux dire mais ça à l\'air sympa.\r\nÇa me rappelle quand je mangeais des skittles oranges. C\'était top.', '5acdefb123231.jpg', 2, '2018-04-06', 0, 1, '18'),
 (11, 'Découvrir les méduses', '', '5acdf08e3260a.jpg', 1, '2018-04-06', 0, 1, ''),
-(21, 'Faire un tour de voiture', 'Mon idée serait de créer un circuit tout terrain de voiture', '5ace2b9a43603.jpg', 2, '2018-04-13', 0, 1, ''),
-(22, 'Sortie en moto !', 'Une sortie en moto, ça vous tente?\r\nSi oui, inscrivez-vous à cet évènement... c\'est gratuit !', '5acf842159ae8.jpg', 1, '2018-04-12', 1, 1, '19');
+(21, 'Faire un tour de voiture', 'Mon idée serait de créer un circuit tout terrain de voiture, afin de faire des courses et le gagnant volerait les voitures de tous les participants.', '5ace2b9a43603.jpg', 2, '2018-04-13', 0, 1, ''),
+(22, 'Sortie en moto !', 'Une sortie en moto, ça vous tente?\r\nSi oui, inscrivez-vous à cet évènement... c\'est gratuit !', '5acf842159ae8.jpg', 1, '2018-04-12', 1, 1, '19|17');
 
 -- --------------------------------------------------------
 
@@ -186,11 +189,9 @@ CREATE TABLE `membre_bde` (
 
 INSERT INTO `membre_bde` (`ID_membre`, `Nom`, `Prenom`, `Role`, `Image`) VALUES
 (24, 'Guillotin', 'Kylian', 'Président', 'kylian.jpg'),
-(25, 'Pasquet', 'Vincent', 'Vice-Président', 'vincent.jpg'),
-(26, 'Legay', 'Loick', 'pd', 'loick.jpg'),
+(41, 'Pasquet', 'Vincent', 'Vice-président', '5ad34a01d712c.jpg'),
 (28, 'Gourbiliere', 'Victor', 'Trésorier', 'victor.jpg'),
-(29, 'Olivier', 'Nathan', 'Touriste', 'nathan.jpg'),
-(40, 'Spataro', 'Flavien', 'Triso', '5ad1d005b414f.jpg');
+(29, 'Olivier', 'Nathan', 'Touriste', 'nathan.jpg');
 
 -- --------------------------------------------------------
 
@@ -226,6 +227,7 @@ CREATE TABLE `photos` (
 INSERT INTO `photos` (`Id`, `Id_utilisateur`, `Id_evenement`, `Nom`, `Image`, `Likes`) VALUES
 (1, 19, 13, 'Test poto !', '5acf4c8ab3209.jpg', '0'),
 (2, 19, 22, 'Belle sortie', '5acf86e93bd3d.jpg', ''),
+(5, 17, 22, 'tester', '5ad34940ec415.png', ''),
 (4, 19, 22, 'Je test les photos', '5ad067110399e.png', '');
 
 -- --------------------------------------------------------
@@ -334,7 +336,7 @@ ALTER TABLE `vote_idees`
 -- AUTO_INCREMENT pour la table `commentaires`
 --
 ALTER TABLE `commentaires`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT pour la table `evenements`
 --
@@ -354,7 +356,7 @@ ALTER TABLE `idees`
 -- AUTO_INCREMENT pour la table `membre_bde`
 --
 ALTER TABLE `membre_bde`
-  MODIFY `ID_membre` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID_membre` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT pour la table `panier`
 --
@@ -364,7 +366,7 @@ ALTER TABLE `panier`
 -- AUTO_INCREMENT pour la table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
