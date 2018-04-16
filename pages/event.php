@@ -20,17 +20,19 @@ if (isset($_POST['id'])) {
 <!-- POPUP Photo -->
 <div class="popup-photo" data-popup="popup-photo" role="document">
     <div class="popup-inner-photo">
-        <h2>Se connecter</h2><br/>
+        <h3>Se connecter</h3><br/>
         <div class="photos-list-bloc ">
             <div class="photos-list-view">
                 <span><img id="image-popup" src="" alt="" /></span><br/>
             </div>
         </div>
         <div class="photo-content">
-        <h2 style="border-bottom:1px solid black; padding-bottom:20px;">Espace commentaire</h2>
+        <h3 style="border-bottom:1px solid black; padding-bottom:20px;">Espace commentaire</h3>
         <a href="#"></a></div>
         <div class="comments-popup" style="margin-top:20px; margin-bottom:20px; background-color:#eff5f5; padding-left:20px; padding-right:20px;">
-
+            <div class="comment-on-photo">
+                <a href="#" title="Supprimer"></a>
+            </div>
         </div>
         <input type="text" placeholder="Laisser un commentaire" class="popup-comment">
         <input type="text" class="popup-image" value="" style="display:none;">
@@ -129,6 +131,7 @@ if (isset($_POST['id'])) {
 
 
                         <div class="photos-list-bloc">
+                            <a class="delete-photo" href="#" title="supprimer"></a>
                             <div class="photos-list-desc">
                                 <h3><?php echo $donnees['Nom']; ?></h3>
                             </div>

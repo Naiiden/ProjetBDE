@@ -89,7 +89,8 @@ $(document).ready(function() {
                 var i = 0;
                 if(noms[0]!="") {
                  noms.forEach(function() {
-                    $("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;'> \
+                    $("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;position: relative;'> \
+                    <a href='#' title='Supprimer'></a>\
                     <h2 style='float:left;'>Par " + noms[i] + "</h2> \
                     <span style='float:right;' >Posté le <b>" +  dates[i]  + "</b></span> \
                     <br/><br/><span >" + commentaires[i] + "</span> \
