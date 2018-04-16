@@ -131,12 +131,24 @@ $(document).ready(function() {
 
 
     $( "#sort1" ).click(function() {
-        $('div.bloc-list-inner>div').each(function(){ 
+        $('div#event-list-inner>div').each(function(){ 
             
             if(!$(this).hasClass("1")) {
                 $(this).css({"display": "none"});
+               
+
+                
             }  else { $(this).css({"display": "block"}); }
-        
+            if($('#sort4').hasClass('active')) {
+                if($(this).attr('statut')!="0") {
+                    $(this).css({"display": "none"});
+                }
+            }
+            if($('#sort5').hasClass('active')) {
+                if($(this).attr('statut')!="1") {
+                    $(this).css({"display": "none"});
+                }
+            }
         });
 
        
@@ -149,13 +161,25 @@ $(document).ready(function() {
     });
 
     $( "#sort2" ).click(function() {
-        $('div.bloc-list-inner>div').each(function(){ 
+        $('div#event-list-inner>div').each(function(){ 
             
             if(!$(this).hasClass("2")) {
+                
                 $(this).css({"display": "none"});
+                
             } else { $(this).css({"display": "block"}); }
         
         
+            if($('#sort4').hasClass('active')) {
+                if($(this).attr('statut')!="0") {
+                    $(this).css({"display": "none"});
+                }
+            }
+            if($('#sort5').hasClass('active')) {
+                if($(this).attr('statut')!="1") {
+                    $(this).css({"display": "none"});
+                }
+            }
         
         
         });
@@ -166,12 +190,22 @@ $(document).ready(function() {
         $("#sort3").removeClass( "active" );
     });
     $( "#sort3" ).click(function() {
-        $('div.bloc-list-inner>div').each(function(){ 
+        $('div#event-list-inner>div').each(function(){ 
             
             if(!$(this).hasClass("3")) {
                 $(this).css({"display": "none"});
+                
             } else { $(this).css({"display": "block"}); }
-        
+            if($('#sort4').hasClass('active')) {
+                if($(this).attr('statut')!="0") {
+                    $(this).css({"display": "none"});
+                }
+            }
+            if($('#sort5').hasClass('active')) {
+                if($(this).attr('statut')!="1") {
+                    $(this).css({"display": "none"});
+                }
+            }
         });
         
         $("#sortall").removeClass( "active" );
@@ -180,10 +214,20 @@ $(document).ready(function() {
         $("#sort3").addClass( "active" );
     });
     $( "#sortall" ).click(function() {
-        $('div.bloc-list-inner>div').each(function(){ 
+        $('div#event-list-inner>div').each(function(){ 
             
             
                 $(this).css({"display": "block"});
+                if($('#sort4').hasClass('active')) {
+                    if($(this).attr('statut')!="0") {
+                        $(this).css({"display": "none"});
+                    }
+                }
+                if($('#sort5').hasClass('active')) {
+                    if($(this).attr('statut')!="1") {
+                        $(this).css({"display": "none"});
+                    }
+                }
         
         });
         
@@ -193,6 +237,72 @@ $(document).ready(function() {
         $("#sort3").removeClass( "active" );
     });
 
+    // Trier que les évènement à venir
+    $( "#sort4" ).click(function() {
+        $('div#event-list-inner>div').each(function(){ 
+            
+            
+
+                if($(this).attr('statut')=="0") {
+                    $(this).css({"display": "block"});
+                    
+                    if($('#sort1').hasClass('active')) {
+                        if(!$(this).hasClass('1')) {
+                            $(this).css({"display": "none"});
+                        }
+                    } 
+                    if($('#sort2').hasClass('active')) {
+                        if(!$(this).hasClass('2')) {
+                            $(this).css({"display": "none"});
+                        }
+                    } 
+                    if($('#sort3').hasClass('active')) {
+                        if(!$(this).hasClass('3')) {
+                            $(this).css({"display": "none"});
+                        }
+                    }  
+                }
+                else if( $(this).attr('statut')=="1") {
+                    $(this).css({"display": "none"});
+                }
+        });
+        
+        $("#sort4").addClass( "active" );
+        $("#sort5").removeClass( "active" );
+    });
+
+
+    $( "#sort5" ).click(function() {
+        $('div#event-list-inner>div').each(function(){ 
+            
+            
+                
+                if($(this).attr('statut')=="1") {
+                    $(this).css({"display": "block"});
+                    if($('#sort1').hasClass('active')) {
+                        if(!$(this).hasClass('1')) {
+                            $(this).css({"display": "none"});
+                        }
+                    } 
+                    if($('#sort2').hasClass('active')) {
+                        if(!$(this).hasClass('2')) {
+                            $(this).css({"display": "none"});
+                        }
+                    } 
+                    if($('#sort3').hasClass('active')) {
+                        if(!$(this).hasClass('3')) {
+                            $(this).css({"display": "none"});
+                        }
+                    }  
+                }
+                else if( $(this).attr('statut')=="0") {
+                    $(this).css({"display": "none"});
+                }
+        });
+        
+        $("#sort5").addClass( "active" );
+        $("#sort4").removeClass( "active" );
+    });
 
     $( ".participe-event" ).click(function() {
         //eventId
