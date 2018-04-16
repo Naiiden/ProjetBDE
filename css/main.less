@@ -201,7 +201,7 @@ header {
     width: 90%;
     padding: 40px;
     position: absolute;
-    top: 300px;
+    top: 400px;
     left: 50%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
@@ -610,13 +610,13 @@ header {
 
 /* ------ FILTER ------ */
 #filter { 
-    border-top:1px solid @grey; border-bottom:1px solid @grey; margin: 0 5% 30px; text-align: center;
+    position: relative; border-top:1px solid @grey; border-bottom:1px solid @grey; margin: 0 5% 30px; text-align: center;
     .filter-title {
-        position: relative; display: inline-block; padding-right: 40px; color: @blue; font: 300 1.2em/45px 'Ubuntu', sans-serif; text-transform: uppercase; vertical-align: top;
+        position: absolute; padding: 0 40px; color: @blue; font: 300 1.2em/45px 'Ubuntu', sans-serif; text-transform: uppercase; vertical-align: top;
         &:after { position: absolute; content: ""; top: 50%; right: 20px; width: 1px; height: 50%; .translate (0, -50%); background: @darkblue; }
     }
     .filter-form { 
-        display: inline-block; vertical-align: top;
+        display: inline-block; vertical-align: top; width:100%;
         ul {
             display: inline-block;
             li { 
@@ -630,6 +630,9 @@ header {
                     }
                 }
             }
+        }
+        .sort-time {
+            float:right;
         }
         .form-type-select { 
             display: inline-block;
@@ -747,7 +750,6 @@ input[type="radio"] { margin-right: 3px }
 /* ------ FOOTER ------ */
 footer {
     background: @grey; padding: 20px; color: @lightgrey; height: 110px;
-
     .logo-footer {
         float: left; width: 30%;
         img { float: left; }
@@ -765,9 +767,7 @@ footer {
                 a { color: @lightgrey; padding: 0 10px; }
                 &:after { position: absolute; top: 13px; right: 0; content: ""; background: @lightgrey; width: 1px; height: 15px; }
                 &:last-child:after { display: none }
-
             }
-
         }
         .corporate {
             font: 0.85em/40px 'Ubuntu',sans-serif;

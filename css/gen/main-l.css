@@ -533,7 +533,7 @@ header #header-button ul .profil:before {
   width: 90%;
   padding: 40px;
   position: absolute;
-  top: 300px;
+  top: 400px;
   left: 50%;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
@@ -1399,15 +1399,15 @@ header #header-button ul .profil:before {
   overflow-y: auto;
 }
 #filter {
+  position: relative;
   border-top: 1px solid #5f6b73;
   border-bottom: 1px solid #5f6b73;
   margin: 0 5% 30px;
   text-align: center;
 }
 #filter .filter-title {
-  position: relative;
-  display: inline-block;
-  padding-right: 40px;
+  position: absolute;
+  padding: 0 40px;
   color: #215871;
   font: 300 1.2em/45px 'Ubuntu', sans-serif;
   text-transform: uppercase;
@@ -1429,6 +1429,7 @@ header #header-button ul .profil:before {
 #filter .filter-form {
   display: inline-block;
   vertical-align: top;
+  width: 100%;
 }
 #filter .filter-form ul {
   display: inline-block;
@@ -1453,6 +1454,9 @@ header #header-button ul .profil:before {
 }
 #filter .filter-form ul li a.active:hover {
   background: #8A1002;
+}
+#filter .filter-form .sort-time {
+  float: right;
 }
 #filter .filter-form .form-type-select {
   display: inline-block;

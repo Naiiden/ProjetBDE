@@ -34,6 +34,10 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                     <li><a href="#" id="sort2">Sport</a></li>
                     <li><a href="#" id="sort3">Soirée</a></li>
                 </ul>
+                <ul class="sort-time">
+                    <li><a href="#" id="sort4">à venir</a></li>
+                    <li><a href="#" id="sort5">Terminer</a></li>
+                </ul>
             </div>
         </div>
 
@@ -57,8 +61,8 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                         </form>
                     </div>
                 </div> <?php
-                    }
-                        ?>
+            }
+            ?>
 
         </div>
 

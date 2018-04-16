@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 13 Avril 2018 à 13:25
+-- Généré le :  Sam 14 Avril 2018 à 09:59
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -123,7 +123,7 @@ CREATE TABLE `evenements` (
 INSERT INTO `evenements` (`Id`, `Nom`, `Description`, `Image`, `Type`, `Date`, `Statut`, `Visibilite`, `Inscrits`) VALUES
 (8, 'erz', '', '5acdebb599ad2.jpg', 0, '2018-04-19', 0, 1, '18'),
 (7, 'Test image', 'Ces belles tulipes', '5acdeba6b9f1f.jpg', 0, '2018-05-04', 0, 1, '18'),
-(9, 'Koala', 'Ceci est un Koala', '5acdef4b155d1.jpg', 0, '2018-04-12', 0, 1, '18'),
+(9, 'Koala', 'Ceci est un Koala', '5acdef4b155d1.jpg', 0, '2018-04-12', 0, 1, '18|17'),
 (10, 'Orange', 'Orange', '5acdefb123231.jpg', 2, '2018-04-06', 0, 1, '18'),
 (11, 'Découvrir les méduses', '', '5acdf08e3260a.jpg', 1, '2018-04-06', 0, 1, ''),
 (21, 'Faire un tour de voiture', 'Mon idée serait de créer un circuit tout terrain de voiture', '5ace2b9a43603.jpg', 2, '2018-04-13', 0, 1, ''),
@@ -163,9 +163,8 @@ CREATE TABLE `idees` (
 --
 
 INSERT INTO `idees` (`Id`, `Nom`, `Description`, `Votes`, `Votes_utilisateurs`) VALUES
-(1, 'test', 'messagetest', 0, '61|15|14|17'),
-(2, 'Faire un tour de voiture', 'Mon idée serait de créer un circuit tout terrain de voiture', 0, '15|15|14|17'),
-(3, 'Enore un test', 'Cesi est encore une fois un test d\'idée proposé par quelsu\'un', 0, '31|14|17');
+(2, 'Faire un tour de voiture', 'Mon idée serait de créer un circuit tout terrain de voiture', 0, '15|15|14|17|20'),
+(3, 'Enore un test', 'Cesi est encore une fois un test d\'idée proposé par quelsu\'un', 0, '31|14|17|20');
 
 -- --------------------------------------------------------
 
@@ -191,7 +190,7 @@ INSERT INTO `membre_bde` (`ID_membre`, `Nom`, `Prenom`, `Role`, `Image`) VALUES
 (26, 'Legay', 'Loick', 'pd', 'loick.jpg'),
 (28, 'Gourbiliere', 'Victor', 'Trésorier', 'victor.jpg'),
 (29, 'Olivier', 'Nathan', 'Touriste', 'nathan.jpg'),
-(37, 'Spataro', 'Flavien', 'BlackJack pro', '5ad0af8c1e604.jpg');
+(40, 'Spataro', 'Flavien', 'Triso', '5ad1d005b414f.jpg');
 
 -- --------------------------------------------------------
 
@@ -227,7 +226,6 @@ CREATE TABLE `photos` (
 INSERT INTO `photos` (`Id`, `Id_utilisateur`, `Id_evenement`, `Nom`, `Image`, `Likes`) VALUES
 (1, 19, 13, 'Test poto !', '5acf4c8ab3209.jpg', '0'),
 (2, 19, 22, 'Belle sortie', '5acf86e93bd3d.jpg', ''),
-(3, 19, 22, 'Des trucs chiant', '5acfd74252f6a.png', ''),
 (4, 19, 22, 'Je test les photos', '5ad067110399e.png', '');
 
 -- --------------------------------------------------------
@@ -356,7 +354,7 @@ ALTER TABLE `idees`
 -- AUTO_INCREMENT pour la table `membre_bde`
 --
 ALTER TABLE `membre_bde`
-  MODIFY `ID_membre` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ID_membre` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT pour la table `panier`
 --
