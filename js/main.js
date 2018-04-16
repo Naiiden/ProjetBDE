@@ -80,6 +80,7 @@ $(document).ready(function() {
 
                    var commentaires = json['commentaires'].split('|');
                    var commentairesId = json['commentairesId'].split('|');
+                   var reports = json['reports'].split('|');
                    var noms = json['noms'].split('|');
                    var photoId = json['photoId'];
                    
@@ -90,7 +91,7 @@ $(document).ready(function() {
                 if(noms[0]!="") {
 
                  noms.forEach(function() {
-                    afficherCommentaires(noms[i],dates[i],commentaires[i], commentairesId[i]);
+                    afficherCommentaires(noms[i],dates[i],commentaires[i], commentairesId[i], reports[i]);
                     i = i + 1;
                   });
                 }
@@ -422,7 +423,6 @@ function deletePhoto(photoIdForm) {
                             
                             function(data) {
                                 if(data=='Succes') {
-                                    //alert("Vous avez bien supprimé le commentaire.");
                                     
                                     $("#photo"+photoIdForm).css("background-color","#ff8080");
                                     $("#photo"+photoIdForm).fadeOut( "slow", function() {
@@ -431,7 +431,57 @@ function deletePhoto(photoIdForm) {
                                     });
                                 }
                                 else if(data=='Echec') {
-                                    //alert("erreur.");
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
+
+
+function reportPhoto(photoIdForm) {
+    $.post('reportPhoto.php', 
+                            {
+                                photoId: photoIdForm,
+                                action: "reportPhoto"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    
+                                    $("#photo"+photoIdForm).css("background-color","#ff8080");
+                                    
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
+
+
+function reportComment(commentIdForm) {
+   $.post('reportComment.php', 
+                            {
+                                commentId: commentIdForm,
+                                action: "reportComment"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    $("#"+commentIdForm).css("background-color","#ff8080");
+                                    $('.report-comment-'+commentIdForm).html('Les membre du CESI ont été informés !')
+                                }
+                                else if(data=="already-report") {
+                                    alert("Vous avez déjà signalé ce commentaire !");
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
                                 }
                                 
                             },
@@ -465,10 +515,11 @@ function send_comment(nomForm) {
         
                             'text'
                         );
-
         
 
 }
+
+
 function register() {
     if($(".register-email").val() != "") {
         if($(".register-password").val() != "" && $(".register-password-repeat").val() != "") {
