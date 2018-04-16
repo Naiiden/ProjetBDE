@@ -17,12 +17,29 @@ if (isset($_POST['id'])) {
 ?>
 
 <script>
-function afficherCommentaires(nom,date,commentaire, commentaireId) {
-   $("<div id='"+commentaireId+"' style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;position: relative;'> \
+function afficherCommentaires(nom,date,commentaire, commentaireId,report) {
+    var text="";
+    var text2="";
+    var styleInfo="";
+    if(report==1) {
+        text="background-color:#ff8080;";
+        styleInfo="color:#660000;"
+        text2="<br/>Ce commentaire a été signalé par un membre du CESI ! Cliquez pour le supprimer ";
+    }
+   $("<div id='"+commentaireId+"' style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;position: relative; "+text+"'> \
     <?php if($_SESSION['type']==2) { 
         echo "<a href='#' commentId='"; 
         ?>" + commentaireId + "<?php 
-        echo "' atitle='Supprimer ce commentaire' onclick='deleteComment("; ?>"+commentaireId+"<?php echo ")'></a>"; } ?>  \
+        echo "' style='";?>"+styleInfo+"<?php echo ";' atitle='Supprimer ce commentaire' onclick='deleteComment("; ?>"+commentaireId+"<?php echo ")'>"; ?>"+text2+"<?php echo "</a>"; } 
+
+
+        if($_SESSION['type']==3) {
+
+            echo "<a href='#' commentId='"; 
+        ?>" + commentaireId + "<?php 
+        echo "' atitle='Signaler ce commentaire' class='report-comment report-comment-";?>"+commentaireId+"<?php echo"' onclick='reportComment(";
+         ?>"+commentaireId+"<?php 
+         echo ");'>Demander une suppression </a>";  }?>  \
                     <h2 style='float:left;'>Par " + nom + "</h2> \
                     <span style='float:right;' >Posté le <b>" +  date  + "</b></span> \
                     <br/><br/><span >" + commentaire + "</span> \
@@ -152,9 +169,20 @@ function afficherCommentaires(nom,date,commentaire, commentaireId) {
         while ($donnees = $requete2->fetch()) {
                         ?>
 
-                        <div class="photos-list-bloc" id="photo<?php echo $donnees['Id']; ?>">
+                        <div class="photos-list-bloc" id="photo<?php echo $donnees['Id']; ?>"
+                        <?Php 
+                        if($_SESSION['type']==2 || $_SESSION['type']==3) {
+                            if($donnees['Report']==1) {
+                                echo " style='background-color:#ff8080;'";
+                            }
+                        }
+                        ?>
+                        
+                        >
                         <?php if($_SESSION['type']==2) { ?>
-                            <a class="delete-photo" href="#" onclick="deletePhoto(<?php echo $donnees['Id']; ?>);" title="Supprimer cette photo"></a>
+                            <a class="delete-photo" href="#delete" onclick="deletePhoto(<?php echo $donnees['Id']; ?>);" title="Supprimer cette photo"></a>
+                        <?php } elseif($_SESSION['type']==3) {?>
+                            <a class="report-photo" href="#report" onclick="reportPhoto(<?php echo $donnees['Id']; ?>);" title="Signaler cette photo">Report </a><br/>
                         <?php } ?>
                             <div class="photos-list-desc">
                                 <h3><?php echo $donnees['Nom']; ?></h3>
