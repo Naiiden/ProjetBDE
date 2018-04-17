@@ -1,5 +1,6 @@
  photo = 0;
  likes = 0;
+ var hasLike=0;
 
 
 function getDate() {
@@ -106,7 +107,6 @@ $(document).ready(function() {
                   photo=photoId;
 
                 $('.btn-like').html(likes+"&nbsp;&nbsp;");
-                alert(hasLike);
                 if(hasLike==1) {
                     $('.btn-like').addClass('active-btn-click');
                 }else {
@@ -370,6 +370,9 @@ function openPhoto() {
 }
 
 function likePhoto() {
+
+    if(hasLike==0) {
+        hasLike=1;
     $.post('likePhoto.php', 
                             {
                                 photoId: photo,
@@ -394,6 +397,8 @@ function likePhoto() {
         
                             'text'
                         );
+
+                    }
 }
 
 function sendIdea() {
