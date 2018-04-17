@@ -672,6 +672,7 @@ header #header-button ul .profil:before {
   background: #f3f4f4;
 }
 .front #bde-boutique .bloc-list-bloc {
+  width: calc(33% - 5px);
   margin: 0;
 }
 .front #bde-boutique .bloc-list-bloc:hover {
@@ -813,7 +814,6 @@ header #header-button ul .profil:before {
 }
 #boutique-list .bloc-list-bloc:hover {
   background: white;
-  border: 1px solid #314d61;
 }
 #boutique-list .AddPanier {
   position: absolute;
@@ -840,7 +840,7 @@ header #header-button ul .profil:before {
   bottom: 50px;
   padding: 20px 25px 20px 90px;
   font: 700 1.4em/1.6em 'Ubuntu', sans-serif;
-  background: rgba(56,151,193,0.5);
+  background: rgba(194,36,42,0.5);
   width: 50%;
   color: #FFF;
   text-transform: uppercase;

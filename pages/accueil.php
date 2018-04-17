@@ -76,8 +76,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             while ($donnees = $reponse->fetch()) {
                 if ($count < 4) {
                     ?>
-
-
                     <div class="photos-list-bloc ">
 
                         <div class="photos-list-desc">
@@ -90,12 +88,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                             <a href="#"></a>
                             <a href="#"></a>
                         </div>
+                
                     </div>
                     <?php
+                    $count = $count + 1;
                 }
-                }
-                ?>
-
+            }
+            ?>
         </div>
 
         <div class="all-page">
@@ -109,44 +108,33 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 
 <section id="bde-boutique">
     <div class="inner">
-        <h2 class="titleh2"> Top boutique </h2>
+        <h2 class="titleh2"> Derniers objets en vente</h2>
         <div class="bloc-list-inner">
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <a href="#"></a>
-                <input type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
 
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
+            <?php
+            $reponse = $bdd->query('SELECT * FROM goodies ORDER BY Id DESC');
+            $count = 0;
+            while ($donnees = $reponse->fetch()) {
+                if ($count < 3) {
+                    ?> 
 
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
+                    <div class="bloc-list-bloc">
+                        <span><a href="boutique"><?php echo $donnees['Nom']; ?></a></span>
+                        <div class="bloc-list-view">
+                            <img src="img/local/goodie_photo/<?php echo $donnees['Image']; ?> " alt="" />
+                        </div>
+                        <div class="product-features">
+                            <span><strong><?php echo $donnees['Prix']; ?> €</strong></span>
+                            <a href="#"></a>
+                        </div>
+                    </div>
+                    <?php
+                    $count = $count + 1;
+                }
+            }
+            ?>
 
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
+
         </div>
 
         <div class="all-page">

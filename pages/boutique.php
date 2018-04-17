@@ -1,7 +1,6 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
-
 ?>
 <section id="boutique-list">
     <div class="inner">
@@ -12,25 +11,25 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 
             <?php
             $reponse = $bdd->query('SELECT * FROM goodies ORDER BY Id ASC');
-
+            $count = 0;
             while ($donnees = $reponse->fetch()) {
-                ?> 
+                if ($count < 8) {
+                    ?> 
 
-                <div class="bloc-list-bloc">
-                    <span><a href="boutique"><?php echo $donnees['Nom']; ?></a></span>
-                    <div class="bloc-list-view">
-                        <img src="img/local/goodie_photo/<?php echo $donnees['Image']; ?> " alt="" />
+                    <div class="bloc-list-bloc">
+                        <span><a href="boutique"><?php echo $donnees['Nom']; ?></a></span>
+                        <div class="bloc-list-view">
+                            <img src="img/local/goodie_photo/<?php echo $donnees['Image']; ?> " alt="" />
+                        </div>
+                        <div class="product-features">
+                            <span><strong><?php echo $donnees['Prix']; ?> €</strong></span>
+                            <a href="#"></a>
+                        </div>
                     </div>
-                    <div class="product-features">
-                        <span><strong><?php echo $donnees['Prix']; ?> €</strong></span>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <?php
+                    <?php
+                }
             }
             ?>
-
-
         </div>
 
 

@@ -286,6 +286,7 @@ header {
     #bde-boutique {
         position: relative; background: @pale;
         .bloc-list-bloc {
+             width: calc(~"33% - 5px");
             margin:0;
             &:hover {background: white;}
         }
@@ -353,7 +354,7 @@ header {
 
 #boutique-list {
     background: @pale; padding-bottom: 50px;
-    .bloc-list-bloc:hover {background: white; border: 1px solid @anthracite;}
+    .bloc-list-bloc:hover {background: white;}
     .AddPanier {position:absolute; bottom:0;}
     .contact-form { padding-top:50px;}
     .item-list { padding: 0 0 40px 0;}
@@ -368,7 +369,7 @@ header {
     #bde-view {
         position: relative; height: 410px; background-repeat: no-repeat; background-position: center center; background-size: cover; 
         .claim {
-            position: absolute; bottom: 50px; padding: 20px 25px 20px 90px; font: 700 1.4em/1.6em 'Ubuntu', sans-serif; background: rgba(56, 151, 193,0.5); width: 50%; color: #FFF; text-transform: uppercase;
+            position: absolute; bottom: 50px; padding: 20px 25px 20px 90px; font: 700 1.4em/1.6em 'Ubuntu', sans-serif; background: rgba(194, 36, 42,0.5); width: 50%; color: #FFF; text-transform: uppercase;
             &:before, &:after { position: absolute; content: ""; top: 0; left: 90px; width: 80px; height: 5px; background: #FFF }
             &:after { left: auto; right: 25px; top: auto; bottom: 0; }
             span { display: block; text-transform: none; font: 300 1em/1.6em;}
