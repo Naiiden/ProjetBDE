@@ -1,6 +1,0 @@
-A mettre dans dofus :)
-
-les .d2o dans dofus Data common
-
-
-et le fichier d2i dans data i18n ;) 
