@@ -1,15 +1,17 @@
-var photo = 0;
+ photo = 0;
+ likes = 0;
+
 
 function getDate() {
-    var d = new Date();
+     d = new Date();
 
-var month = d.getMonth()+1;
-var day = d.getDate();
-var heure = d.getHours();
-var minute = d.getMinutes();
-var seconde = d.getSeconds();
+ month = d.getMonth()+1;
+ day = d.getDate();
+ heure = d.getHours();
+ minute = d.getMinutes();
+ seconde = d.getSeconds();
 
-var output = d.getFullYear() + '-' +
+ output = d.getFullYear() + '-' +
     (month<10 ? '0' : '') + month + '-' +
     (day<10 ? '0' : '') + day + " " + heure+":"+minute+":"+seconde ;
     return output;
@@ -20,7 +22,7 @@ $(document).ready(function() {
     $(function() {
         //----- OPEN
         $('[data-popup-open]').on('click', function(e)  {
-        var targeted_popup_class = jQuery(this).attr('data-popup-open');
+         targeted_popup_class = jQuery(this).attr('data-popup-open');
         $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
         $('html').addClass('popup-open');
         e.preventDefault();
@@ -28,7 +30,7 @@ $(document).ready(function() {
         });
         //----- CLOSE
         $('[data-popup-close]').on('click', function(e)  {
-        var targeted_popup_class = jQuery(this).attr('data-popup-close');
+         targeted_popup_class = jQuery(this).attr('data-popup-close');
         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
         $(".comments-popup").children().remove();
         $('html').removeClass('popup-open');
@@ -47,7 +49,7 @@ $(document).ready(function() {
             
             function(data) {
                 if(data!='Echec') {
-                    var tab=data.split("|");
+                     tab=data.split("|");
 
                     $(".name-idea").val(tab[0]);
                     $(".description-idea").text(tab[1]);
@@ -75,23 +77,25 @@ $(document).ready(function() {
             
             function(data) {
                 if(data!='Echec') {
-                    var json = JSON.parse(data);
+                     json = JSON.parse(data);
                     $("#image-popup").attr("src","img/local/event_photo/"+json['photo']);
 
-                   var commentaires = json['commentaires'].split('|');
-                   var commentairesId = json['commentairesId'].split('|');
-                   var reports = json['reports'].split('|');
-                   var noms = json['noms'].split('|');
-                   var photoId = json['photoId'];
-                   
-                   var dates =json['dates'].split('|');
+                    commentaires = json['commentaires'].split('|');
+                    commentairesId = json['commentairesId'].split('|');
+                    reports = json['reports'].split('|');
+                    noms = json['noms'].split('|');
+                    photoId = json['photoId'];
+                    type = json['type'];
+                    likes= json['likes'];
+                    dates =json['dates'].split('|');
+                    hasLike =json['hasLike'];
                     
-                var i = 0;
+                 i = 0;
 
                 if(noms[0]!="") {
 
                  noms.forEach(function() {
-                    afficherCommentaires(noms[i],dates[i],commentaires[i], commentairesId[i], reports[i]);
+                    afficherCommentaires(noms[i],dates[i],commentaires[i], commentairesId[i], reports[i],type);
                     i = i + 1;
                   });
                 }
@@ -101,7 +105,13 @@ $(document).ready(function() {
 
                   photo=photoId;
 
-                      
+                $('.btn-like').html(likes+"&nbsp;&nbsp;");
+                alert(hasLike);
+                if(hasLike==1) {
+                    $('.btn-like').addClass('active-btn-click');
+                }else {
+                    $('.btn-like').removeClass('active-btn-click');
+                }
 
                     
 
@@ -359,6 +369,33 @@ function openPhoto() {
     alert("open");
 }
 
+function likePhoto() {
+    $.post('likePhoto.php', 
+                            {
+                                photoId: photo,
+                                action: "like-photo"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+
+                                    likes = likes + 1;
+                                    
+                                    $('.btn-like').html(likes+"&nbsp;&nbsp;");
+                                    $('.btn-like').addClass('active-btn-click');
+                                    
+                                    
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
+
 function sendIdea() {
     if($(".idea-name").val() != "") {
         if($(".idea-message").val() != "") {
@@ -475,7 +512,7 @@ function reportComment(commentIdForm) {
                             function(data) {
                                 if(data=='Succes') {
                                     $("#"+commentIdForm).css("background-color","#ff8080");
-                                    $('.report-comment-'+commentIdForm).html('Les membre du CESI ont été informés !')
+                                    $('.report-comment-'+commentIdForm).html('Les membres du BDE ont été informé !')
                                 }
                                 else if(data=="already-report") {
                                     alert("Vous avez déjà signalé ce commentaire !");
@@ -572,59 +609,6 @@ function register() {
     } else alert("Veuillez renseigner une adresse mail !");
     
 }
-
-
-function register() {
-    if($(".item-name").val() != "") {
-        if($(".register-password").val() != "" ){
-                if($(".register-name").val() != "") {
-                    if($(".register-subname").val() != "") {
-
-
-                        $.post('addPhotoGoodie.php', 
-                            {
-                                email: $(".register-email").val(),
-                                name: $(".register-name").val(),
-                                subname: $(".register-subname").val(),
-                                password: $(".register-password").val(),
-                                action: 'register'
-                            },
-                            
-                            function(data) {
-                            if(data=='Succes') {
-                                $('[data-popup=popup-2]').fadeOut(350);
-                                alert("Vous êtes inscrit !");
-                                
-                                }
-                                else if(data=='Echec') {
-                                alert("erreur.");
-                                }
-                                else if(data=='email_invalid') {
-                                    alert("Adresse email déjà utilisée ! ");
-                                }
-                                else if(data=='error_password_uppercase') {
-                                    alert("Votre mot de passe doit contenir au moins une majuscule !");
-                                }
-                                else if(data=='error_password_number') {
-                                    alert("Votre mot de passe doit contenir au moins un chiffre !");
-                                }
-                                else if(data=='error_password_length') {
-                                    alert("Votre mot de passe doit faire au moins 6 caractères !");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-
-
-                    } else alert("Veuillez renseigner votre prénom !");
-                } else alert("Veuillez renseigner votre nom !");
-        } else alert("Veuillez renseigner un mot de passe !");
-    } else alert("Veuillez renseigner une adresse mail !");
-    
-}
-
 
 
 function login() {
