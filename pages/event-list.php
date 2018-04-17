@@ -30,7 +30,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                 </ul>
                 <ul class="sort-time">
                     <li><a href="#" id="sort4">à venir</a></li>
-                    <li><a href="#" id="sort5">Terminer</a></li>
+                    <li><a href="#" id="sort5">Terminé</a></li>
                 </ul>
             </div>
         </div>

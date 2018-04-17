@@ -344,7 +344,9 @@ header {
 #boutique-list {
     background: @pale; padding-bottom: 50px;
     .bloc-list-bloc:hover {background: white; border: 1px solid @anthracite;}
-    input {position:absolute; bottom:0;}
+    .AddPanier {position:absolute; bottom:0;}
+    .contact-form { padding-top:50px;}
+    .item-list { padding: 0 0 40px 0;}
 }
 
 
@@ -815,6 +817,20 @@ footer {
                 display: inline-block; padding: 0 10px; 
                 a { color: @lightgrey ;}
             }
+        }
+    }
+}
+
+
+
+#terms {
+    h3 { margin: 15px 0;}
+    p { margin: 0 45px;}
+    ul {
+        margin: 10px 45px;
+        li { 
+            margin:0 20px;
+            &:before {position: relative; content: "\E834";font: 1.4em/40px 'fontello';}
         }
     }
 }

@@ -45,7 +45,7 @@
             </ul>
             <ul class="corporate">
                 <li>BDE Saint-Nazaire©2018</li>
-                <li><a href="#">Mentions légales</a></li>
+                <li><a href="terms">Mentions légales</a></li>
                 <li><a href="#" target="_blank">Conception : groupe 2</a></li>
             </ul>
         </div>
