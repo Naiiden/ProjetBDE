@@ -8,7 +8,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 
         <h2 class="actu-title">BDE de Saint-Nazaire</h2>
 
-        <div id="bde-view" style="background-image: url(img/local/view.jpg)">
+        <div id="bde-view" style="background-image: url(img/local/bde/imagepresbde.jpg)">
             <div class="claim">
                 Bureau des étudiants
                 <span>de Saint-Nazaire</span>
