@@ -16,41 +16,84 @@ if (isset($_POST['id'])) {
 }
 ?>
 
+
+
+
+<!-- A DEPLACER DANS LE .LESS -->
+<style>
+
+.active-btn-click {
+    background-color:#3897c1!important;
+    color: #FFF;
+    border: #f3f4f4!important;
+}
+
+</style>
+
 <script>
-function afficherCommentaires(nom,date,commentaire, commentaireId,report) {
-    var text="";
+
+function afficherCommentaires(nom,date,commentaire, commentaireId,report,type) {
+    var background_div="";
     var text2="";
-    var styleInfo="";
+    var color_a="";
+    var report_comment="";
+    var delete_comment="";
+    var dereport_comment="";
+
     if(report==1) {
-        text="background-color:#ff8080;";
-        styleInfo="color:#660000;"
-        text2="<br/>Ce commentaire a été signalé par un membre du CESI ! Cliquez pour le supprimer ";
+        
+        background_div="background-color:#ff8080;";
+        color_a="color:#660000;";
+        text2="Ce commentaire a été signalé par un membre du cesi !";
+
+        if(type==2) {
+            delete_comment="<a href='#' commentId='" + commentaireId + "' style='" + color_a + "' atitle='Supprimer ce commentaire' onclick='deleteComment("+commentaireId+")'>Supprimer</a>";
+            text2="<br/>Ce commentaire a été signalé par un membre du CESI ! Cliquez pour le supprimer ";
+            dereport_comment = "<a href='#' commentId='" + commentaireId + "' style='" + color_a + "margin-bottom: 25px;' atitle='Enlever le singalement' onclick='dereportComment("+commentaireId+")'>enlever le signalement</a>";
+        }
+        else if(type==3) {
+            dereport_comment = "<a href='#'>Les membres du BDE ont été informé !</a>";
+        }
+
+        if(type!=1) {
+            
+        }
+
+    } 
+
+    else {
+        if(type==2)  {
+            delete_comment="<a href='#' commentId='" + commentaireId + "' atitle='Supprimer ce commentaire' onclick='deleteComment("+commentaireId+")'>Supprimer</a>";
+        }
+        else if(type==3){
+            report_comment="<a href='#' commentId='" + commentaireId + "' atitle='Signaler ce commentaire' class='report-comment report-comment-"+commentaireId+"' onclick='reportComment( \
+                            "+commentaireId+");'>Demander une suppression </a>";
+        }
+
     }
-   $("<div id='"+commentaireId+"' style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;position: relative; "+text+"'> \
-    <?php if($_SESSION['type']==2) { 
-        echo "<a href='#' commentId='"; 
-        ?>" + commentaireId + "<?php 
-        echo "' style='";?>"+styleInfo+"<?php echo ";' atitle='Supprimer ce commentaire' onclick='deleteComment("; ?>"+commentaireId+"<?php echo ")'>"; ?>"+text2+"<?php echo "</a>"; } 
 
 
-        if($_SESSION['type']==3) {
+    if((report==1 && type!=1) || (report==0)) {
+        $("<div id='"+commentaireId+"' style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;position: relative; "+background_div+"'> \
+            "+delete_comment+" \
+            "+report_comment+" \
+            "+dereport_comment+" \
+                            <h2 style='float:left;'>Par " + nom + "</h2> \
+                            <span style='float:right;' >Posté le <b>" +  date  + "</b></span> \
+                            <br/><br/><span >" + commentaire + "</span> \
+                            </div> ").appendTo('.comments-popup');
+    }
+    
 
-            echo "<a href='#' commentId='"; 
-        ?>" + commentaireId + "<?php 
-        echo "' atitle='Signaler ce commentaire' class='report-comment report-comment-";?>"+commentaireId+"<?php echo"' onclick='reportComment(";
-         ?>"+commentaireId+"<?php 
-         echo ");'>Demander une suppression </a>";  }?>  \
-                    <h2 style='float:left;'>Par " + nom + "</h2> \
-                    <span style='float:right;' >Posté le <b>" +  date  + "</b></span> \
-                    <br/><br/><span >" + commentaire + "</span> \
-                    </div> ").appendTo('.comments-popup');
                     
 }
+
+
 </script>
 <!-- POPUP Photo -->
 <div class="popup-photo" data-popup="popup-photo" role="document">
     <div class="popup-inner-photo">
-        <h3>Se connecter</h3><br/>
+        <h3></h3><br/>
         <div class="photos-list-bloc ">
             <div class="photos-list-view">
                 <span><img id="image-popup" src="" alt="" /></span><br/>
@@ -58,7 +101,8 @@ function afficherCommentaires(nom,date,commentaire, commentaireId,report) {
         </div>
         <div class="photo-content">
         <h3 style="border-bottom:1px solid black; padding-bottom:20px;">Espace commentaire</h3>
-        <a href="#"></a></div>
+        
+        <a class="btn-like" href="#like" onclick="likePhoto();"></a></div>
         <div class="comments-popup" style="margin-top:20px; margin-bottom:20px; background-color:#eff5f5; padding-left:20px; padding-right:20px;">
             <!--<div class="comment-on-photo">-->
             
