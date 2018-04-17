@@ -322,19 +322,29 @@ header {
     .bloc-list-bloc { 
         position: relative;display: flex; width: calc(~"25% - 5px"); align-items: center; justify-content: center; flex-flow: row wrap; align-content: space-around; padding: 20px 0 0 0; margin: 10px 0 20px;
         .bloc-list-view { 
-            position: relative; width: 100%;padding: 15px;height: 160px;text-align: center;
+            position: relative; width: 100%;padding: 15px;margin:5px;height: 160px;text-align: center; background: #FFF;
+            span {margin:0}
             img { display: block; width: auto; height: 100%; margin: 0 auto; }
+        }
+        .product-features {
+            position: relative; width:100%; vertical-align:top;height: 50px; margin: 0 30px;
+            span { position: absolute; top:10px; left:10px;}
+            a { 
+                position: absolute; top:20px; right:10px;text-decoration: none;
+                &:after { position: relative;content: "\E843"; font: 1.5em/0'fontello';}
+            }
         }
         .bloc-list-desc { 
             margin: 0 0 15px; text-align: center; 
             .team-list-function { font: 300 0.9em/1.4em 'ubuntu',sans-serif; }
         }
         &:hover { background: @pale;}
-        span a { position: absolute; top: 0; left: 50%; .translate (-50%, 0); font: 400 1em/1.8em "Ubuntu"; color: @red;text-decoration: none; 
-                 &:hover{color: @darkred;}
+        span {
+            margin: 5px;
+            a { position: absolute; top: 0; left: 50%; .translate (-50%, 0); font: 400 1em/1.8em "Ubuntu"; color: @red;text-decoration: none; 
+                &:hover{color: @darkred;}
+            }
         }
-        .product-price { position: relative;display: block;margin:10px 0 60px 0px; color: @blue-light; text-align: center; }
-        input { margin: 0 5px 10px 0; text-align: center;}
     }
 }
 
@@ -367,8 +377,7 @@ header {
     #bde-content {
         overflow: hidden; padding: 0 50px; background: #FFF;
         .highlight {
-            overflow: hidden; position: relative; text-align: center; padding-bottom: 40px;
-            &:after { position: absolute; content: ""; left: 50%; .translate (-50%, 0); bottom: 20px; width: 33.33%; height: 1px; background: @lightgrey;}
+            overflow: hidden; position: relative; text-align: center;
             .highlight-bloc {
                 float: left; width: calc(~"33% - 5px"); padding: 40px 50px;
                 h3 { padding: 5%; color: @blue-light; }
@@ -394,8 +403,20 @@ header {
                     text-align: right;
                     h2 { left: 115px;}
                 }
-
             }
+        }
+        .external-links {
+            position: relative; text-align:center; width: 100%; font: 1em/0 'ubuntu', sans-serif; color:#acbac4;
+            &:after { position: absolute; content: ""; left: 50%; .translate (-50%, 0); bottom: 0; width: 33.33%; height: 1px; background: @lightgrey;}
+            a {
+                width:55px; height:55px; display: inline-block; color: @anthracite; text-decoration: none;vertical-align:top;
+                &:after { position: relative; content: "\F30C"; font: 1.5em/55px 'fontello';}
+                &:hover {
+                    background: @anthracite; color: #FFF;
+                }
+            }
+            a:nth-child(2)::after {content: "\F0E1";} 
+            a:nth-child(3)::after {content: "\E81A";}
         }
     }
     #bde-team{

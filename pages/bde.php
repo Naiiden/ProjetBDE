@@ -40,6 +40,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                 </div>
             </div>
 
+            <div class="external-links">
+                <a target="_blank" href="#"></a>
+                <a target="_blank" href="#"></a>
+                <a href="mailto:hugo.plissonneau@gmail.com"></a>
+            </div>
             <div class="bde-content-inner">
 
                 <?php

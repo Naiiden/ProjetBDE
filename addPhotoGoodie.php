@@ -3,10 +3,10 @@
 // ***** ici on récupère les données et on les stocke dans mysql
 
 
-function checkPriceNumber($prix) {
+function checkPrice($prix) {
     if (preg_match("/^[[:digit:]]+$/", $prix)) {
         return true;
-    } else  echo 'error_price_number';
+    } else  echo 'error_price';
 }
 
 if (isset($_POST)) {
@@ -38,7 +38,7 @@ if (isset($_POST)) {
 
     // on enregistre les données
 
-    if (checkPriceNumber($prix)) {
+    if (checkPrice($prix)) {
 
         $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 

@@ -1,5 +1,7 @@
 <?php
 session_start();
+$bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
+
 ?>
 <section id="boutique-list">
     <div class="inner">
@@ -8,152 +10,25 @@ session_start();
 
         <div class="bloc-list-inner">
 
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <a href="#"></a>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
+            <?php
+            $reponse = $bdd->query('SELECT * FROM goodies ORDER BY Id ASC');
 
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
+            while ($donnees = $reponse->fetch()) {
+                ?> 
 
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
+                <div class="bloc-list-bloc">
+                    <span><a href="boutique"><?php echo $donnees['Nom']; ?></a></span>
+                    <div class="bloc-list-view">
+                        <img src="img/local/goodie_photo/<?php echo $donnees['Image']; ?> " alt="" />
+                    </div>
+                    <div class="product-features">
+                        <span><strong><?php echo $donnees['Prix']; ?> €</strong></span>
+                        <a href="#"></a>
+                    </div>
                 </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <a href="#"></a>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <a href="#"></a>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <a href="#"></a>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="AddPanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
-
-            <div class="bloc-list-bloc">
-                <span><a href="boutique">Nom article</a></span>
-                <div class="bloc-list-view">
-                    <span><img src="img/local/tshirt2.jpg" alt="" /></span>
-                </div>
-                <div class="product-price">prix</div>
-                <input class="Addpanier" type="submit" value="Ajouter au panier" name="add-cart" />
-            </div>
+                <?php
+            }
+            ?>
 
 
         </div>
@@ -168,7 +43,7 @@ session_start();
                 ?> 
                 <div class='contact-form'>
 
-                    
+                    <form method='POST' action="addPhotoGoodie.php" enctype="multipart/form-data">
                         <h3 id='create-event'>Ajouter un goodie</h3>
                         <div class='form-item alone'>
                             <select name="type">
@@ -195,8 +70,9 @@ session_start();
                         </div>
 
                         <div class="form-actions">
-                            <input class="validate-form" value="Valider" type="submit" onclick="itemPrice();">
+                            <input class="validate-form" value="Valider" type="submit">
                         </div>
+                    </form>
                 </div>
                 <?php
             }
