@@ -71,19 +71,19 @@ function load_content() {
     //----------------------
     $pages = array(
         'accueil' => array(
-            'title' => "accueil",
+            'title' => "Bureau des étudiants",
             'file' => 'accueil.php',
         ),
         'bde' => array(
-            'title' => "bde",
+            'title' => "L'association",
             'file' => 'bde.php',
         ),
         'box' => array(
-            'title' => "box",
+            'title' => "Boite à idées",
             'file' => 'box.php',
         ),
         'event-list' => array(
-            'title' => "event-list",
+            'title' => "Événements",
             'file' => 'event-list.php',
         ),
         'event.php' => array(
@@ -91,7 +91,7 @@ function load_content() {
             'file' => 'event.php',
         ),
         'photos' => array(
-            'title' => "photos",
+            'title' => "Photos",
             'file' => 'photos.php',
         ),
         'register' => array(
@@ -103,11 +103,11 @@ function load_content() {
             'file' => 'notice.php',
         ),
         'terms' => array(
-            'title' => "terms",
+            'title' => "Mentions légales",
             'file' => 'terms.php',
         ),
         'boutique' => array(
-            'title' => "boutique",
+            'title' => "Boutique",
             'file' => 'boutique.php',
         ),
     );
