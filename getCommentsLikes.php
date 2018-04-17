@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 
 
@@ -16,8 +17,10 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
             "reports" => "",
             "dates" => "",
             "photo" => "",
+            "type" => "",
             "photoId" => 0,
-            "likes" => 0
+            "likes" => 0,
+            "hasLike" => 0
             );
 
             // Verification de l'existance de l'adresse mail
@@ -75,6 +78,16 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
 
             $requete3 = $bdd->query("SELECT Likes,Image FROM photos WHERE Id=".$_POST['photoId']);
             $tphotos = $requete3->fetch();
+            
+                
+
+            $ids = explode("|", $tphotos['Likes']) ;
+            if(in_array($_SESSION['id'], $ids)) {
+                $tab['hasLike']=1;
+            }
+            else {
+                $tab['haslike']=0;
+            } 
 
             if($tab["likes"]=="") {
                 if($tphotos['Likes']=="") { $tab["likes"]=0; }
@@ -87,6 +100,7 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
                 $tab["likes"] = $tab["likes"] + count($str); }
             
             $tab["photo"] = $tphotos["Image"];
+            $tab["type"] = $_SESSION['type'];
             $tab["photoId"] = $_POST['photoId'];
 
                 
