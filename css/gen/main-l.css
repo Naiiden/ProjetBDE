@@ -88,7 +88,7 @@ h1:after,
 }
 h2 {
   position: relative;
-  font: 500 1.2em/1.2em "Ubuntu", sans-serif;
+  font: 500 1.2em/1.2em 'Ubuntu', sans-serif "Ubuntu", sans-serif;
 }
 h3 {
   font: 500 1.1em/1.5em 'Ubuntu', sans-serif;
@@ -230,7 +230,7 @@ a:hover {
 }
 .titleh2 {
   position: relative;
-  font: 100 2em/1em 'Ubuntu';
+  font: 100 2em/1em 'Ubuntu', sans-serif;
   text-transform: uppercase;
   color: #C2242A;
   text-align: center;
@@ -328,7 +328,7 @@ header nav {
   float: left;
   width: 75%;
   padding-left: 200px;
-  font: 700 1em/65px 'Ubuntu';
+  font: 700 1em/65px 'Ubuntu', sans-serif;
 }
 header nav ul {
   display: table;
@@ -491,7 +491,7 @@ header #header-button ul .profil:before {
   right: 0;
   padding: 0 15px;
   text-decoration: none;
-  font: 400 1em/1em 'Ubuntu';
+  font: 400 1em/1em 'Ubuntu', sans-serif;
   border: 1px solid #314d61;
   border-radius: 30px;
   background: #f3f4f4;
@@ -620,7 +620,7 @@ header #header-button ul .profil:before {
   margin-bottom: 35px;
 }
 .front #bde-events span a {
-  font: 400 1.2em/1em 'Ubuntu';
+  font: 400 1.2em/1em 'Ubuntu', sans-serif;
   color: #314d61;
   text-align: center;
   width: 100%;
@@ -630,11 +630,11 @@ header #header-button ul .profil:before {
   margin: 5px 0;
 }
 .front #bde-events .event-fonctions a {
-  font: 400 1em/1em 'Ubuntu';
+  font: 400 1em/1em 'Ubuntu', sans-serif;
   color: #C2242A;
 }
 .front #bde-events .event-fonctions a:hover {
-  font: 400 1.2em/1em 'Ubuntu';
+  font: 400 1.2em/1em 'Ubuntu', sans-serif;
   color: #8A1002;
 }
 .front #bde-events .event-fonctions a:after {
@@ -819,7 +819,7 @@ header #header-button ul .profil:before {
   position: absolute;
   bottom: 50px;
   padding: 20px 25px 20px 90px;
-  font: 700 1.4em/1.6em 'Ubuntu';
+  font: 700 1.4em/1.6em 'Ubuntu', sans-serif;
   background: rgba(56,151,193,0.5);
   width: 50%;
   color: #FFF;
@@ -844,7 +844,7 @@ header #header-button ul .profil:before {
 #bde #bde-view .claim span {
   display: block;
   text-transform: none;
-  font: 300 1em/1.6em 'Ubuntu';
+  font: 300 1em/1.6em;
 }
 #bde #bde-content {
   overflow: hidden;
@@ -980,7 +980,7 @@ header #header-button ul .profil:before {
   text-align: center;
 }
 #bde #bde-team .team-list-inner .team-list-bloc .team-list-desc h3 {
-  font: 400 1.8em/1.8em "Allura";
+  font: 400 1.8em/1.8em "Allura", sans-serif;
   color: #3897c1;
   text-decoration: none;
 }
@@ -1699,7 +1699,7 @@ header #header-button ul .profil:before {
   color: white;
 }
 #box .box-top .box-bloc .idea-name {
-  font: 400 1em/1em 'Ubuntu';
+  font: 400 1em/1em 'Ubuntu', sans-serif;
   color: #f3f4f4;
   position: relative;
   background: #db7070;

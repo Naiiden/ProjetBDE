@@ -168,7 +168,7 @@ session_start();
                 ?> 
                 <div class='contact-form'>
 
-                    <form method='POST' action="addPhotoGoodie.php" enctype="multipart/form-data">
+                    
                         <h3 id='create-event'>Ajouter un goodie</h3>
                         <div class='form-item alone'>
                             <select name="type">
@@ -178,26 +178,25 @@ session_start();
                             </select>
                         </div>
                         <div class="form-item">
-                            <input placeholder="Nom" class="form-text member-name" name='name' type="text">
+                            <input placeholder="Nom" class="form-text item-name" name='name' type="text">
                         </div>
 
                         <div class="form-item">
-                            <input placeholder="Description" class="form-text member-nickname" name='description' type="text">
+                            <input placeholder="Description" class="form-text item-desc" name='description' type="text">
                         </div>
 
                         <div class="form-item">
-                            <input placeholder="Prix" class="form-text member-role" name='prix' type="text">
+                            <input placeholder="Prix" class="form-text item-price" name='prix' type="text">
                         </div>
                         <div class="form-item">
                             <p>Image du goodie</p>
-                            <input placeholder="Image" class="form-text idea-name" type="file" id="file" name="image">
+                            <input placeholder="Image" class="form-text item-image" type="file" id="file" name="image">
                             <input type="hidden" name="MAX_FILE_SIZE" value="300000" >
                         </div>
 
                         <div class="form-actions">
-                            <input class="validate-form" value="Valider" type="submit">
+                            <input class="validate-form" value="Valider" type="submit" onclick="itemPrice();">
                         </div>
-                    </form>
                 </div>
                 <?php
             }

@@ -2,6 +2,13 @@
 
 // ***** ici on récupère les données et on les stocke dans mysql
 
+
+function checkPriceNumber($prix) {
+    if (preg_match("/^[[:digit:]]+$/", $prix)) {
+        return true;
+    } else  echo 'error_price_number';
+}
+
 if (isset($_POST)) {
 
     $name = $_POST['name'];
@@ -18,6 +25,7 @@ if (isset($_POST)) {
         echo "veuillez choisir un type de goodies !";
     }
 
+
     //******* On renomme l'image de manière aléatoire pour éviter un conflit dans le dossier (2 fois le même nom par exemple
     $dir = 'img/local/goodie_photo/';
     $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
@@ -30,18 +38,19 @@ if (isset($_POST)) {
 
     // on enregistre les données
 
+    if (checkPriceNumber($prix)) {
 
+        $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 
-    $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
+        $requete = $bdd->prepare("INSERT INTO goodies (Nom, Description, Prix, Categorie, Image) VALUES (?,?,?,?,?)");
 
-    $requete = $bdd->prepare("INSERT INTO goodies (Nom, Description, Prix, Categorie, Image) VALUES (?,?,?,?,?)");
+        if (!$requete->execute(array($name, $description, $prix, $typebdd, $photo))) {
 
-    if (!$requete->execute(array($name, $description, $prix, $typebdd, $photo))) {
-
-        print_r($requete->errorInfo());
-    } else {
-        echo "Succes";
-        header("Location: boutique"); //header("Location: event-list");
+            print_r($requete->errorInfo());
+        } else {
+            echo "Succes";
+            header("Location: boutique"); //header("Location: event-list");
+        }
     }
 }
 ?>

@@ -574,6 +574,59 @@ function register() {
 }
 
 
+function register() {
+    if($(".item-name").val() != "") {
+        if($(".register-password").val() != "" ){
+                if($(".register-name").val() != "") {
+                    if($(".register-subname").val() != "") {
+
+
+                        $.post('addPhotoGoodie.php', 
+                            {
+                                email: $(".register-email").val(),
+                                name: $(".register-name").val(),
+                                subname: $(".register-subname").val(),
+                                password: $(".register-password").val(),
+                                action: 'register'
+                            },
+                            
+                            function(data) {
+                            if(data=='Succes') {
+                                $('[data-popup=popup-2]').fadeOut(350);
+                                alert("Vous êtes inscrit !");
+                                
+                                }
+                                else if(data=='Echec') {
+                                alert("erreur.");
+                                }
+                                else if(data=='email_invalid') {
+                                    alert("Adresse email déjà utilisée ! ");
+                                }
+                                else if(data=='error_password_uppercase') {
+                                    alert("Votre mot de passe doit contenir au moins une majuscule !");
+                                }
+                                else if(data=='error_password_number') {
+                                    alert("Votre mot de passe doit contenir au moins un chiffre !");
+                                }
+                                else if(data=='error_password_length') {
+                                    alert("Votre mot de passe doit faire au moins 6 caractères !");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+
+
+                    } else alert("Veuillez renseigner votre prénom !");
+                } else alert("Veuillez renseigner votre nom !");
+        } else alert("Veuillez renseigner un mot de passe !");
+    } else alert("Veuillez renseigner une adresse mail !");
+    
+}
+
+
+
 function login() {
 
                         $.post('signin.php', 
