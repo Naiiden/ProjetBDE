@@ -2055,3 +2055,8 @@ footer .nav-footer .corporate li a {
   color: #FFF;
   border: #f3f4f4 !important;
 }
+@media screen and (max-width: 300px) {
+  header {
+    background: #314d61;
+  }
+}
