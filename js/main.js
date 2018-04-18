@@ -402,13 +402,14 @@ function likePhoto() {
 }
 
 function sendIdea() {
-    if($(".idea-name").val() != "") {
-        if($(".idea-message").val() != "") {
-            if($(".idea-postal").val() != "")  {
+    //if($(".idea-name").val() != "") {
+
+        if($(".idea-nom").val() != "") {
+            if($(".idea-message").val() != "")  {
 
                 $.post('sendIdea.php', 
                             {
-                                name: $(".idea-name").val(),
+                                name: $(".idea-nom").val(),
                                 message: $(".idea-message").val(),
                                 action: 'send-idea'
                             },
@@ -426,9 +427,9 @@ function sendIdea() {
         
                             'text'
                         );
-            } else alert("Veuillez renseigner un code postal !");
-        } else alert("Veuillez renseigner un message !");
-    } else alert("Veuillez renseigner un nom !");
+            } else alert("Veuillez renseigner un message !");
+        } else alert("Veuillez renseigner votre nom !");
+    //} else alert("Veuillez renseigner un nom !");
 }
 
 function sendVote(idIdeaForm,idUserForm) {
