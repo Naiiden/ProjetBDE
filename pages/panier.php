@@ -12,27 +12,37 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             <?php
             $reponse = $bdd->query('SELECT * FROM goodies INNER JOIN panier ON goodies.Id = panier.Id_Goodie');
             $count = 0;
+            $count2 = 0;
             while ($donnees = $reponse->fetch()) {
-                if ($count < 8) {
-                    ?> 
+                if ($_SESSION['id'] == $donnees['Id_utilisateur']) {
+                    if ($count < 8) {
+                        ?> 
 
-                    <div class="bloc-list-bloc">
-                        <span><a href="boutique"><?php echo $donnees['Nom']; ?></a></span>
-                        <div class="bloc-list-view">
-                            <img src="img/local/goodie_photo/<?php echo $donnees['Image']; ?> " alt="" />
+                        <div class="bloc-list-bloc">
+                            <span><a href="boutique"><?php echo $donnees['Nom']; ?></a></span>
+                            <div class="bloc-list-view">
+                                <img src="img/local/goodie_photo/<?php echo $donnees['Image']; ?> " alt="" />
+                            </div>
+                            <div class="product-features">
+                                <span><strong><?php echo $donnees['Prix']; ?> €</strong></span>
+                            </div>
                         </div>
-                        <div class="product-features">
-                            <span><strong><?php echo $donnees['Prix']; ?> €</strong></span>
-                        </div>
-                    </div>
-                    <?php
+                        <?php
+                    }
+                    
+                }
+                else {
+                    if ($count2 < 1) {
+                    echo "Votre panier semble vide!";
+                    $count2 = $count2+1;
+                    }
                 }
             }
             ?>
         </div>
 
 
-        
+
     </div>
 </section>
 

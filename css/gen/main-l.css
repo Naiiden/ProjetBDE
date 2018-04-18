@@ -498,6 +498,9 @@ header #header-button ul .logout:before {
 header #header-button ul .profil:before {
   content: "\E825";
 }
+#user-cart .bloc-list-inner {
+  margin-bottom: 20px;
+}
 #user-cart .bloc-list-inner .bloc-list-bloc:hover {
   background: #FFF;
 }
@@ -885,6 +888,9 @@ header #header-button ul .profil:before {
 #boutique-list .item-list {
   padding: 0 0 40px 0;
 }
+#boutique-list .warning p {
+  font: 0.6em/1em 'Ubuntu', sans-serif;
+}
 #bde {
   padding: 0 0 50px;
 }
@@ -1161,30 +1167,6 @@ header #header-button ul .profil:before {
   height: 100%;
   margin: 0 auto;
 }
-.photos-list-inner .photos-list-bloc .photos-fonctions {
-  position: relative;
-  width: 100%;
-}
-.photos-list-inner .photos-list-bloc .photos-fonctions a {
-  z-index: 3;
-  text-decoration: none;
-}
-.photos-list-inner .photos-list-bloc .photos-fonctions a:after {
-  position: relative;
-  font: 1em/40px 'fontello';
-  content: "\E846";
-}
-.photos-list-inner .photos-list-bloc .photos-fonctions a:first-child:after {
-  left: 10px;
-}
-.photos-list-inner .photos-list-bloc .photos-fonctions a:last-child {
-  color: #314d61;
-}
-.photos-list-inner .photos-list-bloc .photos-fonctions a:last-child:after {
-  position: absolute;
-  right: 10px;
-  content: "\F2A7";
-}
 .photos-list-inner .photos-list-bloc .photos-list-desc {
   text-align: left;
   margin: 5px 15px 0px;
@@ -1194,18 +1176,13 @@ header #header-button ul .profil:before {
 }
 .photos-list-inner .photos-list-bloc .photos-list-desc h3 a {
   color: #C2242A;
+  text-decoration: none;
 }
 .photos-list-inner .photos-list-bloc .photos-list-desc .photos-list-activity {
   font: 300 0.9em/1.4em 'Ubuntu', sans-serif;
 }
 .photos-list-inner .photos-list-bloc:hover .photos-list-desc h3 a {
   color: #8A1002;
-}
-.photos-list-inner .photos-list-bloc.honor:after {
-  content: "\F219";
-}
-.photos-list-inner .photos-list-bloc.partner:after {
-  content: "\F2B5";
 }
 #photos-list {
   padding: 0 0 50px 0;

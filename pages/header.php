@@ -1,6 +1,5 @@
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
-
 if (isset($_POST['email']) && isset($_POST['password'])) {
     echo "bonjour";
     if ($_POST['email'] == "" || $_POST['password'] == "") { //Oublie d'un champ
@@ -121,7 +120,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 }
                 ?>
                 <?php
-                if ($page == "event" || $page == "event-list") {
+                if ($page == "event.php" || $page == "event-list") {
                     echo '<li class="menu-item--active-trail"><a href="event-list">Évènements</a></li>';
                 } else {
                     echo '<li><a href="event-list">Évènements</a></li>';
@@ -158,7 +157,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                             $reponse = $bdd->query('SELECT Nom, Prix, Id_utilisateur FROM goodies INNER JOIN panier ON goodies.Id = panier.Id_Goodie');
                             $count = 0;
                             while ($donnees = $reponse->fetch()) {
-                                if ($_SESSION['id'] = $donnees['Id_utilisateur']) {
+                                if ($_SESSION['id'] == $donnees['Id_utilisateur']) {
                                     if ($count < 8) {
                                         ?> 
                             <li><div class="item-on-cart"><?php echo $donnees['Nom'];?><span><?php echo $donnees['Prix'];?></span><a href="#"></a></div></li>

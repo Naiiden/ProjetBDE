@@ -32,8 +32,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             ?>
         </div>
 
-
-        <?php require TEMPLATE_PATH . 'pager.php'; ?>
+        <div class="warning"><p>Nos modèles de vêtements ne sont disponible qu'en taille unique, soit M.</p> </div>
 
 
         <?php

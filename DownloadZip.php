@@ -12,3 +12,4 @@ if ($zip->open('Photos_Site.zip', ZipArchive::CREATE) == TRUE) {
     }
 }
 $zip->close();
+header('Location: Photos_Site.zip');

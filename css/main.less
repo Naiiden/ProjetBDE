@@ -161,6 +161,7 @@ header {
 
 #user-cart {
     .bloc-list-inner {
+        margin-bottom:20px;
         .bloc-list-bloc {
             &:hover {background: #FFF;}
             .product-features {
@@ -390,6 +391,7 @@ header {
     .AddPanier {position:absolute; bottom:0;}
     .contact-form { padding-top:50px;}
     .item-list { padding: 0 0 40px 0;}
+    .warning p {font: 0.6em/1em 'Ubuntu', sans-serif;}
 }
 
 
@@ -503,29 +505,15 @@ header {
             position: relative; width: 100%; padding: 15px; height: 160px; text-align: center;
             img { display: block; width: auto; height: 100%; margin: 0 auto; }
         }
-        .photos-fonctions {
-            position: relative; width:100%;
-            a {
-                z-index:3; text-decoration: none;
-                &:after {position: relative; font: 1em/40px 'fontello'; content: "\E846" }
-            }
-            a:first-child { &:after {left: 10px;}}
-            a:last-child { 
-                color: @anthracite;
-                &:after { position: absolute; right: 10px;content: "\F2A7"}
-            }
-        }
         .photos-list-desc { 
             text-align: left;margin: 5px 15px 0px;
             h3 { 
                 font: 500 1.0em/1.8em "ubuntu";
-                a { color: @red; }
+                a { color: @red;text-decoration: none; }
             }
             .photos-list-activity { font: 300 0.9em/1.4em 'Ubuntu',sans-serif }
         }
-        &:hover .photos-list-desc h3 a  { color: @darkred; }
-        &.honor:after { content: "\F219" }
-        &.partner:after { content: "\F2B5" }  
+        &:hover .photos-list-desc h3 a  { color: @darkred; } 
     }
 }
 /* ------ List ------ */
