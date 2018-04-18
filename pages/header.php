@@ -1,32 +1,25 @@
 <?php
+$bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 
-
-$bdd=new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
-
-if(isset($_POST['email']) && isset($_POST['password'])) {
+if (isset($_POST['email']) && isset($_POST['password'])) {
     echo "bonjour";
-    if ($_POST['email']=="" || $_POST['password']=="") //Oublie d'un champ
-    {
-    /*  echo '<p>une erreur s\'est produite pendant votre identification.
-                    Vous devez remplir tous les champs</p>';*/
+    if ($_POST['email'] == "" || $_POST['password'] == "") { //Oublie d'un champ
+        /*  echo '<p>une erreur s\'est produite pendant votre identification.
+          Vous devez remplir tous les champs</p>'; */
         echo "error-empty-input";
-    }
-    
-    else if  (!empty($_POST['email']) || !empty($_POST['password']) ) //On check le mot de passe
-    {
-        $nbRows = ("SELECT COUNT(*) AS nb FROM utilisateurs WHERE Email='".$_POST['email']."'");
+    } else if (!empty($_POST['email']) || !empty($_POST['password'])) { //On check le mot de passe
+        $nbRows = ("SELECT COUNT(*) AS nb FROM utilisateurs WHERE Email='" . $_POST['email'] . "'");
         $result = $bdd->query($nbRows);
         $columns = $result->fetch();
         $nb = $columns['nb'];
 
-        if($nb > 0) {
-            $query=$bdd->prepare('SELECT Id, Email, Mdp, Type FROM utilisateurs WHERE Email = :email');
-            $query->bindValue(':email',$_POST['email'], PDO::PARAM_STR);
+        if ($nb > 0) {
+            $query = $bdd->prepare('SELECT Id, Email, Mdp, Type FROM utilisateurs WHERE Email = :email');
+            $query->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
             $query->execute();
-            $data=$query->fetch();
+            $data = $query->fetch();
 
-            if ($data['Mdp'] == $_POST['password']) // Acces OK !
-            {
+            if ($data['Mdp'] == $_POST['password']) { // Acces OK !
                 $_SESSION['email'] = $_POST['email'];
                 $_SESSION['id'] = $data['Id'];
                 $_SESSION['type'] = $data['Type'];
@@ -37,19 +30,13 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
                 //echo '<p>Erreur de mot de passe</p>';
                 echo "error-password";
             }
-
-        } 
-        else { //echo "email invalide";
+        } else { //echo "email invalide";
             echo "error-email";
         }
 
         header("Location: index.php");
     }
 }
-
-
-
-
 ?>
 
 
@@ -165,7 +152,23 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 
                 <ul>
                     <li>
-                        <a class="profil" href="#"><span>Mon profil</span></a> 
+                        <a class="profil" href="panier"><span>Mon panier</span></a>
+                        <ul id="submenu">
+                            <?php
+                            $reponse = $bdd->query('SELECT Nom, Prix, Id_utilisateur FROM goodies INNER JOIN panier ON goodies.Id = panier.Id_Goodie');
+                            $count = 0;
+                            while ($donnees = $reponse->fetch()) {
+                                if ($_SESSION['id'] = $donnees['Id_utilisateur']) {
+                                    if ($count < 8) {
+                                        ?> 
+                            <li><div class="item-on-cart"><?php echo $donnees['Nom'];?><span><?php echo $donnees['Prix'];?></span><a href="#"></a></div></li>
+                                        <?php
+                                    }
+                                }
+                            }
+                            ?>
+                            <li><a href="panier">Accéder au panier</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a class="logout" href="logout"><span>Se déconnecter</span></a> 

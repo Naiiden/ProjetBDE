@@ -60,7 +60,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                         </div>
 
                         <div class="form-item">
-                            <input placeholder="Prix" class="form-text item-price" name='prix' type="text">
+                            <input placeholder="Prix (en chiffre uniquement)" class="form-text item-price" name='prix' type="text">
                         </div>
                         <div class="form-item">
                             <p>Image du goodie</p>

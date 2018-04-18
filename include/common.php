@@ -110,6 +110,10 @@ function load_content() {
             'title' => "Boutique",
             'file' => 'boutique.php',
         ),
+        'panier' => array(
+            'title' => "Panier",
+            'file' => 'panier.php',
+        ),
     );
 
     if (array_key_exists($page, $pages)) {

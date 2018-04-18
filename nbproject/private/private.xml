@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/BDExia/css/main.css</file>
-            <file>file:/C:/wamp64/www/BDExia/pages/accueil.php</file>
-            <file>file:/C:/wamp64/www/BDExia/css/vars.less</file>
+            <file>file:/C:/wamp64/www/BDExia/pages/header.php</file>
             <file>file:/C:/wamp64/www/BDExia/pages/boutique.php</file>
-            <file>file:/C:/wamp64/www/BDExia/include/common.php</file>
             <file>file:/C:/wamp64/www/BDExia/css/main.less</file>
+            <file>file:/C:/wamp64/www/BDExia/pages/panier.php</file>
             <file>file:/C:/wamp64/www/BDExia/pages/event.php</file>
-            <file>file:/C:/wamp64/www/BDExia/pages/bde.php</file>
         </group>
     </open-files>
 </project-private>

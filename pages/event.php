@@ -22,11 +22,7 @@ if (isset($_POST['id'])) {
 <!-- A DEPLACER DANS LE .LESS -->
 <style>
 
-.active-btn-click {
-    background-color:#3897c1!important;
-    color: #FFF;
-    border: #f3f4f4!important;
-}
+
 
 </style>
 
@@ -145,7 +141,6 @@ function afficherCommentaires(nom,date,commentaire, commentaireId,report,type) {
                 <span class="year"><?php echo $dateDMY[0]; ?></span>
                 <span class="time">18h30</span>
             </div>
-            <div class="event-published">Publié le 15 avril 2017</div>
             <h2 class="actu-title">
                 <?php echo $reponse['Nom']; ?>
             </h2>

@@ -130,6 +130,25 @@ header {
                     span { position: relative; top: 12px }
                 }
                 &:last-child a {background: @red;}
+                #submenu {
+                    position: relative; background: @red;display:none;width:298px;
+                    li {
+                        display:block; width: 100%;
+                        a:before {display: none;}
+                        .item-on-cart {
+                            position: relative;font: 400 1em/1em 'Ubuntu', sans-serif;color: #FFF;background: none; text-align:left; padding: 20px 10px;z-index:10;width:100%;
+                            span {
+                                position: absolute; right:20%; top:20px; 
+                            }
+                            a {
+                               position: relative;
+                                &:after {position: absolute; top:-13px; right: 10%;content: "\E822"; font: 1em/1em 'fontello';}
+                            }
+                        }
+                        &:after {position: absolute;content:""; background: #FFF; width: 100%; height: 1px;}
+                    }
+                }
+                &:hover { #submenu {display: table; position: absolute;} }
             }
             .register:before {content: "\E83F";}
             .logout:before{content: "\E805";}
@@ -138,6 +157,19 @@ header {
     }
 }
 
+/* ______ CART _______ */
+
+#user-cart {
+    .bloc-list-inner {
+        .bloc-list-bloc {
+            &:hover {background: #FFF;}
+            .product-features {
+                text-align: center;
+                span {position:relative;top:0; left:0;}
+            }
+        }
+    }
+}
 /* ______ MODAL _______ */
 
 
@@ -286,7 +318,7 @@ header {
     #bde-boutique {
         position: relative; background: @pale;
         .bloc-list-bloc {
-             width: calc(~"33% - 5px");
+            width: calc(~"33% - 5px");
             margin:0;
             &:hover {background: white;}
         }
@@ -613,7 +645,7 @@ header {
 }
 /* ------ Detail ------ */
 #event {
-    position: relative;
+    position: relative;margin-bottom: 50px;
     .event-top {
         position: relative; overflow: hidden; width: 100%; height: 450px; 
         .event-view {
@@ -638,7 +670,7 @@ header {
             a { position: relative;}        
         }
         .field--name-body {
-            position: relative;
+            position: relative;text-align: center; padding:5px;
             &:after {position: absolute; bottom: 0; left: 50%; .translate (-50%, 0); content: ""; background: @blue-light; width: 50px; height: 1px;}
         }
         .photos-events {background: #FFF; padding: 10px 0 10px 0; text-align: center;}
@@ -656,7 +688,7 @@ header {
     }
 
     .contact-form {
-        padding: 25px 0;
+        padding: 25px 40px;background: #FFF;
         .form-actions {
             padding: 25px 0;text-align: center;
         }
@@ -855,4 +887,11 @@ footer {
             &:before {position: relative; content: "\E834";font: 1.4em/40px 'fontello';}
         }
     }
+}
+
+
+.active-btn-click {
+    background-color:#3897c1 !important;
+    color: #FFF;
+    border: #f3f4f4!important;
 }

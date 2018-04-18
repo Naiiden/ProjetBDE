@@ -166,6 +166,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                             <div class="form-item">
                                 <input placeholder="Nom" class="form-text member-name" name='nom' type="text">
                             </div>
+                            <div class="form-item">
+                                <input placeholder="Prénom" class="form-text member-name" name='prenom' type="text">
+                            </div>
                             <div class="form-actions">
                                 <input class="validate-form" type="submit" value="Valider" name="Supprrrrr"/>
                             </div>

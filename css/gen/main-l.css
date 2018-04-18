@@ -440,6 +440,55 @@ header #header-button ul li a span {
 header #header-button ul li:last-child a {
   background: #C2242A;
 }
+header #header-button ul li #submenu {
+  position: relative;
+  background: #C2242A;
+  display: none;
+  width: 298px;
+}
+header #header-button ul li #submenu li {
+  display: block;
+  width: 100%;
+}
+header #header-button ul li #submenu li a:before {
+  display: none;
+}
+header #header-button ul li #submenu li .item-on-cart {
+  position: relative;
+  font: 400 1em/1em 'Ubuntu', sans-serif;
+  color: #FFF;
+  background: none;
+  text-align: left;
+  padding: 20px 10px;
+  z-index: 10;
+  width: 100%;
+}
+header #header-button ul li #submenu li .item-on-cart span {
+  position: absolute;
+  right: 20%;
+  top: 20px;
+}
+header #header-button ul li #submenu li .item-on-cart a {
+  position: relative;
+}
+header #header-button ul li #submenu li .item-on-cart a:after {
+  position: absolute;
+  top: -13px;
+  right: 10%;
+  content: "\E822";
+  font: 1em/1em 'fontello';
+}
+header #header-button ul li #submenu li:after {
+  position: absolute;
+  content: "";
+  background: #FFF;
+  width: 100%;
+  height: 1px;
+}
+header #header-button ul li:hover #submenu {
+  display: table;
+  position: absolute;
+}
 header #header-button ul .register:before {
   content: "\E83F";
 }
@@ -448,6 +497,17 @@ header #header-button ul .logout:before {
 }
 header #header-button ul .profil:before {
   content: "\E825";
+}
+#user-cart .bloc-list-inner .bloc-list-bloc:hover {
+  background: #FFF;
+}
+#user-cart .bloc-list-inner .bloc-list-bloc .product-features {
+  text-align: center;
+}
+#user-cart .bloc-list-inner .bloc-list-bloc .product-features span {
+  position: relative;
+  top: 0;
+  left: 0;
 }
 .popup-open {
   overflow-y: hidden;
@@ -1421,6 +1481,7 @@ header #header-button ul .profil:before {
 }
 #event {
   position: relative;
+  margin-bottom: 50px;
 }
 #event .event-top {
   position: relative;
@@ -1490,6 +1551,8 @@ header #header-button ul .profil:before {
 }
 #event .event-content .field--name-body {
   position: relative;
+  text-align: center;
+  padding: 5px;
 }
 #event .event-content .field--name-body:after {
   position: absolute;
@@ -1533,7 +1596,8 @@ header #header-button ul .profil:before {
   color: #C2242A;
 }
 #event .contact-form {
-  padding: 25px 0;
+  padding: 25px 40px;
+  background: #FFF;
 }
 #event .contact-form .form-actions {
   padding: 25px 0;
@@ -2008,4 +2072,9 @@ footer .nav-footer .corporate li a {
   position: relative;
   content: "\E834";
   font: 1.4em/40px 'fontello';
+}
+.active-btn-click {
+  background-color: #3897c1 !important;
+  color: #FFF;
+  border: #f3f4f4 !important;
 }
