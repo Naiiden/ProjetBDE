@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 ?>
 
@@ -11,33 +11,35 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 
         <div class="photos-list-inner">
 
-<?php
-$reponse = $bdd->query('SELECT * FROM photos');
+            <?php
+            $reponse = $bdd->query('SELECT * FROM photos');
 
-while ($donnees = $reponse->fetch()) {
-    ?>
+            while ($donnees = $reponse->fetch()) {
+                ?>
+                <div class="photos-list-bloc ">
+
+                    <div class="photos-list-desc">
+                        <h3> <a href="#"> <?php echo $donnees['Nom']; ?> </a></h3>
+                    </div>
+                    <div class="photos-list-view">
+                        <span><img src= "img/local/event_photo/<?php echo $donnees['Image']; ?>" alt="" /></span>
+                    </div>
+                    <div class="photos-fonctions">
+                        <a href="#"></a>
+                        <a href="#"></a>
+                    </div>
+                </div>
+            <?php }
+            ?>
+
+            <div class="button">
+                <h3> <a href="DownloadZip.php"> DlZip </a></h3>
+            </div>
 
 
-        <div class="photos-list-bloc ">
-
-            <div class="photos-list-desc">
-                <h3> <a href="#"> <?php echo $donnees['Nom']; ?> </a></h3>
-            </div>
-            <div class="photos-list-view">
-                <span><img src= "img/local/event_photo/<?php echo $donnees['Image']; ?>" alt="" /></span>
-            </div>
-            <div class="photos-fonctions">
-                <a href="#"></a>
-                <a href="#"></a>
-            </div>
-            </div>
-        <?php
-    }?>
+            <?php require TEMPLATE_PATH . 'pager.php'; ?>
 
         </div>
-
-
-        <?php require TEMPLATE_PATH . 'pager.php'; ?>
 
     </div>
 </section>
