@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 17 Avril 2018 à 16:13
+-- Généré le :  Mer 18 Avril 2018 à 09:09
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -167,7 +167,8 @@ INSERT INTO `goodies` (`Id`, `Nom`, `Description`, `Prix`, `Categorie`, `QuantCo
 (2, 'dedze', 'dzedzedze', 42, 1, 0, '5ad5e0466b40c.jpg'),
 (3, 'Licorne', 'Petite peluche licorne, super sympathique!', 399, 1, 0, '5ad5e18de372d.png'),
 (4, 'Tshirt moche', 'Tshirt avec un logo moche dessus', 12, 1, 0, '5ad6083ed9b10.jpg'),
-(5, 'Tshirt test', 'Ceci est un test', 59, 1, 0, '5ad60f7f322cb.jpg');
+(5, 'Tshirt test', 'Ceci est un test', 59, 1, 0, '5ad60f7f322cb.jpg'),
+(6, 'Poutre en bois', 'Ceci est une poutre', 16, 2, 0, '5ad61d82cdc2a.jpg');
 
 -- --------------------------------------------------------
 
@@ -228,6 +229,14 @@ CREATE TABLE `panier` (
   `Id_Goodie` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `panier`
+--
+
+INSERT INTO `panier` (`Id`, `Id_utilisateur`, `Id_Goodie`) VALUES
+(1, 17, 4),
+(2, 17, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -252,7 +261,7 @@ INSERT INTO `photos` (`Id`, `Id_utilisateur`, `Id_evenement`, `Nom`, `Image`, `L
 (1, 19, 13, 'Test poto !', '5acf4c8ab3209.jpg', '0', 0),
 (2, 19, 22, 'Belle sortie', '5acf86e93bd3d.jpg', '17|17|17|17|17|17|20', 1),
 (5, 17, 22, 'tester', '5ad34940ec415.png', '17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17', 1),
-(4, 19, 22, 'Je test les photos', '5ad067110399e.png', '', 1);
+(4, 19, 22, 'Je test les photos', '5ad067110399e.png', '17', 1);
 
 -- --------------------------------------------------------
 
@@ -381,7 +390,7 @@ ALTER TABLE `evenements`
 -- AUTO_INCREMENT pour la table `goodies`
 --
 ALTER TABLE `goodies`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `idees`
 --
@@ -391,12 +400,12 @@ ALTER TABLE `idees`
 -- AUTO_INCREMENT pour la table `membre_bde`
 --
 ALTER TABLE `membre_bde`
-  MODIFY `ID_membre` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `ID_membre` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `photos`
 --
