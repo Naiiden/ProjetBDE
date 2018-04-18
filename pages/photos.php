@@ -32,8 +32,8 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             <?php }
             ?>
 
-            <div class="button">
-                <h3> <a href="DownloadZip.php"> DlZip </a></h3>
+            <div class="downloadzip">
+                <a href="DownloadZip.php"> DlZip </a>
             </div>
 
 

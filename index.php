@@ -1,9 +1,9 @@
 <?php
 include('include/common.php');
 init();
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     echo $_GET['id'];
-} 
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -11,7 +11,7 @@ if(isset($_GET['id'])) {
     <head>
         <meta charset="utf-8">
         <meta name="description" content="<?php print $description; ?>">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
         <title><?php print $title; ?></title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.gif" type="image/x-icon">

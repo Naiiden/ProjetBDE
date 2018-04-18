@@ -1184,6 +1184,14 @@ header #header-button ul .profil:before {
 .photos-list-inner .photos-list-bloc:hover .photos-list-desc h3 a {
   color: #8A1002;
 }
+.photos-list-inner .downloadzip {
+  position: absolute;
+  background: #3897c1;
+  text-align: center;
+  padding: 10px 40px;
+  top: 50px;
+  right: 50px;
+}
 #photos-list {
   padding: 0 0 50px 0;
 }
@@ -2055,8 +2063,12 @@ footer .nav-footer .corporate li a {
   color: #FFF;
   border: #f3f4f4 !important;
 }
-@media screen and (max-width: 300px) {
-  header {
-    background: #314d61;
+@media screen and (max-width: 480px) {
+  #slide {
+    height: 200px;
+    width: auto;
+  }
+  #bde-events #event-list-inner .event-list-bloc {
+    width: 50%;
   }
 }
