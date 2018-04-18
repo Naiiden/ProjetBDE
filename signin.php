@@ -24,7 +24,7 @@ else if  (!empty($_POST['email']) || !empty($_POST['password']) ) //On check le 
         $query->execute();
         $data=$query->fetch();
 
-        if ($data['Mdp'] == $_POST['password']) // Acces OK !
+        if (password_verify($_POST['password'], $data['Mdp'])) // Acces OK !
         {
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['prenom'] = $data['Prenom'];

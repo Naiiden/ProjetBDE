@@ -27,6 +27,7 @@ function checkPasswordLength($password) {
        
        
         if(checkPasswordUpper($_POST['password']) && checkPasswordNumber($_POST['password']) && checkPasswordLength($_POST['password'])) {
+            
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
             // Verification de l'existance de l'adresse mail
@@ -43,7 +44,7 @@ function checkPasswordLength($password) {
 
                 $requete = $bdd->prepare("CALL `AjouterUtilisateur`(?,?,?,?)");
 
-                if(!$requete->execute(array(htmlspecialchars($_POST['password']),htmlspecialchars($_POST['email']),htmlspecialchars($_POST['name']),htmlspecialchars($_POST['subname'])))) {
+                if(!$requete->execute(array(htmlspecialchars($password),htmlspecialchars($_POST['email']),htmlspecialchars($_POST['name']),htmlspecialchars($_POST['subname'])))) {
                     
                     print_r ($requete->errorInfo());
                 } else echo "Succes";
