@@ -142,10 +142,7 @@ if(isset($_SESSION['type'])) {
 
             <!-- PHP : Si connecter, mettre le nom et prénom en commentaire -->
             <div class="form-item">
-                <input placeholder="Votre nom" class="form-text idea-center" type="text">
-            </div>
-            <div class="form-item">
-                <input placeholder="Le nom de votre idée" class="form-text idea-name" type="text">
+                <input placeholder="Le nom de votre idée" class="form-text idea-nom" type="text">
             </div>
 
             <div class="form-item form-type-textarea full">
