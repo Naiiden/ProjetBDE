@@ -249,6 +249,8 @@ $(document).ready(function() {
         $("#sort3").removeClass( "active" );
     });
 
+
+
     // Trier que les évènement à venir
     $( "#sort4" ).click(function() {
         $('div#event-list-inner>div').each(function(){ 
@@ -282,7 +284,40 @@ $(document).ready(function() {
         $("#sort4").addClass( "active" );
         $("#sort5").removeClass( "active" );
     });
+    
+    $( "#sort5" ).click(function() {
+        $('div#event-list-inner>div').each(function(){ 
+            
+            
+                
+                if($(this).attr('statut')=="1") {
+                    $(this).css({"display": "block"});
+                    if($('#sort1').hasClass('active')) {
+                        if(!$(this).hasClass('1')) {
+                            $(this).css({"display": "none"});
+                        }
+                    } 
+                    if($('#sort2').hasClass('active')) {
+                        if(!$(this).hasClass('2')) {
+                            $(this).css({"display": "none"});
+                        }
+                    } 
+                    if($('#sort3').hasClass('active')) {
+                        if(!$(this).hasClass('3')) {
+                            $(this).css({"display": "none"});
+                        }
+                    }  
+                }
+                else if( $(this).attr('statut')=="0") {
+                    $(this).css({"display": "none"});
+                }
+        });
+        
+        $("#sort5").addClass( "active" );
+        $("#sort4").removeClass( "active" );
+    });
 
+    
     $('.add-product').click(function() {
         var idgoodie=$(this).attr('idgoodie');
         
@@ -332,38 +367,6 @@ $(document).ready(function() {
         );
         
     });
-    
-    $( "#sort5" ).click(function() {
-        $('div#event-list-inner>div').each(function(){ 
-            
-            
-                
-                if($(this).attr('statut')=="1") {
-                    $(this).css({"display": "block"});
-                    if($('#sort1').hasClass('active')) {
-                        if(!$(this).hasClass('1')) {
-                            $(this).css({"display": "none"});
-                        }
-                    } 
-                    if($('#sort2').hasClass('active')) {
-                        if(!$(this).hasClass('2')) {
-                            $(this).css({"display": "none"});
-                        }
-                    } 
-                    if($('#sort3').hasClass('active')) {
-                        if(!$(this).hasClass('3')) {
-                            $(this).css({"display": "none"});
-                        }
-                    }  
-                }
-                else if( $(this).attr('statut')=="0") {
-                    $(this).css({"display": "none"});
-                }
-        });
-        
-        $("#sort5").addClass( "active" );
-        $("#sort4").removeClass( "active" );
-    });
 
     $( ".participe-event" ).click(function() {
         //eventId
@@ -389,6 +392,34 @@ $(document).ready(function() {
 
         'text'
     );
+    });
+
+    $(".dereport-photo").click(function() {
+        var photoIdForm = $(this).attr('photo');
+        $.post('dereportPhoto.php', 
+                            {
+                                photoId: photoIdForm,
+                                action: "dereportPhoto"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    
+                                    
+                                    $(this).remove();
+                                    $("#photo"+photoIdForm).css("background-color","#f3f4f4");
+                                    alert("Vous avez enlevé le signalement ! ");
+                                    
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+       
     });
 
     
@@ -447,57 +478,8 @@ function addGoodie () {
     
     if(document.getElementById("file").files.length != 0 ){
         if(($('#name').val()!="")) {
-            alert('bla');
         
 
-    /*
-    $.post('addPhotoGoodie.php', 
-    {
-        name: $('#name').val(),
-        prix:$('#prix').val(),
-        type:$('#type').val(),
-        description:$('#description').val()
-    },
-    function(data) {
-        if(data=="error-price") {
-            alert("Veuillez renseigner un prix valide !");
-        }
-        else if(data=='error-type-empty') {
-            alert("Veuillez renseigner une catégorie !");
-        }
-        else if(data=='Error') {
-            alert("Une erreur s'est produite !");
-        }
-        else {
-            var fd = new FormData();
-            var files = $('#file')[0].files[0];
-            fd.append('file',files);
-            fd.append('id', parseInt(data));
-
-            $.ajax({
-                url: 'uploadGoodie.php',
-                type: 'post',
-                data: fd,
-                contentType: false,
-                processData: false,
-                success: function(response){
-
-                    if(response == 'Succes'){
-                    
-                        alert('Votre goodie a été ajouté !');
-                        
-                    }
-                    else {
-                        alert("Erreur lors de l'upload !");
-                    }
-                },
-            });
-        }
-       
-        
-    },
-        'text'
-    );*/
 
         var fd = new FormData();
         var files = $('#file')[0].files[0];
@@ -770,6 +752,33 @@ function reportComment(commentIdForm) {
                                     $('.report-comment-'+commentIdForm).html('Les membres du BDE ont été informé !')
                                 }
                                 else if(data=="already-report") {
+                                    alert("Vous avez déjà signalé ce commentaire !");
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
+
+function dereportComment(commentIdForm) {
+    $.post('dereportComment.php', 
+                            {
+                                commentId: commentIdForm,
+                                action: "dereportComment"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    $("#"+commentIdForm).css("background-color","#eff5f5");
+                                    $("#"+commentIdForm).children('.delete-comment-a').css("color","#3897c1");
+                                    $("#"+commentIdForm).children('.dereport-comment-a').remove();
+                                    //$('.report-comment-'+commentIdForm).html('Les membres du BDE ont été informé !')
+                                }
+                                else if(data=="already-dereport") {
                                     alert("Vous avez déjà signalé ce commentaire !");
                                 }
                                 else if(data=='Echec') {
