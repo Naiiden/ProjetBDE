@@ -43,9 +43,9 @@ function afficherCommentaires(nom,date,commentaire, commentaireId,report,type) {
         text2="Ce commentaire a été signalé par un membre du cesi !";
 
         if(type==2) {
-            delete_comment="<a href='#' commentId='" + commentaireId + "' style='" + color_a + "' atitle='Supprimer ce commentaire' onclick='deleteComment("+commentaireId+")'>Supprimer</a>";
+            delete_comment="<a class='delete-comment-a' href='#' commentId='" + commentaireId + "' style='" + color_a + "' atitle='Supprimer ce commentaire' onclick='deleteComment("+commentaireId+")'>Supprimer</a>";
             text2="<br/>Ce commentaire a été signalé par un membre du CESI ! Cliquez pour le supprimer ";
-            dereport_comment = "<a href='#' commentId='" + commentaireId + "' style='" + color_a + "margin-bottom: 25px;' atitle='Enlever le singalement' onclick='dereportComment("+commentaireId+")'>enlever le signalement</a>";
+            dereport_comment = "<a class='dereport-comment-a' href='#' commentId='" + commentaireId + "' style='" + color_a + "margin-bottom: 25px;' atitle='Enlever le singalement' onclick='dereportComment("+commentaireId+");'>enlever le signalement</a>";
         }
         else if(type==3) {
             dereport_comment = "<a href='#'>Les membres du BDE ont été informé !</a>";
@@ -230,6 +230,11 @@ function afficherCommentaires(nom,date,commentaire, commentaireId,report,type) {
                                 <span><img src="img/local/event_photo/<?php echo $donnees['Image']; ?>" alt="" /></span>
                             </div>
                             <h3><a class="photo" photo="<?php echo $donnees["Id"]; ?>" user="<?php echo $_SESSION['id']; ?>" data-popup-open="popup-photo" href="#">Commentaires / likes</a></h3>
+                            
+                            <?php if($donnees['Report']==1) { ?>
+                                <h3><a class="dereport-photo" style="color:#8A1002;" photo="<?php echo $donnees["Id"]; ?>" href="#report-cancel">Annuler le signalement</a></h3>
+                            <?php } ?>
+
                         </div>
 
             <?php }

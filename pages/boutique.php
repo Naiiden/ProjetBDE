@@ -81,8 +81,17 @@ if(isset($_GET['test'])) {
                         <div class='form-item alone'>
                             <select name="type" id='type'>
                                 <option selected value="0">- Type de goodies</option>
-                                <option value="1">Vêtement</option>
-                                <option value="2">Accessoire</option>
+                                <?php
+                                $requete=$bdd->query("SELECT * FROM categories_goodies");
+
+                                while($donnees2 = $requete->fetch()) {
+                                    ?>
+                                    
+                                    <option value="<?php echo $donnees2['Id']; ?>"><?php echo $donnees2['Nom']; ?></option>
+
+                                    <?php 
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-item">

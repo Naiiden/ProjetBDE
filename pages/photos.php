@@ -32,9 +32,17 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             <?php }
             ?>
 
-            <div class="downloadzip">
-                <a href="DownloadZip.php"> DlZip </a>
-            </div>
+            <?php 
+            if(isset($_SESSION['type'])) {
+                if($_SESSION['type']==3) { ?>
+
+                <div class="downloadzip">
+                    <a href="DownloadZip.php"> Télécharger toutes les photos ! </a>
+                </div> <?php
+
+                }
+            }
+            ?>
 
         </div>
 
