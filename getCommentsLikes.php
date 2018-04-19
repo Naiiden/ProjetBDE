@@ -24,7 +24,7 @@ if (isset($_POST['photoId']) && isset($_POST['userId'])) {
             );
 
             // Verification de l'existance de l'adresse mail
-            $requete = $bdd->query("SELECT * FROM commentaires WHERE Id_photo=".$_POST['photoId']);
+            $requete = $bdd->query("SELECT * FROM commentaires WHERE Id_photo=".$_POST['photoId'] . " ORDER BY Id ASC");
             
 
             while($donnees = $requete->fetch()) {
