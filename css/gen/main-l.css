@@ -1492,21 +1492,22 @@ header #header-button ul .profil:before {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 450px;
+  height: 500px;
+  background: #FFF;
 }
 #event .event-top .event-view {
   width: 100%;
   height: 100%;
+  position: relative;
+  padding: 15px;
+  text-align: center;
 }
 #event .event-top .event-view img {
   position: relative;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%,-50%);
-  -moz-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  -o-transform: translate(-50%,-50%);
+  width: auto;
+  display: block;
+  height: 100%;
+  margin: 0 auto;
 }
 #event .event-top .event-view .topic {
   width: 10%;
@@ -2085,13 +2086,21 @@ footer .nav-footer .corporate li a {
 }
 @media screen and (max-width: 480px) {
   #slide {
-    width: 100%;
+    width: 80%;
   }
   #bde-events #event-list-inner .event-list-bloc {
     width: 75%;
     float: left;
   }
   #bde {
+    width: 100%;
+  }
+  #photos-list {
+    width: 100%;
+    background: #314d61;
+  }
+  #photos-list .photos-list-inner {
+    margin: 0;
     width: 100%;
   }
 }

@@ -651,10 +651,10 @@ header {
 #event {
     position: relative;margin-bottom: 50px;
     .event-top {
-        position: relative; overflow: hidden; width: 100%; height: 450px; 
+        position: relative; overflow: hidden; width: 100%; height: 500px; background: #FFF;
         .event-view {
-            width: 100%; height: 100%;
-            img { position: relative; width: 100%; top: 50%; left: 50%; .translate (-50%, -50%) }
+            width:100%; height: 100%; position: relative; padding: 15px; text-align: center;
+            img { position: relative; width: auto; display: block; height:100%; margin: 0 auto; }
             .topic { width: 10% }
         }
     }
@@ -911,7 +911,7 @@ footer {
 @media screen and (max-width:480px)
 {
     #slide {
-        width:100%;
+        width:80%;
     }
     #bde-events {
         .inner {}
@@ -925,5 +925,12 @@ footer {
 
     #bde {
         width:100%;
+    }
+    
+    #photos-list {
+        width:100%;background: @anthracite;
+        .photos-list-inner {
+            margin:0;width:100%;
+        }
     }
 }
