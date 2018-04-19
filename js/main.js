@@ -6,11 +6,11 @@
 function getDate() {
      d = new Date();
 
- month = d.getMonth()+1;
- day = d.getDate();
- heure = d.getHours();
- minute = d.getMinutes();
- seconde = d.getSeconds();
+    month = d.getMonth()+1;
+    day = d.getDate();
+    heure = d.getHours();
+    minute = d.getMinutes();
+    seconde = d.getSeconds();
 
  output = d.getFullYear() + '-' +
     (month<10 ? '0' : '') + month + '-' +
@@ -22,11 +22,11 @@ $(document).ready(function() {
     //Le code ici
     $(function() {
         //----- OPEN
-        $('[data-popup-open]').on('click', function(e)  {
-         targeted_popup_class = jQuery(this).attr('data-popup-open');
-        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
-        $('html').addClass('popup-open');
-        e.preventDefault();
+            $('[data-popup-open]').on('click', function(e)  {
+            targeted_popup_class = jQuery(this).attr('data-popup-open');
+            $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+            $('html').addClass('popup-open');
+            e.preventDefault();
 
         });
         //----- CLOSE
@@ -129,6 +129,16 @@ $(document).ready(function() {
 
         });
 
+        /*$('.add-product').on('click',function(e) {
+            
+        });
+
+        $('.delete-product').on('click',function(e) {
+            
+
+              
+
+        });*/
     });
 
     // Ouverture de l'espace commentaire / like de chaque photo
@@ -282,7 +292,55 @@ $(document).ready(function() {
         $("#sort5").removeClass( "active" );
     });
 
+    $('.add-product').click(function() {
+        var idgoodie=$(this).attr('idgoodie');
 
+        $.post('addInCart.php', 
+        {
+            goodieId: idgoodie,
+                action: 'add-goodie-cart'
+        },
+        function(data) {
+            if(data!='Echec') {
+
+                json = JSON.parse(data);
+
+                var nom = json['noms'];
+                var prix = json['prix'];
+                var quantite = json['quantitee'];
+                var id_cart = json['id-cart'];
+
+                $('#submenu').children('li').each(function(){
+                    if($(this).attr('idgoodie')==idgoodie) {
+                        $(this).remove();
+                        
+                    }
+               });
+
+               $("<li idcart='"+id_cart+"'> \
+                                    <div class='item-on-cart'>\
+                                        "+nom+"\
+                                        <span class='product-price'>\
+                                            "+ (prix*quantite) +"€\
+                                        </span>\
+                                        <span style='right:40%;' class='product-quantitie'>\
+                                        (x"+quantite+")\
+                                        </span>\
+                                        <a href='#' onclick='deleteProduct("+id_cart+", "+idgoodie+");'></a>\
+                                    </div>\
+                                </li>").prependTo('#submenu');
+
+             
+            }
+            else {
+                aert('Echec !');
+            }
+        },
+        'text'
+        );
+        
+    });
+    
     $( "#sort5" ).click(function() {
         $('div#event-list-inner>div').each(function(){ 
             
@@ -363,8 +421,216 @@ $(document).ready(function() {
         'text'
         );
     });
-})
+});
 
+function addCategory(){
+    var nameForm = $('#input-categorie').val(); 
+
+    $.post('addCategory.php', 
+        {
+            name: nameForm,
+            action: 'add-category'
+        },
+        function(data) {
+            if(data!='Succes') {
+                $("<li><a href='#' onclick='sortShop("+data+")'>"+nameForm+"</a></li>").appendTo('#submenu-category');
+            }
+            else if(data=="Echec") {
+                alert('error');
+            }
+            
+        },
+        'text'
+    );
+        
+
+    
+
+}
+
+function addgood(response) {
+
+    $.post('addPhotoGoodie.php', 
+    {
+        location: response,
+        name: $('#name').val(),
+        prix:$('#prix').val(),
+        type:$('#type').val(),
+        description:$('#description').val(),
+        action: 'add-category'
+    },
+    function(data) {
+        if(data=='Succes') {
+            alert("Votre goodie a été ajouté !");
+        }
+       
+        
+    },
+        'text'
+    );
+}
+/*
+function addGoodie () {
+
+        var fd = new FormData();
+        var files = $('#file')[0].files[0];
+        fd.append('file',files);
+        fd.append('test',4);
+        
+
+        $.ajax({
+            url: 'uploadGoodie.php',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(response){
+
+                if(response != 'Error'){
+                   
+                   addgood(response);
+                   alert(response);
+
+                    
+                }
+                else {
+                    alert("Erreur lors de l'upload !");
+                }
+            },
+            });
+}
+*/
+function addGoodie () {
+    if(document.getElementById("file").files.length != 0 ){
+        
+    
+    $.post('addPhotoGoodie.php', 
+    {
+        name: $('#name').val(),
+        prix:$('#prix').val(),
+        type:$('#type').val(),
+        description:$('#description').val(),
+        action: 'add-category'
+    },
+    function(data) {
+        if(data=="error-price") {
+            alert("Veuillez renseigner un prix valide !");
+        }
+        else if(data=='error-type-empty') {
+            alert("Veuillez renseigner une catégorie !");
+        }
+        else if(data=='Error') {
+            alert("Une erreur s'est produite !");
+        }
+        else {
+            var fd = new FormData();
+            var files = $('#file')[0].files[0];
+            fd.append('file',files);
+            fd.append('id', parseInt(data));
+
+            $.ajax({
+                url: 'uploadGoodie.php',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response){
+
+                    if(response == 'Succes'){
+                    
+                        alert('Votre goodie a été ajouté !');
+                        
+                    }
+                    else {
+                        alert("Erreur lors de l'upload !");
+                    }
+                },
+            });
+        }
+       
+        
+    },
+        'text'
+    );
+}
+else {
+    alert("Veuillez charger une image !");
+}
+    
+
+}
+
+function sortShop(idCategorie) {
+    
+    if(idCategorie==0) {
+        $('#AllProducts').children('div').each(function(i){
+            $(this).css('display','block');
+        });
+    }
+    $('#AllProducts').children('div').each(function(i){
+
+        if($(this).attr('categorieid') != idCategorie) {
+            $(this).css('display','none');
+        }
+
+        else {
+            $(this).css('display','block');
+        }
+    });
+
+}
+function deleteProduct(idcart,idgoodie) {
+
+
+    $.post('deleteInCart.php', 
+        {
+            goodieId: idgoodie,
+                action: 'delete-goodie-cart'
+        },
+        function(data) {
+            if(data=='Succes') {
+
+                $('#submenu').children('li').each(function(){
+                    
+                    if($(this).attr('idgoodie')==idgoodie) {
+                        var price;
+                        var quantitie;
+                        var quant;
+                        $(this).children('div').children('span').each(function(i){
+                            if($(this).hasClass('product-price')) {
+                                price = $(this).html().replace(/\D+/g,'');
+                            }
+            
+                            else if($(this).hasClass('product-quantitie')) {
+                                quantitie=$(this).html().replace(/\D+/g,'');
+                            }
+                        });
+                        quant = parseInt(quantitie);
+                        if(quant==1) {
+                            $(this).remove();
+                        }
+                        else {
+                            quant = quant - 1;
+                            $(this).children('div').children('span').each(function(i){
+            
+                                if($(this).hasClass('product-quantitie')) {
+                                    $(this).html('(x'+quant+')');
+                                }
+                            });
+                        }
+                        
+                    }
+                });
+            }
+            else if(data=="Echec") {
+                alert('error');
+            }
+        },
+        'text'
+        );
+
+
+}
 function openPhoto() {
     alert("open");
 }
