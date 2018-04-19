@@ -141,7 +141,6 @@ $(document).ready(function() {
     });
 
 
-
     $( "#sort1" ).click(function() {
         $('div#event-list-inner>div').each(function(){ 
             
@@ -447,6 +446,11 @@ $(document).ready(function() {
 });
 
 function addCategory(){
+    $( ".popup-message" ).animate({
+        width: "20%",
+        opacity: 0.4
+      }, 300 );
+
     var nameForm = $('#input-categorie').val(); 
 
     $.post('addCategory.php', 
@@ -456,6 +460,7 @@ function addCategory(){
         },
         function(data) {
             if(data!='Succes') {
+                $("<tr id='category"+data+"'><td>"+nameForm+"</td><td><a class='delete-category' onclick='deleteCategory("+data+");' href='#'>Supprimer</a></td></tr>").appendTo('.table-categories');
                 $("<li><a href='#' onclick='sortShop("+data+")'>"+nameForm+"</a></li>").appendTo('#submenu-category');
             }
             else if(data=="Echec") {
@@ -465,12 +470,31 @@ function addCategory(){
         },
         'text'
     );
-        
-
-    
-
 }
 
+function deleteCategory(categoryId) {
+
+        $.post('removeCategory.php', 
+        {
+            id: categoryId,
+            action: 'remove-category'
+        },
+        function(data) {
+            if(data=='error-goodie') {
+                alert("Impossible de supprimer la catégorie car des goodies l'utilisent déjà !"); 
+            }
+            else if(data=="Echec") {
+                alert('error');
+            }
+            else if(data=="Succes") {
+                alert("La catégorie a bien été supprimée !");
+                $('#category'+categoryId).remove();
+            }
+            
+        },
+        'text'
+    );
+}
 
 
 function addGoodie () {
