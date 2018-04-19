@@ -2,6 +2,15 @@
  likes = 0;
  var hasLike=0;
 
+function message(text) {
+    alert('message');
+    $('.popup-message').html(message);
+    $(".popup-message").animate({
+        width: "20%",
+        opacity: 1
+      }, 200 );
+}
+
 function getDate() {
      d = new Date();
 
@@ -316,11 +325,45 @@ $(document).ready(function() {
         $("#sort4").removeClass( "active" );
     });
 
-    
+    $('.search-goodies').on('input',function(e){
+        if($(this).val() != "") {
+            $('#AllProducts').children('div').children('span').children('a').each(function() {
+                
+                $(this).parent('span').parent('div').css('display','none');
+                test = $(this).html();
+                i = test.indexOf($('.search-goodies').val());
+                if(i >= 0){/*
+                    var thisName = $(this).html();
+                    $('#AllProducts').children('div').each(function() {
+                        if($(this).children('span').children('a').html() != thisName) {
+                            $(this).css('display','none');
+                        }
+                        else {
+                            $(this).css('display','block');
+                        }
+                    });*/
+                    $(this).parent('span').parent('div').css('display','block');
+                    
+                }
+                $(this).parent('span').parent('div').nextAll('div').css('display','none');
+                
+            });
+        }
+        else {
+            $('#AllProducts').children('div').each(function() {
+                $(this).css('display','block');
+            });
+        }
+    });
+
+
+
+
+
     $('.add-product').click(function() {
+        message('bonjour');
         var idgoodie=$(this).attr('idgoodie');
         
-        alert(idgoodie);
         $.post('addInCart.php', 
         {
             goodieId: idgoodie,
@@ -554,20 +597,26 @@ function addGoodie () {
 function sortShop(idCategorie) {
     
     if(idCategorie==0) {
-        $('#AllProducts').children('div').each(function(i){
+        $('#AllProducts').children('div').each(function(){
             $(this).css('display','block');
         });
     }
+    else {
     $('#AllProducts').children('div').each(function(i){
 
         if($(this).attr('categorieid') != idCategorie) {
+            $(this).fadeOut( "slow", function() {
             $(this).css('display','none');
+            });
         }
 
         else {
-            $(this).css('display','block');
+            $(this).fadeIn("slow", function() {
+            $(this).delay(2000).css('display','block');
+            });
         }
     });
+}
 
 }
 function deleteProduct(idcart,idgoodie) {
