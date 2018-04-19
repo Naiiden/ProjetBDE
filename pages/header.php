@@ -39,13 +39,15 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 ?>
 <style>
 #popup-message {
-z-index:100020;
-padding:0px;
-width:0px;
-border:1px black solid;
-position:fixed;
-top:30px;
-z-index:1000 !important;
+    z-index: 5;
+    position: fixed;
+    top: 160px;
+    right: 100px;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    height: 5%;
+    background: #FFF;
 
 }
 

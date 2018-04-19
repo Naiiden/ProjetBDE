@@ -89,6 +89,7 @@ background-color: #ffffff;
                 </ul>
             </div>
         </div>
+        <input class='search-goodies' type='text' placeholder='Rechercher'/>
         <div class="bloc-list-inner" id='AllProducts'>
 
             <?php
@@ -152,6 +153,7 @@ background-color: #ffffff;
                                                             right: 50px;">
 
                                 <a style="color:white;" href="" data-popup-open="popup-categorie">Gérer les catégories </a>
+
                             </div>
                             <input placeholder="Nom" class="form-text item-name" name='name' id='name' type="text">
                         </div>

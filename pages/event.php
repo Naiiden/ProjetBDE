@@ -4,7 +4,7 @@ session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
 if (isset($_POST['id'])) {
-    $requete = $bdd->query("SELECT * FROM evenements WHERE Id=" . $_POST['id'] . "");
+    $requete = $bdd->query("SELECT * FROM evenements WHERE Id=" . $_POST['id']);
     $reponse = $requete->fetch();
     $date = $reponse['Date'];
 
@@ -171,6 +171,17 @@ function afficherCommentaires(nom,date,commentaire, commentaireId,report,type) {
                             <input class="button participe-event" value="Participer à cet évènement" style="padding-bottom:0px;" type="submit">
                             <?php
                         }
+
+                        if($_SESSION['type']==2) {
+                           ?> <div class="form-item">
+                            <br/><div >
+                                <form type='POST' action="pdf.php">
+                                    <input style='display:none;' value='<?php echo $_POST['id']; ?>' name='event'/>
+                                    <input style='background: #314d61; border:1px solid #314d61; color:white;' type='submit' value='Accéder à la liste des inscrits'>
+                                </form>
+                            </div><?php
+                        }
+
                         ?>
                     </div>
                     <?php
