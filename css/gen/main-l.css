@@ -892,7 +892,7 @@ header #header-button ul .profil:before {
   font: 0.6em/1em 'Ubuntu', sans-serif;
 }
 #bde {
-  padding: 0 0 50px;
+  padding: 50px 0;
 }
 #bde #bde-view {
   position: relative;
@@ -1051,6 +1051,12 @@ header #header-button ul .profil:before {
 #bde #bde-content .external-links a:nth-child(3)::after {
   content: "\E81A";
 }
+#bde #bde-content .all-page {
+  padding: 20px 0;
+}
+#bde #bde-content .back-link {
+  margin: 20px 0;
+}
 #bde #bde-team .inner {
   overflow: visible;
 }
@@ -1186,14 +1192,28 @@ header #header-button ul .profil:before {
 }
 .photos-list-inner .downloadzip {
   position: absolute;
-  background: #3897c1;
+  background: #314d61;
   text-align: center;
   padding: 10px 40px;
   top: 50px;
   right: 50px;
 }
+.photos-list-inner .downloadzip a {
+  color: #FFF;
+  width: 100%;
+}
+.photos-list-inner .downloadzip:hover {
+  background: #FFF;
+  border: 1px solid #314d61;
+}
+.photos-list-inner .downloadzip:hover a {
+  color: #314d61;
+}
 #photos-list {
   padding: 0 0 50px 0;
+}
+#photos-list .more-info {
+  margin: 10px 0;
 }
 #event-list-inner {
   display: flex;
@@ -2065,10 +2085,13 @@ footer .nav-footer .corporate li a {
 }
 @media screen and (max-width: 480px) {
   #slide {
-    height: 200px;
-    width: auto;
+    width: 100%;
   }
   #bde-events #event-list-inner .event-list-bloc {
-    width: 50%;
+    width: 75%;
+    float: left;
+  }
+  #bde {
+    width: 100%;
   }
 }

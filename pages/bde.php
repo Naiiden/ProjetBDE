@@ -49,21 +49,29 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 
                 <?php
                 $reponse = $bdd->query('SELECT * FROM article_bde ORDER BY ID ASC');
-
+                $count = 0;
                 while ($donnees = $reponse->fetch()) {
-                    ?>
-                    <div class="content-bloc">
-                        <div class="content-view">
-                            <span><img src="img/local/article/<?php echo $donnees['Image']; ?> " alt="" /></span>
+                    if ($count < 6) {
+                        ?>
+                        <div class="content-bloc">
+                            <div class="content-view">
+                                <span><img src="img/local/article/<?php echo $donnees['Image']; ?> " alt="" /></span>
+                            </div>
+                            <div class="content-desc">
+                                <h2><?php echo $donnees['Nom']; ?></h2>
+                                <p><?php echo $donnees ['Description']; ?></p>
+                            </div>
                         </div>
-                        <div class="content-desc">
-                            <h2><?php echo $donnees['Nom']; ?></h2>
-                            <p><?php echo $donnees ['Description']; ?></p>
-                        </div>
-                    </div>
-                    <?php
+                        <?php
+                        $count = $count + 1;
+                    }
                 }
                 ?>
+                <div class="all-page">
+                    <div class="button special">
+                        <a href="article">Voir tous les articles</a>
+                    </div>
+                </div>
             </div>
 
             <section id="bde-team">

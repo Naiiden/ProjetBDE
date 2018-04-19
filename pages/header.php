@@ -105,7 +105,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     }
                     ?>
                     <?php
-                    if ($page == "bde") {
+                    if ($page == "bde" || $page == "article") {
                         echo '<li class="menu-item--active-trail"><a href="bde">L&apos;Association</a></li>';
                     } else {
                         echo '<li><a href="bde">L&apos;Association</a></li>';

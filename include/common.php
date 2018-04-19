@@ -114,6 +114,10 @@ function load_content() {
             'title' => "Panier",
             'file' => 'panier.php',
         ),
+        'article' => array(
+            'title' => "Articles du BDE",
+            'file' => 'article.php',
+        ),
     );
 
     if (array_key_exists($page, $pages)) {
