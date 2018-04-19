@@ -170,7 +170,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                                     ?>
                                     
                                     <li idgoodie="<?php echo $donnees2['goodieId']; ?>">
-                                        <div class="item-on-cart" >
+                                        <div class="item-on-cart" idgoodie="<?php echo $donnees2['goodieId']; ?>">
 
                                             <?php echo $donnees2['Nom']; ?>
 
