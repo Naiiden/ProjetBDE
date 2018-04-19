@@ -27,7 +27,7 @@ else
     if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
         $requete = $bdd->exec("UPDATE goodies SET Image='".$filename."' WHERE Id = ".$test);
         //echo $test;
-        echo $test;
+        echo "SUcces";
     }
     else
     {

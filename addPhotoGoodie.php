@@ -1,4 +1,6 @@
 <?php
+$bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
+
 
 // ***** ici on récupère les données et on les stocke dans mysql
 
@@ -6,50 +8,57 @@
 function checkPrice($prix) {
     if (preg_match("/^[[:digit:]]+$/", $prix)) {
         return true;
-    } else  echo 'error-price';
+    } 
 }
 
-if (isset($_POST)) {
-
+if (isset($_POST['name']) && isset($_POST['prix']) && isset($_POST['type']) && isset($_POST['description'])) {
+    
     //$location = $_POST['location'];
     $name = $_POST['name'];
     $description = $_POST['description'];
     $prix = $_POST['prix'];
-    $type = $_POST['type'];
+    $typebdd = intval($_POST['type']);
+    $filename = $_FILES['file']['name'];
+    
+    
+    $dir = "img/local/goodie_photo/";
 
-    $typebdd = 3;
-    //echo $name;
-
-    if ($type == '1') {
-        $typebdd = 1;
-    } elseif ($type == '2') {
-        $typebdd = 2;
-    } else {
-        echo "error-type-empty";
-    }
-
-
+    $ext = strtolower( pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION) );
+    $file=uniqid().'.'.$ext;
 
     if (checkPrice($prix)) {
+        if(move_uploaded_file($_FILES['file']['tmp_name'],$dir . $file)){
 
-        $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
-
-        $requete = $bdd->prepare("INSERT INTO goodies (Nom, Description, Prix, Categorie, Image) VALUES (?,?,?,?,?)");
+            $requete = $bdd->prepare("INSERT INTO goodies (Nom, Description, Prix, Categorie, Image) VALUES (?,?,?,?,?)");
 
 
-        if(!$requete->execute(array($name, $description, $prix, $typebdd, ''))) {
-            echo "Error";
+            if(!$requete->execute(array($name, $description, $prix, $typebdd, $file))) {
+                echo "error-req-insert";
+            }
+            else{
+                echo "Succes";
+            }
+
+
+            
         }
-        else{
-
-            $requete2 = $bdd->query("SELECT Id FROM goodies WHERE Nom='" . $name . "'");
-            if($donnee = $requete2->fetch()) {
-                echo $donnee['Id'];
-            }
-            else {
-                echo "Error";
-            }
+        else {
+            echo "error-upload";
         }
     }
+    else
+    {
+        echo "error-price";
+    }
+
+
+    
+
+        
+        
+    
+}
+else {
+    echo 'post-invalid';
 }
 ?>
