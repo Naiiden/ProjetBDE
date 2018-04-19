@@ -37,9 +37,33 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 }
 ?>
+<style>
+#popup-message {
+z-index:100020;
+padding:0px;
+width:0px;
+border:1px black solid;
+position:fixed;
+top:30px;
+z-index:1000 !important;
 
+}
+
+.atss {
+    position: fixed;
+    top: 20%;
+    width: 3pc;
+    z-index: 100020;
+    background: none;
+}
+</style>
 
 <header>
+
+<div id="popup-message">
+POPUP
+</div>
+
     <!-- POPUP CONNEXION -->
     <div class="popup" data-popup="popup-1">
         <form action='signin.php' method='POST'>

@@ -6,15 +6,62 @@ if(isset($_GET['test'])) {
     echo $_GET['test'];
 }
 ?>
+<style>
+.table-categories {
+    margin-bottom:50px;
+}
+table {
+border: medium solid #6495ed;
+border-collapse: collapse;
+margin-right:auto;
+margin-left:auto;
 
+width: 87%;
+}
+th {
+/*border: thin solid #6495ed;*/
+width: 50%;
+padding: 5px;
+background-color: #D0E3FA;
+background-image: url(sky.jpg);
+}
+td {
+border-left: thin solid #6495ed;
+border-bottom: thin solid #6495ed;
+width: 50%;
+padding: 5px;
+text-align: center;
+background-color: #ffffff;
+}
+</style>
 <!-- POPUP AJOUTER UNE CATEGORIE --> 
 <div class="popup" data-popup="popup-categorie">
             <div class="popup-inner">
+            
+            <table class='table-categories'>
+             <tr> <th>Nom</th> <th>Action</th> </tr>
+             <?php $get_categories = $bdd -> query("SELECT * FROM categories_goodies"); 
+             
+             while($categories = $get_categories->fetch()) { ?>
+                <tr id='category<?php echo $categories['Id']; ?>'>
+                    <td ><?php echo $categories['Nom']; ?></td>
+                    <td ><a class="delete-category" href="#" onclick='deleteCategory(<?php echo $categories['Id']; ?>);'>Supprimer</a></td>
+                </tr> <?php 
+
+             }
+              ?>
+              
+</table>
+<table>
+              <tr> <th COLSPAN=2>Ajouter une catégorie<th></tr>
+              <tr> <td><input type="text" id='input-categorie' placeholder="Nom souhaité" ></td> 
+              <td><input class="button" value="Ajouter !" type='submit' onclick='addCategory();'></td> </tr>
+</table>
                 <h2>Ajouter une catégorie</h2><br/>
-                <p>
+               <!-- <p>
                     <input type="text" id='input-categorie' placeholder="Nom de la catégorie" >
-                </p>
-                <input class="button" value="Ajouter !" type='submit' onclick='addCategory();'>
+                </p>-->
+                <!--<input class="button" value="Ajouter !" type='submit' onclick='addCategory();'> -->
                 <a class="popup-close" data-popup-close="popup-categorie" href="#">x</a>
             </div>
     </div>
@@ -37,7 +84,7 @@ if(isset($_GET['test'])) {
 
                 ?>
                 
-                <a href="#add" data-popup-open="popup-categorie">Ajouter</a>
+                
 
                 </ul>
             </div>
@@ -94,7 +141,18 @@ if(isset($_GET['test'])) {
                                 ?>
                             </select>
                         </div>
+
                         <div class="form-item">
+                            <div style="position:absolute;
+                                                            background: #314d61;
+                                                            text-align: center;
+                                                            padding: 10px 40px;
+                                                            width:30%;
+                                                            top: 50px;
+                                                            right: 50px;">
+
+                                <a style="color:white;" href="" data-popup-open="popup-categorie">Gérer les catégories </a>
+                            </div>
                             <input placeholder="Nom" class="form-text item-name" name='name' id='name' type="text">
                         </div>
 
