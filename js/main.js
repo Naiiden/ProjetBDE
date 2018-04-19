@@ -2,7 +2,6 @@
  likes = 0;
  var hasLike=0;
 
-
 function getDate() {
      d = new Date();
 
@@ -29,13 +28,14 @@ $(document).ready(function() {
             e.preventDefault();
 
         });
+
         //----- CLOSE
-        $('[data-popup-close]').on('click', function(e)  {
-         targeted_popup_class = jQuery(this).attr('data-popup-close');
-        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
-        $(".comments-popup").children().remove();
-        $('html').removeClass('popup-open');
-        e.preventDefault();
+            $('[data-popup-close]').on('click', function(e)  {
+            targeted_popup_class = jQuery(this).attr('data-popup-close');
+            $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+            $(".comments-popup").children().remove();
+            $('html').removeClass('popup-open');
+            e.preventDefault();
         });
 
         $('.validate').on('click', function(e)  {
@@ -68,6 +68,7 @@ $(document).ready(function() {
             );
             $('#id_vote').html = "";
         });
+
 
         $('.photo').on('click', function(e)  {
             $.post('getCommentsLikes.php', 
@@ -129,16 +130,6 @@ $(document).ready(function() {
 
         });
 
-        /*$('.add-product').on('click',function(e) {
-            
-        });
-
-        $('.delete-product').on('click',function(e) {
-            
-
-              
-
-        });*/
     });
 
     // Ouverture de l'espace commentaire / like de chaque photo
@@ -294,7 +285,8 @@ $(document).ready(function() {
 
     $('.add-product').click(function() {
         var idgoodie=$(this).attr('idgoodie');
-
+        
+        alert(idgoodie);
         $.post('addInCart.php', 
         {
             goodieId: idgoodie,
@@ -317,8 +309,8 @@ $(document).ready(function() {
                     }
                });
 
-               $("<li idcart='"+id_cart+"'> \
-                                    <div class='item-on-cart'>\
+               $("<li idgoodie='"+idgoodie+"'> \
+                                    <div class='item-on-cart' idgoodie='"+ idgoodie +"'>\
                                         "+nom+"\
                                         <span class='product-price'>\
                                             "+ (prix*quantite) +"€\
@@ -448,69 +440,23 @@ function addCategory(){
 
 }
 
-function addgood(response) {
 
-    $.post('addPhotoGoodie.php', 
-    {
-        location: response,
-        name: $('#name').val(),
-        prix:$('#prix').val(),
-        type:$('#type').val(),
-        description:$('#description').val(),
-        action: 'add-category'
-    },
-    function(data) {
-        if(data=='Succes') {
-            alert("Votre goodie a été ajouté !");
-        }
-       
-        
-    },
-        'text'
-    );
-}
-/*
+
 function addGoodie () {
 
-        var fd = new FormData();
-        var files = $('#file')[0].files[0];
-        fd.append('file',files);
-        fd.append('test',4);
-        
-
-        $.ajax({
-            url: 'uploadGoodie.php',
-            type: 'post',
-            data: fd,
-            contentType: false,
-            processData: false,
-            success: function(response){
-
-                if(response != 'Error'){
-                   
-                   addgood(response);
-                   alert(response);
-
-                    
-                }
-                else {
-                    alert("Erreur lors de l'upload !");
-                }
-            },
-            });
-}
-*/
-function addGoodie () {
-    if(document.getElementById("file").files.length != 0 ){
-        
     
+    if(document.getElementById("file").files.length != 0 ){
+        if(($('#name').val()!="")) {
+            alert('bla');
+        
+
+    /*
     $.post('addPhotoGoodie.php', 
     {
         name: $('#name').val(),
         prix:$('#prix').val(),
         type:$('#type').val(),
-        description:$('#description').val(),
-        action: 'add-category'
+        description:$('#description').val()
     },
     function(data) {
         if(data=="error-price") {
@@ -551,11 +497,50 @@ function addGoodie () {
         
     },
         'text'
-    );
-}
-else {
+    );*/
+
+        var fd = new FormData();
+        var files = $('#file')[0].files[0];
+        fd.append('file',files);
+        fd.append('name',$('#name').val());
+        fd.append('prix',$('#prix').val());
+        fd.append('description',$('#description').val());
+        fd.append('type',$('#type').val());
+
+        $.ajax({
+            url: 'addPhotoGoodie.php',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    if(response=='post-invalid') {
+                        alert('erreur !')
+                    }
+                    else if(response== 'error-price') {
+                        alert('veuillez entrer un prix valide !')
+                    }
+                    else if(response=="error-upload") {
+                        alert("Erreur lors de l'upload de l'image !")
+                    }
+                    else if(response=='error-req-insert') {
+                        alert("Erreur SQL !")
+                    }
+                    else if(response=='Succes') {
+                        alert("Votre goodie a été ajouté !");
+                    }
+                },
+            });
+        }
+
+        else 
+        {
+            alert('Veuillez renseigner un nom !');
+        }
+    }
+    else {
     alert("Veuillez charger une image !");
-}
+    }
     
 
 }
@@ -581,7 +566,6 @@ function sortShop(idCategorie) {
 }
 function deleteProduct(idcart,idgoodie) {
 
-
     $.post('deleteInCart.php', 
         {
             goodieId: idgoodie,
@@ -591,7 +575,6 @@ function deleteProduct(idcart,idgoodie) {
             if(data=='Succes') {
 
                 $('#submenu').children('li').each(function(){
-                    
                     if($(this).attr('idgoodie')==idgoodie) {
                         var price;
                         var quantitie;
