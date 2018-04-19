@@ -90,104 +90,131 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     </div>
 
     <div class="inner">
-
+        <div id="burger"></div>
 
         <div id="logo">
             <a href="accueil"><img src="img/local/logoexia.png" alt="Logo Association Zone Atlantique Pornichet"></a>
         </div>
-            <nav> 
-                <ul>
-                    <?php
-                    if ($page == "accueil") {
-                        echo '<li class="menu-item--active-trail"><a href="accueil">Accueil</a></li>';
-                    } else {
-                        echo '<li><a href="accueil">Accueil</a></li>';
-                    }
-                    ?>
-                    <?php
-                    if ($page == "bde" || $page == "article") {
-                        echo '<li class="menu-item--active-trail"><a href="bde">L&apos;Association</a></li>';
-                    } else {
-                        echo '<li><a href="bde">L&apos;Association</a></li>';
-                    }
-                    ?>
-                    <?php
-                    if ($page == "photos") {
-                        echo '<li class="menu-item--active-trail"><a href="photos">Les photos</a></li>';
-                    } else {
-                        echo '<li><a href="photos">Les photos</a></li>';
-                    }
-                    ?>
-                    <?php
-                    if ($page == "event.php" || $page == "event-list") {
-                        echo '<li class="menu-item--active-trail"><a href="event-list">Évènements</a></li>';
-                    } else {
-                        echo '<li><a href="event-list">Évènements</a></li>';
-                    }
-                    ?>
-                    <?php
-                    if ($page == "box") {
-                        echo '<li class="menu-item--active-trail"><a href="box">Boite à idées</a></li>';
-                    } else {
-                        echo '<li><a href="box">Boite à idées</a></li>';
-                    }
-                    ?>
-                    <?php
-                    if ($page == "boutique") {
-                        echo '<li class="menu-item--active-trail"><a href="boutique">Boutique</a></li>';
-                    } else {
-                        echo '<li><a href="boutique">Boutique</a></li>';
-                    }
-                    ?>
-                </ul>
-            </nav>
 
-            <div id="header-button">
+        <nav> 
+            <ul>
                 <?php
-                if (isset($_SESSION['email'])) {
-                    //connecté 
-                    ?>
-
-                    <ul>
-                        <li>
-                            <a class="profil" href="panier"><span>Mon panier</span></a>
-                            <ul id="submenu">
-                                <?php
-                                $reponse = $bdd->query('SELECT Nom, Prix, Id_utilisateur FROM goodies INNER JOIN panier ON goodies.Id = panier.Id_Goodie');
-                                $count = 0;
-                                while ($donnees = $reponse->fetch()) {
-                                    if ($_SESSION['id'] == $donnees['Id_utilisateur']) {
-                                        if ($count < 8) {
-                                            ?> 
-                                            <li><div class="item-on-cart"><?php echo $donnees['Nom']; ?><span><?php echo $donnees['Prix']; ?></span><a href="#"></a></div></li>
-                                            <?php
-                                        }
-                                    }
-                                }
-                                ?>
-                                <li><a href="panier">Accéder au panier</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="logout" href="logout"><span>Se déconnecter</span></a> 
-                        </li>
-                    </ul>
-
-                    <?php
-                } else if (!isset($_SESSION['email'])) {
-                    ?>
-                    <ul>
-                        <li>
-                            <a class="login" data-popup-open="popup-1" href="#"><span>Connexion</span></a>
-                        </li>
-                        <li>
-                            <a class="register" data-popup-open="popup-2" href="#"><span>Inscription</span></a>
-                        </li>
-                    </ul>
-                    <?php
+                if ($page == "accueil") {
+                    echo '<li class="menu-item--active-trail"><a href="accueil">Accueil</a></li>';
+                } else {
+                    echo '<li><a href="accueil">Accueil</a></li>';
                 }
                 ?>
-            </div>
+                <?php
+                if ($page == "bde") {
+                    echo '<li class="menu-item--active-trail"><a href="bde">L&apos;Association</a></li>';
+                } else {
+                    echo '<li><a href="bde">L&apos;Association</a></li>';
+                }
+                ?>
+                <?php
+                if ($page == "photos") {
+                    echo '<li class="menu-item--active-trail"><a href="photos">Les photos</a></li>';
+                } else {
+                    echo '<li><a href="photos">Les photos</a></li>';
+                }
+                ?>
+                <?php
+                if ($page == "event.php" || $page == "event-list") {
+                    echo '<li class="menu-item--active-trail"><a href="event-list">Évènements</a></li>';
+                } else {
+                    echo '<li><a href="event-list">Évènements</a></li>';
+                }
+                ?>
+                <?php
+                if ($page == "box") {
+                    echo '<li class="menu-item--active-trail"><a href="box">Boite à idées</a></li>';
+                } else {
+                    echo '<li><a href="box">Boite à idées</a></li>';
+                }
+                ?>
+                <?php
+                if ($page == "boutique") {
+                    echo '<li class="menu-item--active-trail"><a href="boutique">Boutique</a></li>';
+                } else {
+                    echo '<li><a href="boutique">Boutique</a></li>';
+                }
+                ?>
+            </ul>
+        </nav>
 
+        <div id="header-button">
+            <?php
+            if (isset($_SESSION['email'])) {
+                //connecté 
+                
+        ?>
+                
+                <ul>
+                    <li>
+                        <a class="profil" href="panier"><span>Mon panier</span></a>
+                        <ul id="submenu" style="max-height:300px; overflow-y:auto;">
+                            <?php
+                            //$reponse = $bdd->query('SELECT Nom, Prix, Id_utilisateur FROM goodies INNER JOIN panier ON goodies.Id = panier.Id_Goodie');
+                            $reponse = $bdd->query("SELECT DISTINCT Id_Goodie FROM panier WHERE Id_utilisateur=".$_SESSION['id']);
+                            
+                            $goodieprec=0;
+                            $quantitee=1;
+                            $count=0;
+
+                            while ($donnees = $reponse->fetch()) {
+
+                                $reponse2 = $bdd->query("SELECT COUNT(*) as nb, goodies.Id as goodieId, panier.Id as idcart, Nom, Prix, Id_utilisateur FROM goodies INNER JOIN panier ON goodies.Id = panier.Id_Goodie AND panier.Id_utilisateur=".$_SESSION['id'] . " AND panier.Id_Goodie=".$donnees['Id_Goodie']);
+                                while ($donnees2 = $reponse2->fetch()) {
+                                
+                                    ?>
+                                    
+                                    <li idgoodie="<?php echo $donnees2['goodieId']; ?>">
+                                        <div class="item-on-cart" >
+
+                                            <?php echo $donnees2['Nom']; ?>
+
+                                            <span class='product-price'>
+                                                <?php echo $donnees2['Prix'] * $donnees2['nb'].'€';?>
+                                            </span>
+                                            <span style='right:40%;' class="product-quantitie">
+                                            <?php echo " (x".$donnees2['nb'] .')'; ?>
+                                            </span>
+                                            <a href="#" onclick='deleteProduct(<?php echo $donnees2['idcart']; ?>, <?php echo $donnees2['goodieId']; ?>)'></a>
+                                        </div>
+                                    </li>
+                                    <?php
+                                    
+                                }
+                            }
+
+                                $goodieprec = $donnees['goodieId'];
+                                $count = $count + 1;
+                            
+                            ?>
+                            <li><a href="panier">Accéder au panier</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="logout" href="logout"><span>Se déconnecter</span></a> 
+                    </li>
+                </ul>
+
+                <?php
+            } else if (!isset($_SESSION['email'])) {
+                ?>
+                <ul>
+                    <li>
+                        <a class="login" data-popup-open="popup-1" href="#"><span>Connexion</span></a>
+                    </li>
+                    <li>
+                        <a class="register" data-popup-open="popup-2" href="#"><span>Inscription</span></a>
+                    </li>
+                </ul>
+                <?php
+            }
+            ?>
         </div>
+
+    </div>
 </header>
