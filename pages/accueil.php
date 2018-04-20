@@ -112,7 +112,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
         <div class="bloc-list-inner">
 
             <?php
-            $reponse = $bdd->query('SELECT * FROM goodies ORDER BY Id DESC');
+            $reponse = $bdd->query('SELECT * FROM goodies ORDER BY QuantCom DESC');
             $count = 0;
             while ($donnees = $reponse->fetch()) {
                 if ($count < 3) {

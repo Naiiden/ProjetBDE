@@ -11,7 +11,9 @@ if (isset($_GET['id'])) {
     <head>
         <meta charset="utf-8">
         <meta name="description" content="<?php print $description; ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <meta name="keywords" content="BDE,bde, cesi, exia, saint nazaire, Saint-Nazaire, école ingénieur, BDE Cesi, BDE Exia, étudiants saint nazaire,"> 
+        <meta title="Site BDE CESI EXIA Saint Nazaire">
         <title><?php print $title; ?></title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.gif" type="image/x-icon">
