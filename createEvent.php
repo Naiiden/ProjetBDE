@@ -7,6 +7,11 @@ if(isset($_POST)) {
     $description = $_POST['description'];
     $date = $_POST['date'];
     $type = $_POST['type'];
+    $ideaid =$_POST['id'];
+
+
+
+    
     $typebdd=3;
 
     if($type=='1') {  $typebdd=1; }
@@ -38,7 +43,40 @@ if(isset($_POST)) {
                     if(!$requete->execute(array($nom,$description,$photo,$typebdd,$date,''))) {
                         
                         print_r ($requete->errorInfo());
-                    } else {echo "Succes"; header("Location: event-list");
+                    } else {
+                        if(isset($_POST['from'])) {
+                            if($_POST['from']=='idea') {
+
+                                $requete2 = $bdd->query("SELECT Email_envoyeur FROM idees WHERE Id=".$ideaid);
+                                $donnee = $requete2->fetch();
+
+                             
+                                ini_set( 'display_errors', 1 );
+        
+                                error_reporting( E_ALL );
+                            
+                                $from = 'loick.legay@orange.fr';
+                                
+
+                                $to = $donnee['Email_envoyeur'];
+                            
+                                $subject = 'BDE EXIA';
+                            
+                                $message = "Bonjour, \n Nous vous informons que l'id&eacute;e que vous avez post&eacute; dans la boite à idée a &eacute;t&eacute; retenue. \n Bien jou&eacute; ! \n\n L'&eacute;quipe BDE.";
+                            
+                                $headers = "From:" . $from;
+                            
+                                mail($to,$subject,$message, $headers);
+                            
+                                echo "L'email a été envoyé.";
+
+                                echo "Succes"; 
+   
+                            }
+                        }
+                        
+                        
+                        header("Location: event-list");
                     }
 }
         

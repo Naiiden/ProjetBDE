@@ -23,9 +23,9 @@ function checkMessageLength($message) {
             // Verification de l'existance de l'adresse mail
             if(checkNameLength($_POST['name']) && checkMessageLength($_POST['message'])) {
 
-                $requete = $bdd->prepare("CALL `EnvoyerIdee`(?,?)");
+                $requete = $bdd->prepare("CALL `EnvoyerIdee`(?,?,?)");
 
-                if(!$requete->execute(array(htmlspecialchars($_POST['name']),htmlspecialchars($_POST['message'])))) {
+                if(!$requete->execute(array(htmlspecialchars($_POST['name']),htmlspecialchars($_POST['message']),htmlspecialchars($_POST['email'])))) {
                     print_r ($requete->errorInfo());
                 } else echo "Succes";
                 
