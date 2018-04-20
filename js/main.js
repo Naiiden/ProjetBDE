@@ -706,15 +706,17 @@ function likePhoto() {
 }
 
 function sendIdea() {
-    //if($(".idea-name").val() != "") {
+    alert($('.idea-email').val());
 
-        if($(".idea-nom").val() != "") {
+    if($(".idea-nom").val() != "") {
+        if($('.idea-email').val() != "") {
             if($(".idea-message").val() != "")  {
 
                 $.post('sendIdea.php', 
                             {
                                 name: $(".idea-nom").val(),
                                 message: $(".idea-message").val(),
+                                email: $('.idea-email').val(),
                                 action: 'send-idea'
                             },
                             
@@ -732,8 +734,8 @@ function sendIdea() {
                             'text'
                         );
             } else alert("Veuillez renseigner un message !");
-        } else alert("Veuillez renseigner votre nom !");
-    //} else alert("Veuillez renseigner un nom !");
+        } else alert("Veuillez renseigner votre email !");
+    } else alert("Veuillez renseigner votre nom !");
 }
 
 function sendVote(idIdeaForm,idUserForm) {
