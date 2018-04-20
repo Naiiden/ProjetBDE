@@ -78,7 +78,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
                 <div class="inner">
                     <h2> L'équipe du BDE</h2>
                 
-<!--   COUCOUUUUUUUUUUUUUUUUUU  TU AIMES LES TRAINS ????????   -->
                     <div class="team-list-inner">
                         <?php
                         $reponse = $bdd->query('SELECT * FROM membre_bde ORDER BY ID_membre ASC');
