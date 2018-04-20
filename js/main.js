@@ -2,6 +2,7 @@
  likes = 0;
  var hasLike=0;
 
+
 function message(text) {
     alert('message');
     $('.popup-message').html(message);
@@ -29,7 +30,7 @@ function getDate() {
 $(document).ready(function() {
     //Le code ici
     $(function() {
-        //----- OPEN
+        //----- FERMER POPUP
             $('[data-popup-open]').on('click', function(e)  {
             targeted_popup_class = jQuery(this).attr('data-popup-open');
             $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
@@ -38,7 +39,7 @@ $(document).ready(function() {
 
         });
 
-        //----- CLOSE
+        //----- FERMER POPUP
             $('[data-popup-close]').on('click', function(e)  {
             targeted_popup_class = jQuery(this).attr('data-popup-close');
             $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
@@ -47,97 +48,109 @@ $(document).ready(function() {
             e.preventDefault();
         });
 
-        $('.validate').on('click', function(e)  {
-           // $(".name-idea").text($(this).attr('validate')); 
-
-
-            $.post('getIdea.php', 
-            {
-                idIdea: $(this).attr('validate'),
-                action: 'get-idea'
-            },
+        // Quand on valide une idée
+            $('.validate').on('click', function(e)  {
             
-            function(data) {
-                if(data!='Echec') {
-                     tab=data.split("|");
-
-                    $(".name-idea").val(tab[0]);
-                    $(".description-idea").text(tab[1]);
-                    $(".nbvotes-idea").text(tab[2]);
-                    $(".id-idea").val(tab[3]);
-
-                }
-                else if(data=='Echec') {
-                    alert("Erreur ...");
-                }
                 
-            },
+                $.post('getIdea.php', 
+                {
+                    idIdea: $(this).attr('validate'),
+                    action: 'get-idea'
+                },
+                
+                function(data) {
+                    if(data!='Echec') {
+                        tab=data.split("|");
 
-            'text'
-            );
-            $('#id_vote').html = "";
+                        $(".name-idea").val(tab[0]);
+                        $(".description-idea").text(tab[1]);
+                        $(".nbvotes-idea").text(tab[2]);
+                        $(".id-idea").val(tab[3]);
+
+                    }
+                    else if(data=='Echec') {
+                        alert("Erreur ...");
+                    }
+                    
+                },
+
+                'text'
+                );
+                $('#id_vote').html = "";
         });
 
-
-        $('.photo').on('click', function(e)  {
-            $.post('getCommentsLikes.php', 
-            {
-                photoId: $(this).attr('photo'),
-                userId: $(this).attr('user')
-            },
+        // Quand on clique sur une photo (event.php)
             
-            function(data) {
-                if(data!='Echec') {
-                     json = JSON.parse(data);
-                    $("#image-popup").attr("src","img/local/event_photo/"+json['photo']);
-
-                    commentaires = json['commentaires'].split('|');
-                    commentairesId = json['commentairesId'].split('|');
-                    reports = json['reports'].split('|');
-                    noms = json['noms'].split('|');
-                    photoId = json['photoId'];
-                    type = json['type'];
-                    likes= json['likes'];
-                    dates =json['dates'].split('|');
-                    hasLike =json['hasLike'];
-                    
-                 i = 0;
-
-                if(noms[0]!="") {
-
-                 noms.forEach(function() {
-                    afficherCommentaires(noms[i],dates[i],commentaires[i], commentairesId[i], reports[i],type);
-                    i = i + 1;
-                  });
-                }
-                else {
-                    $("<h2 style='color:rgb(99, 0, 0);'>Il n'y a encore aucun commentaire !</h2>").appendTo('.comments-popup');
-                }
-
-                  photo=photoId;
-
-                $('.btn-like').html(likes+"&nbsp;&nbsp;");
-                if(hasLike==1) {
-                    $('.btn-like').addClass('active-btn-click');
-                }else {
-                    $('.btn-like').removeClass('active-btn-click');
-                }
-
-                    
-
-
-                }
-                else if(data=='Echec') {
-                    //alert("Erreur ...");
-                }
+            $('.photo').on('click', function(e)  {
+                alert('test');
+                $.post('getCommentsLikes.php', 
+                {
+                    photoId: $(this).attr('photo'),
+                    userId: $(this).attr('user')
+                },
                 
-            },
+                function(data) {
+                    if(data!='Echec') {
+                         
+                        // On récupère le tableau JSON du php 
+                        json = JSON.parse(data);
 
-            'text'
-            );
-            $('#id_vote').html = "";
+                        // On change la source de l'image par les infos venant de la base de donnée (dans getComentLike)
+                        $("#image-popup").attr("src","img/local/event_photo/"+json['photo']);
 
-        });
+                        // On remplis les infos dans des variables
+                        commentaires = json['commentaires'].split('|');
+                        commentairesId = json['commentairesId'].split('|');
+                        reports = json['reports'].split('|');
+                        noms = json['noms'].split('|');
+                        photoId = json['photoId'];
+                        type = json['type'];
+                        likes= json['likes'];
+                        dates =json['dates'].split('|');
+                        hasLike =json['hasLike'];
+                        
+                    i = 0;
+
+                    if(noms[0]!="") {
+
+                    noms.forEach(function() { // Pour chaque nom dans la table commentaire
+
+                        // On affiche les commentaires
+                        afficherCommentaires(noms[i],dates[i],commentaires[i], commentairesId[i], reports[i],type);
+                        i = i + 1;
+                    });
+                    }
+                    else { // SInon on affiche 'il n'y a encore aucun commentaires !
+                        $("<h2 style='color:rgb(99, 0, 0);'>Il n'y a encore aucun commentaire !</h2>").appendTo('.comments-popup');
+                    }
+
+                    photo=photoId;
+
+                    // LIKE
+                    $('.btn-like').html(likes+"&nbsp;&nbsp;");
+                    if(hasLike==1) { // SI l'utilisateur connecté a déjà liké 
+
+                        $('.btn-like').addClass('active-btn-click'); // On change le style du boutton j'aime 
+                    }else {
+                        $('.btn-like').removeClass('active-btn-click');
+                    }
+
+                        
+
+
+                    }
+                    else if(data=='Echec') {
+                        //alert("Erreur ...");
+                    }
+                    
+                },
+
+                'text'
+                );
+                $('#id_vote').html = "";
+
+        
+            });
 
     });
 
@@ -145,31 +158,28 @@ $(document).ready(function() {
 
 
    
-    $( ".popup #button" ).click(function() {
-        alert( "Handler for .click() called." );
-    });
 
-
-    $( "#sort1" ).click(function() {
-        $('div#event-list-inner>div').each(function(){ 
-            
-            if(!$(this).hasClass("1")) {
-                $(this).css({"display": "none"});
-               
-
+    // ----- TRIER PAR SORTIE
+        $( "#sort1" ).click(function() {
+            $('div#event-list-inner>div').each(function(){ 
                 
-            }  else { $(this).css({"display": "block"}); }
-            if($('#sort4').hasClass('active')) {
-                if($(this).attr('statut')!="0") {
+                if(!$(this).hasClass("1")) {
                     $(this).css({"display": "none"});
+                
+
+                    
+                }  else { $(this).css({"display": "block"}); }
+                if($('#sort4').hasClass('active')) {
+                    if($(this).attr('statut')!="0") {
+                        $(this).css({"display": "none"});
+                    }
                 }
-            }
-            if($('#sort5').hasClass('active')) {
-                if($(this).attr('statut')!="1") {
-                    $(this).css({"display": "none"});
+                if($('#sort5').hasClass('active')) {
+                    if($(this).attr('statut')!="1") {
+                        $(this).css({"display": "none"});
+                    }
                 }
-            }
-        });
+         });
 
        
         $("#sortall").removeClass( "active" );
@@ -180,7 +190,8 @@ $(document).ready(function() {
         $(this).addClass("active");
     });
 
-    $( "#sort2" ).click(function() {
+    // ---- TRIER PAR SORTIE
+        $( "#sort2" ).click(function() {
         $('div#event-list-inner>div').each(function(){ 
             
             if(!$(this).hasClass("2")) {
@@ -209,7 +220,9 @@ $(document).ready(function() {
         $("#sort2").addClass( "active" );
         $("#sort3").removeClass( "active" );
     });
-    $( "#sort3" ).click(function() {
+
+    // ----- TRIER PAR SPORT
+        $( "#sort3" ).click(function() {
         $('div#event-list-inner>div').each(function(){ 
             
             if(!$(this).hasClass("3")) {
@@ -233,7 +246,9 @@ $(document).ready(function() {
         $("#sort2").removeClass( "active" );
         $("#sort3").addClass( "active" );
     });
-    $( "#sortall" ).click(function() {
+
+    // ----- trier par TOUS
+        $( "#sortall" ).click(function() {
         $('div#event-list-inner>div').each(function(){ 
             
             
@@ -260,7 +275,8 @@ $(document).ready(function() {
 
 
     // Trier que les évènement à venir
-    $( "#sort4" ).click(function() {
+
+        $( "#sort4" ).click(function() {
         $('div#event-list-inner>div').each(function(){ 
             
             
@@ -293,7 +309,8 @@ $(document).ready(function() {
         $("#sort5").removeClass( "active" );
     });
     
-    $( "#sort5" ).click(function() {
+    // trier par les évènement passé
+        $( "#sort5" ).click(function() {
         $('div#event-list-inner>div').each(function(){ 
             
             
@@ -325,23 +342,17 @@ $(document).ready(function() {
         $("#sort4").removeClass( "active" );
     });
 
-    $('.search-goodies').on('input',function(e){
+    // Autocompletion de la boutique
+
+        $('.search-goodies').on('input',function(e){
         if($(this).val() != "") {
             $('#AllProducts').children('div').children('span').children('a').each(function() {
                 
                 $(this).parent('span').parent('div').css('display','none');
                 test = $(this).html();
                 i = test.indexOf($('.search-goodies').val());
-                if(i >= 0){/*
-                    var thisName = $(this).html();
-                    $('#AllProducts').children('div').each(function() {
-                        if($(this).children('span').children('a').html() != thisName) {
-                            $(this).css('display','none');
-                        }
-                        else {
-                            $(this).css('display','block');
-                        }
-                    });*/
+                if(i >= 0){
+
                     $(this).parent('span').parent('div').css('display','block');
                     
                 }
@@ -359,9 +370,8 @@ $(document).ready(function() {
 
 
 
-
-    $('.add-product').click(function() {
-        message('bonjour');
+    // AJOUTER UN PRODUIT AU PANIER 
+        $('.add-product').click(function() {
         var idgoodie=$(this).attr('idgoodie');
         
         $.post('addInCart.php', 
@@ -372,19 +382,24 @@ $(document).ready(function() {
         function(data) {
             if(data!='Echec') {
 
+                // On récupère le talbeau php en JSON
                 json = JSON.parse(data);
 
+                // On défini les variables
                 var nom = json['noms'];
                 var prix = json['prix'];
                 var quantite = json['quantitee'];
                 var id_cart = json['id-cart'];
 
-                $('#submenu').children('li').each(function(){
-                    if($(this).attr('idgoodie')==idgoodie) {
-                        $(this).remove();
+                // Pour chaque produit dans le panier
+                $('#submenu').children('li').each(function(){ 
+                    if($(this).attr('idgoodie')==idgoodie) { // Si il existe déjà un goodie 
+                        $(this).remove(); // On l'enlève ... 
                         
                     }
                });
+            
+               // .... Puis on affiche le goodie commandé
 
                $("<li idgoodie='"+idgoodie+"'> \
                                     <div class='item-on-cart' idgoodie='"+ idgoodie +"'>\
@@ -410,7 +425,9 @@ $(document).ready(function() {
         
     });
 
-    $( ".participe-event" ).click(function() {
+    // PARTICIPER A UN EVENEMENT
+   
+        $( ".participe-event" ).click(function() {
         //eventId
         $.post('participeEvent.php', 
         {
@@ -436,7 +453,11 @@ $(document).ready(function() {
     );
     });
 
-    $(".dereport-photo").click(function() {
+
+
+
+    // On enlève le signalement d'une photo (membre BDE)
+        $(".dereport-photo").click(function() {
         var photoIdForm = $(this).attr('photo');
         $.post('dereportPhoto.php', 
                             {
@@ -465,7 +486,8 @@ $(document).ready(function() {
     });
 
     
-    $( ".unsubscribe-event" ).click(function() {
+    // On se désinscrit d'un évènement (compte UTILISATEUR)
+        $( ".unsubscribe-event" ).click(function() {
         $.post('unsubscribeEvent.php', 
         {
             eventId: $("#eventId").val(),
@@ -486,140 +508,428 @@ $(document).ready(function() {
         'text'
         );
     });
+
 });
 
-function addCategory(){
-    $( ".popup-message" ).animate({
-        width: "20%",
-        opacity: 0.4
-      }, 300 );
 
-    var nameForm = $('#input-categorie').val(); 
+/* ----------------------------------------- */
+/* ------------ FUNCTIONS -------------------*/
+/* ----------------------------------------- */
 
-    $.post('addCategory.php', 
-        {
-            name: nameForm,
-            action: 'add-category'
-        },
-        function(data) {
-            if(data!='Succes') {
-                $("<tr id='category"+data+"'><td>"+nameForm+"</td><td><a class='delete-category' onclick='deleteCategory("+data+");' href='#'>Supprimer</a></td></tr>").appendTo('.table-categories');
-                $("<li><a href='#' onclick='sortShop("+data+")'>"+nameForm+"</a></li>").appendTo('#submenu-category');
-            }
-            else if(data=="Echec") {
-                alert('error');
-            }
-            
-        },
-        'text'
-    );
-}
 
-function deleteCategory(categoryId) {
 
-        $.post('removeCategory.php', 
-        {
-            id: categoryId,
-            action: 'remove-category'
-        },
-        function(data) {
-            if(data=='error-goodie') {
-                alert("Impossible de supprimer la catégorie car des goodies l'utilisent déjà !"); 
-            }
-            else if(data=="Echec") {
-                alert('error');
-            }
-            else if(data=="Succes") {
-                alert("La catégorie a bien été supprimée !");
-                $('#category'+categoryId).remove();
-            }
-            
-        },
-        'text'
-    );
+
+
+
+                        /*--------- PAGE PHOTOS ---------*/
+
+
+// Liker une photo (TOUS LES MEMBRES)
+    function likePhoto() {
+
+    if(hasLike==0) {
+        hasLike=1;
+        $.post('likePhoto.php', 
+                            {
+                                photoId: photo,
+                                action: "like-photo"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+
+                                    likes = likes + 1;
+                                    
+                                    $('.btn-like').html(likes+"&nbsp;&nbsp;");
+                                    $('.btn-like').addClass('active-btn-click');
+                                    
+                                    
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+
+                    }
 }
 
 
-function addGoodie () {
+// Supprimer une photos (MEMBRE BDE)
+    function deletePhoto(photoIdForm) {
+    $.post('deletePhoto.php', 
+                            {
+                                photoId: photoIdForm,
+                                action: "deletePhoto"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    
+                                    $("#photo"+photoIdForm).css("background-color","#ff8080");
+                                    $("#photo"+photoIdForm).fadeOut( "slow", function() {
+                                        // After animation completed:
+                                        $("#photo"+photoIdForm).remove();
+                                    });
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
 
-    
-    if(document.getElementById("file").files.length != 0 ){
-        if(($('#name').val()!="")) {
+// Signaler une photo (MEMBRE CESI)
+    function reportPhoto(photoIdForm) {
+    $.post('reportPhoto.php', 
+                            {
+                                photoId: photoIdForm,
+                                action: "reportPhoto"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    
+                                    $("#photo"+photoIdForm).css("background-color","#ff8080");
+                                    
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
+
+// Signaler un commentaire (MEMBRE CESI)
+    function reportComment(commentIdForm) {
+   $.post('reportComment.php', 
+                            {
+                                commentId: commentIdForm,
+                                action: "reportComment"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    $("#"+commentIdForm).css("background-color","#ff8080");
+                                    $('.report-comment-'+commentIdForm).html('Les membres du BDE ont été informé !')
+                                }
+                                else if(data=="already-report") {
+                                    alert("Vous avez déjà signalé ce commentaire !");
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
+
+// Enlever un signalement d'un commentaire (MEMBRE BDE)
+
+    function dereportComment(commentIdForm) {
+    $.post('dereportComment.php', 
+                            {
+                                commentId: commentIdForm,
+                                action: "dereportComment"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    $("#"+commentIdForm).css("background-color","#eff5f5");
+                                    $("#"+commentIdForm).children('.delete-comment-a').css("color","#3897c1");
+                                    $("#"+commentIdForm).children('.dereport-comment-a').remove();
+                                    //$('.report-comment-'+commentIdForm).html('Les membres du BDE ont été informé !')
+                                }
+                                else if(data=="already-dereport") {
+                                    alert("Vous avez déjà signalé ce commentaire !");
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+}
+
+// Envoyer un commentaire (TOUS LES MEMBRES)
+    function send_comment(nomForm) {
+    $.post('sendComment.php', 
+                            {
+                                commentaire: $('.popup-comment').val(),
+                                photoId: photo
+                                
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                        $('.comments-popup').prepend("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;'> \
+                                        <h2 style='float:left;'>Par " + nomForm  + "</h2> \
+                                        <span style='float:right;' >Posté le <b>"+ getDate() + "</b></span> \
+                                        <br/><br/><span >" + $('.popup-comment').val() +"</span> \
+                                        </div>");
+            
+                                }
+                                else if(data=='Echec') {
+                                    alert("Erreur...");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
         
 
+}
 
-        var fd = new FormData();
-        var files = $('#file')[0].files[0];
-        fd.append('file',files);
-        fd.append('name',$('#name').val());
-        fd.append('prix',$('#prix').val());
-        fd.append('description',$('#description').val());
-        fd.append('type',$('#type').val());
 
-        $.ajax({
-            url: 'addPhotoGoodie.php',
-                type: 'post',
-                data: fd,
-                contentType: false,
-                processData: false,
-                success: function(response){
-                    if(response=='post-invalid') {
-                        alert('erreur !')
-                    }
-                    else if(response== 'error-price') {
-                        alert('veuillez entrer un prix valide !')
-                    }
-                    else if(response=="error-upload") {
-                        alert("Erreur lors de l'upload de l'image !")
-                    }
-                    else if(response=='error-req-insert') {
-                        alert("Erreur SQL !")
-                    }
-                    else if(response=='Succes') {
-                        alert("Votre goodie a été ajouté !");
-                    }
-                },
-            });
-        }
+// Supprimer un commentaire (MEMBRE BDE)
+    function deleteComment(commentIdForm) {
+    $.post('deleteComment.php', 
+                            {
+                                commentId: commentIdForm,
+                                action: "deleteComment"
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    //alert("Vous avez bien supprimé le commentaire.");
+                                    
+                                    $("#"+commentIdForm).css("background-color","#ff8080");
+                                    $("#"+commentIdForm).fadeOut( "slow", function() {
+                                        // After animation completed:
+                                        $("#"+commentIdForm).remove();
+                                    });
+                                }
+                                else if(data=='Echec') {
+                                    //alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+    //$('div').remove("#"+commentIdForm);
+}
 
-        else 
-        {
-            alert('Veuillez renseigner un nom !');
-        }
-    }
-    else {
-    alert("Veuillez charger une image !");
-    }
+
+                        /*--------- PAGE BOITE A IDEE ---------*/
+
+
+// Envoyer une idée dans la boite à idée (TOUS LES MEMBRES)
+    function sendIdea() {
+    alert($('.idea-email').val());
+
+    if($(".idea-nom").val() != "") {
+        if($('.idea-email').val() != "") {
+            if($(".idea-message").val() != "")  {
+
+                $.post('sendIdea.php', 
+                            {
+                                name: $(".idea-nom").val(),
+                                message: $(".idea-message").val(),
+                                email: $('.idea-email').val(),
+                                action: 'send-idea'
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    alert("Votre idée a été transmise au BDE !");
+            
+                                }
+                                else if(data=='Echec') {
+                                    alert("erreur.");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+            } else alert("Veuillez renseigner un message !");
+        } else alert("Veuillez renseigner votre email !");
+    } else alert("Veuillez renseigner votre nom !");
+}
+
+// Envoyer un vote (TOUS LES MEMBRES)
+    function sendVote(idIdeaForm,idUserForm) {
+    $.post('sendVoteIdea.php', 
+                            {
+                                idIdea: idIdeaForm,
+                                idUser: idUserForm,
+                                action: 'send-vote-idea'
+                            },
+                            
+                            function(data) {
+                                if(data=='Succes') {
+                                    alert("Merci de votre vote ! ");
+                                    location.reload(); 
+            
+                                }
+                                else if(data=='Echec') {
+                                    alert("Erreur lors du vote ...");
+                                }
+                                
+                            },
+        
+                            'text'
+                        );
+        $('#id_vote').html = "";
+}
+
+
+                        /*--------- PAGE BOUTIQUE ---------*/
+
+
+// Ajouter une catégorie (Membre BDE)
+    function addCategory(){
+        $( ".popup-message" ).animate({
+            width: "20%",
+            opacity: 0.4
+        }, 300 );
+
+        var nameForm = $('#input-categorie').val(); 
+
+        $.post('addCategory.php', 
+            {
+                name: nameForm,
+                action: 'add-category'
+            },
+            function(data) {
+                if(data!='Succes') {
+                    $("<tr id='category"+data+"'><td>"+nameForm+"</td><td><a class='delete-category' onclick='deleteCategory("+data+");' href='#'>Supprimer</a></td></tr>").appendTo('.table-categories');
+                    $("<li><a href='#' onclick='sortShop("+data+")'>"+nameForm+"</a></li>").appendTo('#submenu-category');
+                }
+                else if(data=="Echec") {
+                    alert('error');
+                }
+                
+            },
+            'text'
+        );
+}
+
+// Supprimer une catégorie (MEMBRE BDE)
+    function deleteCategory(categoryId) {
+
+            $.post('removeCategory.php', 
+            {
+                id: categoryId,
+                action: 'remove-category'
+            },
+            function(data) {
+                if(data=='error-goodie') {
+                    alert("Impossible de supprimer la catégorie car des goodies l'utilisent déjà !"); 
+                }
+                else if(data=="Echec") {
+                    alert('error');
+                }
+                else if(data=="Succes") {
+                    alert("La catégorie a bien été supprimée !");
+                    $('#category'+categoryId).remove();
+                }
+                
+            },
+            'text'
+        );
+}
+
+// Ajouter un produit à vendre (MEMBRE BDE)
     
+    function addGoodie () {
+
+        
+        if(document.getElementById("file").files.length != 0 ){
+            if(($('#name').val()!="")) {
+            
+
+
+            var fd = new FormData();
+            var files = $('#file')[0].files[0];
+            fd.append('file',files);
+            fd.append('name',$('#name').val());
+            fd.append('prix',$('#prix').val());
+            fd.append('description',$('#description').val());
+            fd.append('type',$('#type').val());
+
+            $.ajax({
+                url: 'addPhotoGoodie.php',
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        if(response=='post-invalid') {
+                            alert('erreur !')
+                        }
+                        else if(response== 'error-price') {
+                            alert('veuillez entrer un prix valide !')
+                        }
+                        else if(response=="error-upload") {
+                            alert("Erreur lors de l'upload de l'image !")
+                        }
+                        else if(response=='error-req-insert') {
+                            alert("Erreur SQL !")
+                        }
+                        else if(response=='Succes') {
+                            alert("Votre goodie a été ajouté !");
+                        }
+                    },
+                });
+            }
+
+            else 
+            {
+                alert('Veuillez renseigner un nom !');
+            }
+        }
+        else {
+        alert("Veuillez charger une image !");
+        }
+        
 
 }
 
-function sortShop(idCategorie) {
+// Trier la boutique 
+    function sortShop(idCategorie) { // idCategorie : correspond au tri que l'on veut (directement de la base de donnée)
     
-    if(idCategorie==0) {
-        $('#AllProducts').children('div').each(function(){
-            $(this).css('display','block');
+        if(idCategorie==0) {
+            $('#AllProducts').children('div').each(function(){
+                $(this).css('display','block');
+            });
+        }
+        else {
+        $('#AllProducts').children('div').each(function(i){
+
+            if($(this).attr('categorieid') != idCategorie) {
+                $(this).fadeOut( "slow", function() {
+                $(this).css('display','none');
+                });
+            }
+
+            else {
+                $(this).fadeIn("slow", function() {
+                $(this).delay(2000).css('display','block');
+                });
+            }
         });
     }
-    else {
-    $('#AllProducts').children('div').each(function(i){
-
-        if($(this).attr('categorieid') != idCategorie) {
-            $(this).fadeOut( "slow", function() {
-            $(this).css('display','none');
-            });
-        }
-
-        else {
-            $(this).fadeIn("slow", function() {
-            $(this).delay(2000).css('display','block');
-            });
-        }
-    });
-}
 
 }
-function deleteProduct(idcart,idgoodie) {
+
+// Supprimer un produit du panier
+    function deleteProduct(idcart,idgoodie) {
 
     $.post('deleteInCart.php', 
         {
@@ -669,234 +979,11 @@ function deleteProduct(idcart,idgoodie) {
 
 
 }
-function openPhoto() {
-    alert("open");
-}
-
-function likePhoto() {
-
-    if(hasLike==0) {
-        hasLike=1;
-    $.post('likePhoto.php', 
-                            {
-                                photoId: photo,
-                                action: "like-photo"
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-
-                                    likes = likes + 1;
-                                    
-                                    $('.btn-like').html(likes+"&nbsp;&nbsp;");
-                                    $('.btn-like').addClass('active-btn-click');
-                                    
-                                    
-                                }
-                                else if(data=='Echec') {
-                                    alert("erreur.");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-
-                    }
-}
-
-function sendIdea() {
-    alert($('.idea-email').val());
-
-    if($(".idea-nom").val() != "") {
-        if($('.idea-email').val() != "") {
-            if($(".idea-message").val() != "")  {
-
-                $.post('sendIdea.php', 
-                            {
-                                name: $(".idea-nom").val(),
-                                message: $(".idea-message").val(),
-                                email: $('.idea-email').val(),
-                                action: 'send-idea'
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-                                    alert("Votre idée a été transmise au BDE !");
-            
-                                }
-                                else if(data=='Echec') {
-                                    alert("erreur.");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-            } else alert("Veuillez renseigner un message !");
-        } else alert("Veuillez renseigner votre email !");
-    } else alert("Veuillez renseigner votre nom !");
-}
-
-function sendVote(idIdeaForm,idUserForm) {
-    $.post('sendVoteIdea.php', 
-                            {
-                                idIdea: idIdeaForm,
-                                idUser: idUserForm,
-                                action: 'send-vote-idea'
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-                                    alert("Merci de votre vote ! ");
-                                    location.reload(); 
-            
-                                }
-                                else if(data=='Echec') {
-                                    alert("Erreur lors du vote ...");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-        $('#id_vote').html = "";
-}
-
-function deletePhoto(photoIdForm) {
-    $.post('deletePhoto.php', 
-                            {
-                                photoId: photoIdForm,
-                                action: "deletePhoto"
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-                                    
-                                    $("#photo"+photoIdForm).css("background-color","#ff8080");
-                                    $("#photo"+photoIdForm).fadeOut( "slow", function() {
-                                        // After animation completed:
-                                        $("#photo"+photoIdForm).remove();
-                                    });
-                                }
-                                else if(data=='Echec') {
-                                    alert("erreur.");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-}
 
 
-function reportPhoto(photoIdForm) {
-    $.post('reportPhoto.php', 
-                            {
-                                photoId: photoIdForm,
-                                action: "reportPhoto"
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-                                    
-                                    $("#photo"+photoIdForm).css("background-color","#ff8080");
-                                    
-                                }
-                                else if(data=='Echec') {
-                                    alert("erreur.");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-}
 
-
-function reportComment(commentIdForm) {
-   $.post('reportComment.php', 
-                            {
-                                commentId: commentIdForm,
-                                action: "reportComment"
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-                                    $("#"+commentIdForm).css("background-color","#ff8080");
-                                    $('.report-comment-'+commentIdForm).html('Les membres du BDE ont été informé !')
-                                }
-                                else if(data=="already-report") {
-                                    alert("Vous avez déjà signalé ce commentaire !");
-                                }
-                                else if(data=='Echec') {
-                                    alert("erreur.");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-}
-
-function dereportComment(commentIdForm) {
-    $.post('dereportComment.php', 
-                            {
-                                commentId: commentIdForm,
-                                action: "dereportComment"
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-                                    $("#"+commentIdForm).css("background-color","#eff5f5");
-                                    $("#"+commentIdForm).children('.delete-comment-a').css("color","#3897c1");
-                                    $("#"+commentIdForm).children('.dereport-comment-a').remove();
-                                    //$('.report-comment-'+commentIdForm).html('Les membres du BDE ont été informé !')
-                                }
-                                else if(data=="already-dereport") {
-                                    alert("Vous avez déjà signalé ce commentaire !");
-                                }
-                                else if(data=='Echec') {
-                                    alert("erreur.");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-}
-
-function send_comment(nomForm) {
-    $.post('sendComment.php', 
-                            {
-                                commentaire: $('.popup-comment').val(),
-                                photoId: photo
-                                
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-                                        $('.comments-popup').prepend("<div style='border-bottom:1px black dotted; padding-top:10px; padding-bottom:20px;'> \
-                                        <h2 style='float:left;'>Par " + nomForm  + "</h2> \
-                                        <span style='float:right;' >Posté le <b>"+ getDate() + "</b></span> \
-                                        <br/><br/><span >" + $('.popup-comment').val() +"</span> \
-                                        </div>");
-            
-                                }
-                                else if(data=='Echec') {
-                                    alert("Erreur...");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-        
-
-}
-
-
-function register() {
+// ----------------- INSCRIPTION ------------------------
+    function register() {
     if($(".register-email").val() != "") {
         if($(".register-password").val() != "" && $(".register-password-repeat").val() != "") {
             if($(".register-password").val() == $(".register-password-repeat").val()) {
@@ -949,8 +1036,8 @@ function register() {
     
 }
 
-
-function login() {
+// ------------------ CONNEXION ----------------------------
+    function login() {
 
                         $.post('signin.php', 
                             {
@@ -982,36 +1069,4 @@ function login() {
                         );
 
 
-}
-
-function participeEvent() {
-    alert("heello");
-}
-
-function deleteComment(commentIdForm) {
-    $.post('deleteComment.php', 
-                            {
-                                commentId: commentIdForm,
-                                action: "deleteComment"
-                            },
-                            
-                            function(data) {
-                                if(data=='Succes') {
-                                    //alert("Vous avez bien supprimé le commentaire.");
-                                    
-                                    $("#"+commentIdForm).css("background-color","#ff8080");
-                                    $("#"+commentIdForm).fadeOut( "slow", function() {
-                                        // After animation completed:
-                                        $("#"+commentIdForm).remove();
-                                    });
-                                }
-                                else if(data=='Echec') {
-                                    //alert("erreur.");
-                                }
-                                
-                            },
-        
-                            'text'
-                        );
-    //$('div').remove("#"+commentIdForm);
 }
