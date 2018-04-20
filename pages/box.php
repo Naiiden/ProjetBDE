@@ -21,6 +21,7 @@ if(isset($_SESSION['type'])) {
                 <h2>Vous validez cette idée ?</h2><br/>
                 <p>
                 <input type="text" class="name-idea" name="nom">
+                <input type="text" class= '.id-idea' name='id'>
                 </p>
                 <p>
                     
@@ -47,6 +48,7 @@ if(isset($_SESSION['type'])) {
                 <p>
                     Nombre de vote : <span class="nbvotes-idea" ></span>
                 </p>
+                <input value='idea' name="from" style="display:none;">
                 <input type="text" class="id-idea" name="id" style="display:none;"> <!-- INput invisible pour avoir la valeur de l'id dans le form pour le php -->
                 <input class="button" value="Valider cette idée" type="submit">
                 <a class="popup-close" data-popup-close="popup-validate" href="#">x</a>
@@ -143,6 +145,10 @@ if(isset($_SESSION['type'])) {
             <!-- PHP : Si connecter, mettre le nom et prénom en commentaire -->
             <div class="form-item">
                 <input placeholder="Le nom de votre idée" class="form-text idea-nom" type="text">
+            </div>
+
+            <div class="form-item">
+                <input placeholder="Votre email" class="form-text idea-email" type="text">
             </div>
 
             <div class="form-item form-type-textarea full">

@@ -62,10 +62,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 <header>
 
-<div id="popup-message">
-POPUP
-</div>
-
     <!-- POPUP CONNEXION -->
     <div class="popup" data-popup="popup-1">
         <form action='signin.php' method='POST'>
