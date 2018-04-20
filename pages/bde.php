@@ -77,8 +77,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
             <section id="bde-team">
                 <div class="inner">
                     <h2> L'équipe du BDE</h2>
-                    <p> Primi igitur omnium statuuntur Epigonus et Eusebius ob nominum gentilitatem oppressi. praediximus enim Montium sub ipso vivendi termino his vocabulis appellatos fabricarum culpasse tribunos ut adminicula futurae molitioni pollicitos.
-                    </p>
+                
 
                     <div class="team-list-inner">
                         <?php

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 18 Avril 2018 à 09:09
+-- Généré le :  Ven 20 Avril 2018 à 08:50
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -69,6 +69,25 @@ INSERT INTO `article_bde` (`ID`, `Nom`, `Description`, `Image`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `categories_goodies`
+--
+
+CREATE TABLE `categories_goodies` (
+  `Id` int(11) NOT NULL,
+  `Nom` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `categories_goodies`
+--
+
+INSERT INTO `categories_goodies` (`Id`, `Nom`) VALUES
+(1, 'Vêtements'),
+(2, 'Accessoires');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `commentaires`
 --
 
@@ -86,29 +105,7 @@ CREATE TABLE `commentaires` (
 --
 
 INSERT INTO `commentaires` (`Id`, `Id_photo`, `Id_utilisateur`, `Date`, `Commentaire`, `Report`) VALUES
-(1, 1, 17, '2018-04-11 07:30:34', 'Ceci est un commentaire', 0),
-(2, 1, 16, '2018-04-10 00:00:00', 'Ceci est un autre commentaire', 0),
-(40, 2, 17, '2018-04-16 17:46:48', 'Ceci est u', 1),
-(13, 3, 19, '2018-04-12 22:05:21', 'Loick', 0),
-(14, 3, 19, '2018-04-12 22:05:26', 'Loick', 0),
-(16, 3, 19, '2018-04-12 22:06:45', 'rht', 0),
-(17, 3, 19, '2018-04-12 22:06:47', 'rhtt', 0),
-(18, 3, 19, '2018-04-12 22:07:10', '1', 0),
-(19, 3, 19, '2018-04-12 22:07:57', 'dfv', 0),
-(20, 3, 19, '2018-04-12 22:09:05', 'dfverg', 0),
-(21, 3, 19, '2018-04-12 22:15:36', 'azer', 0),
-(22, 3, 19, '2018-04-12 22:15:56', 'teer', 0),
-(23, 3, 19, '2018-04-13 08:26:19', 'JADORE CETE IMAGE', 0),
-(24, 3, 19, '2018-04-13 08:26:23', 'JADORE CETE IMAGE', 0),
-(25, 3, 19, '2018-04-13 08:26:24', 'JADORE CETE IMAGE', 0),
-(26, 3, 19, '2018-04-13 08:26:26', 'JADORE CETE IMAGE', 0),
-(27, 3, 19, '2018-04-13 08:27:24', 'bhg', 0),
-(28, 3, 19, '2018-04-13 08:27:28', 'bhg', 0),
-(29, 3, 19, '2018-04-13 08:27:28', 'bhg', 0),
-(30, 4, 19, '2018-04-13 08:28:18', 'Je veux commenter', 0),
-(31, 4, 19, '2018-04-13 08:29:06', '', 0),
-(32, 4, 19, '2018-04-13 08:29:11', '', 0),
-(33, 4, 19, '2018-04-13 08:29:12', '', 1);
+(67, 6, 29, '2018-04-20 10:47:33', 'C\'était vraiment très sympa!', 0);
 
 -- --------------------------------------------------------
 
@@ -133,14 +130,10 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`Id`, `Nom`, `Description`, `Image`, `Type`, `Date`, `Statut`, `Visibilite`, `Inscrits`) VALUES
-(8, 'erz', 'Comme son nom l\'indique, erz est une représentation de notre monde selon le point de vue d\'un enfant malade.', '5acdebb599ad2.jpg', 0, '2018-04-19', 0, 1, '18'),
-(7, 'Test image', 'Ces belles tulipes sont des tulipes, et donc ce ne sont pas des roses.\r\nCar les roses sont roses, les violettes sont bleues, les tulipes sont des tulipes.', '5acdeba6b9f1f.jpg', 0, '2018-05-04', 0, 1, '18'),
-(9, 'Koala', 'Ceci est un Koala, les koala sont mignons et mangent des feuilles d\'eucalyptus.\r\nC\'est très bon.', '5acdef4b155d1.jpg', 0, '2018-04-12', 0, 1, '18|17'),
-(10, 'Orange', 'Cette fleur est orange, comme la couleur.\r\nLes fleurs sont belles. Comme les roses.\r\nRose est une rosa esa una rosa is a rose.\r\nJe ne sais pas ce que ça veux dire mais ça à l\'air sympa.\r\nÇa me rappelle quand je mangeais des skittles oranges. C\'était top.', '5acdefb123231.jpg', 2, '2018-04-06', 0, 1, '18'),
-(11, 'Découvrir les méduses', '', '5acdf08e3260a.jpg', 1, '2018-04-06', 0, 1, ''),
-(21, 'Faire un tour de voiture', 'Mon idée serait de créer un circuit tout terrain de voiture, afin de faire des courses et le gagnant volerait les voitures de tous les participants.', '5ace2b9a43603.jpg', 2, '2018-04-13', 0, 1, ''),
-(22, 'Sortie en moto !', 'Une sortie en moto, ça vous tente?\r\nSi oui, inscrivez-vous à cet évènement... c\'est gratuit !', '5acf842159ae8.jpg', 1, '2018-04-12', 1, 1, '19|17'),
-(23, 'Grosse soirée disco', 'C\'est l\'histoire d\'un chat sur une licorne, ainsi est né le ChatCorne, la plus grosse soirée inexistante du monde.', '5ad4aac0c7cbc.png', 3, '2018-04-20', 0, 1, '17');
+(26, 'Visite d\'entreprise', 'Vous êtes-vous déjà demandé à quoi ressemble une entreprise prospère? \r\nVous pouvez en savoir plus sur notre voyage à l\'une des installations d\'IBM dans les Alpes. En une semaine, vous apprendrez toutes les informations dont vous avez besoin pour devenir votre propre entreprise rentable et stable.', '5ad9a62c0c793.jpg', 1, '2018-05-08', 0, 1, ''),
+(27, 'Bières et chopes de pornichet', 'En soutiens à l\'équipe de raids humanitaires du CESI, nous organisons une levée de fonds', '5ad9a6a2e7900.jpg', 3, '2018-05-16', 0, 1, '29'),
+(28, 'Manifestation contre les violences aux femmes', 'Nous organisons une marche pour défendre les droits des femmes, nous vous attendons nombreux en ce jour! ', '5ad9a7187c0c6.png', 4, '2018-04-14', 1, 1, '29'),
+(25, 'Javathlon', 'Le Javathlon revient pour sa 19eme édition!\r\nL\'événement dure 5 jours, il consiste  programmer un jeu vidéo en JAVA seulement, par groupe de 5 personnes maximum!\r\nN\'attendez plus et foncez vous inscrire!', '5ad9a5cc12166.png', 4, '2018-04-30', 0, 1, '');
 
 -- --------------------------------------------------------
 
@@ -163,12 +156,14 @@ CREATE TABLE `goodies` (
 --
 
 INSERT INTO `goodies` (`Id`, `Nom`, `Description`, `Prix`, `Categorie`, `QuantCom`, `Image`) VALUES
-(1, 'Tshirt Sayian', 'Un superbe tshirt avec la tête de goku', 399, 1, 0, '5ad5b4a81c7b5.png'),
-(2, 'dedze', 'dzedzedze', 42, 1, 0, '5ad5e0466b40c.jpg'),
-(3, 'Licorne', 'Petite peluche licorne, super sympathique!', 399, 1, 0, '5ad5e18de372d.png'),
-(4, 'Tshirt moche', 'Tshirt avec un logo moche dessus', 12, 1, 0, '5ad6083ed9b10.jpg'),
-(5, 'Tshirt test', 'Ceci est un test', 59, 1, 0, '5ad60f7f322cb.jpg'),
-(6, 'Poutre en bois', 'Ceci est une poutre', 16, 2, 0, '5ad61d82cdc2a.jpg');
+(45, 'Bracelet', 'Un bracelet tendance.', 13, 2, 0, '5ad9a17eaf699.jpg'),
+(44, 'Sacoche', 'Une sacoche très grande, avec 4 poches dont une intérieure.', 25, 1, 0, '5ad9a16cdd730.jpg'),
+(43, 'SweatShirt R&B', 'Un super sweatshirt au style indémodable.', 43, 1, 0, '5ad9a145632ac.jpg'),
+(42, 'Casquette R&B', 'Une casquette aux couleurs de l\'EXIA!', 16, 1, 0, '5ad9a122b7b88.jpg'),
+(46, 'Clé usb', 'Une clé USB de 32GB !', 26, 2, 0, '5ad9a19504aa3.jpg'),
+(47, 'Écouteurs', 'Une très belle paire d\'écouteurs', 7, 2, 0, '5ad9a1a905cf9.png'),
+(48, 'Porte clés', 'Une porte clés rond, très discret.', 5, 2, 0, '5ad9a1bbf1b28.jpg'),
+(49, 'Tapis de souris', 'Tapis de souris moelleux, d\'une longueur de 32 cm.', 17, 2, 0, '5ad9a1d317600.jpg');
 
 -- --------------------------------------------------------
 
@@ -180,17 +175,18 @@ CREATE TABLE `idees` (
   `Id` int(11) NOT NULL,
   `Nom` varchar(50) NOT NULL,
   `Description` text NOT NULL,
-  `Votes` smallint(6) NOT NULL,
-  `Votes_utilisateurs` text NOT NULL
+  `Votes` smallint(6) DEFAULT NULL,
+  `Votes_utilisateurs` text,
+  `Email_envoyeur` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `idees`
 --
 
-INSERT INTO `idees` (`Id`, `Nom`, `Description`, `Votes`, `Votes_utilisateurs`) VALUES
-(2, 'Faire un tour de voiture', 'Mon idée serait de créer un circuit tout terrain de voiture', 0, '15|15|14|17|20'),
-(3, 'Enore un test', 'Cesi est encore une fois un test d\'idée proposé par quelsu\'un', 0, '31|14|17|20');
+INSERT INTO `idees` (`Id`, `Nom`, `Description`, `Votes`, `Votes_utilisateurs`, `Email_envoyeur`) VALUES
+(7, 'Venue du DJ Twonot', 'Le DJ Twonot revient dans la région, on pourrait organiser une soirée avec lui ?', NULL, NULL, 'hugo.plissonneau@viacesi.Fr'),
+(8, 'Fêter la fin d\'année', 'On pourrait fêter la fin d\'année en faisant une sortie en kart ou en jetski vous en pensez quoi ?', NULL, NULL, 'victor.gourbiliere@viacesi.Fr');
 
 -- --------------------------------------------------------
 
@@ -211,10 +207,10 @@ CREATE TABLE `membre_bde` (
 --
 
 INSERT INTO `membre_bde` (`ID_membre`, `Nom`, `Prenom`, `Role`, `Image`) VALUES
-(41, 'Pasquet', 'Vincent', 'Vice-président', '5ad34a01d712c.jpg'),
-(28, 'Gourbiliere', 'Victor', 'Trésorier', 'victor.jpg'),
-(29, 'Olivier', 'Nathan', 'Touriste', 'nathan.jpg'),
-(47, 'Spataro', 'Flavien', 'On sait pas', '5ad61cb089d60.jpg'),
+(41, 'Pasquet', 'Vincent', 'Vice-Président', '5ad34a01d712c.jpg'),
+(51, 'Gourbiliere', 'Victor', 'Trésorier', '5ad9a8de8b46b.jpg'),
+(29, 'Olivier', 'Nathan', 'Président', 'nathan.jpg'),
+(50, 'Spataro', 'Flavien', 'Mascotte', '5ad9a89070898.jpg'),
 (44, 'Gallet', 'Jérémy', 'DJ', '5ad5f0ad41cc2.png');
 
 -- --------------------------------------------------------
@@ -224,18 +220,10 @@ INSERT INTO `membre_bde` (`ID_membre`, `Nom`, `Prenom`, `Role`, `Image`) VALUES
 --
 
 CREATE TABLE `panier` (
-  `Id` int(11) NOT NULL,
+  `Id` int(255) NOT NULL,
   `Id_utilisateur` int(11) NOT NULL,
   `Id_Goodie` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `panier`
---
-
-INSERT INTO `panier` (`Id`, `Id_utilisateur`, `Id_Goodie`) VALUES
-(1, 17, 4),
-(2, 17, 5);
 
 -- --------------------------------------------------------
 
@@ -258,10 +246,7 @@ CREATE TABLE `photos` (
 --
 
 INSERT INTO `photos` (`Id`, `Id_utilisateur`, `Id_evenement`, `Nom`, `Image`, `Likes`, `Report`) VALUES
-(1, 19, 13, 'Test poto !', '5acf4c8ab3209.jpg', '0', 0),
-(2, 19, 22, 'Belle sortie', '5acf86e93bd3d.jpg', '17|17|17|17|17|17|20', 1),
-(5, 17, 22, 'tester', '5ad34940ec415.png', '17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17|17', 1),
-(4, 19, 22, 'Je test les photos', '5ad067110399e.png', '17', 1);
+(6, 29, 28, 'Réunion avant la marche', '5ad9a7edeada4.jpg', '', 0);
 
 -- --------------------------------------------------------
 
@@ -274,7 +259,7 @@ CREATE TABLE `utilisateurs` (
   `Nom` varchar(15) NOT NULL,
   `Prenom` varchar(15) NOT NULL,
   `Email` varchar(30) NOT NULL,
-  `Mdp` varchar(20) NOT NULL,
+  `Mdp` text NOT NULL,
   `Type` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -283,13 +268,9 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`Id`, `Nom`, `Prenom`, `Email`, `Mdp`, `Type`) VALUES
-(19, 'Loick', 'Legay', 'test@test.com', 'Isisyouka09', 1),
-(18, 'Loick', 'Legay', 'azer@o', 'Jean123', 1),
-(17, 'Lamarre', 'Jean', 'membrebde@viacesi.fr', 'Membre123', 2),
-(16, 'aze', 'aze', 'aze', 'azeA111', 1),
-(15, 'loick', 'lolo', 'test', 'testT56', 1),
-(14, 'uytyjt', 'tyutnt', 'loick@orange.froiu', 'azer4SS', 1),
-(20, 'Membre', 'Bde', 'membrecesi@viacesi.fr', 'Membre123', 3);
+(28, 'Gallet', 'Jeremy', 'membrecesi@viacesi.fr', '$2y$10$FaV6mnBjVThFyK8NTzXb3OwXHFUNQeRZnPd7Cx9dxwWNQPpFSaEDS', 3),
+(29, 'Gourbiliere', 'Victor', 'membrebde@viacesi.fr', '$2y$10$2N4LeojbOf6MXiKGg9rBGuHA0ATYdZNwigCkwomPnG1iUdWDycavS', 2),
+(31, 'Legay', 'Loick', 'etudiant@viacesi.fr', '$2y$10$0jI98zgTCYiPHW0LjttTR.tRZeSaDbFQF/vlIms2nB3Cl8cb1/O7S', 1);
 
 -- --------------------------------------------------------
 
@@ -312,6 +293,12 @@ CREATE TABLE `vote_idees` (
 --
 ALTER TABLE `article_bde`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Index pour la table `categories_goodies`
+--
+ALTER TABLE `categories_goodies`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Index pour la table `commentaires`
@@ -377,45 +364,50 @@ ALTER TABLE `vote_idees`
 ALTER TABLE `article_bde`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT pour la table `categories_goodies`
+--
+ALTER TABLE `categories_goodies`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
 -- AUTO_INCREMENT pour la table `commentaires`
 --
 ALTER TABLE `commentaires`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT pour la table `evenements`
 --
 ALTER TABLE `evenements`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT pour la table `goodies`
 --
 ALTER TABLE `goodies`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT pour la table `idees`
 --
 ALTER TABLE `idees`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `membre_bde`
 --
 ALTER TABLE `membre_bde`
-  MODIFY `ID_membre` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `ID_membre` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 --
 -- AUTO_INCREMENT pour la table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT pour la table `vote_idees`
 --

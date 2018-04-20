@@ -108,7 +108,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '')
 
 <section id="bde-boutique">
     <div class="inner">
-        <h2 class="titleh2"> Derniers objets en vente</h2>
+        <h2 class="titleh2"> 3 objets les plus vendus</h2>
         <div class="bloc-list-inner">
 
             <?php
